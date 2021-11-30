@@ -29,14 +29,14 @@
 		</nav>
 		
 		<!-- <img src="../images/golo.jpg"> -->
-		
-		<section>
 
-			<p>
-				actions
-			</p>
+		<form>
 			
-		</section>
+			<button>
+				
+			</button>
+
+		</form>
 		
 	</body>
 
