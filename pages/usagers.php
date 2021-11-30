@@ -5,6 +5,7 @@
 		<title>Accueil Secrétariat</title>
     	<meta charset="utf-8" />
     	<link rel="stylesheet" href="../styles/defaut.css">
+
 	</head>
 
 	<?php
@@ -13,6 +14,7 @@
 
 	<body>
 
+		<!-- ///////////////////// NAVIGUATION BAR //////////////////// -->
     	<nav>
     		<div class="table">
 			<ul>
@@ -27,17 +29,31 @@
 			</ul>
 			</div>
 		</nav>
-		
-		<!-- <img src="../images/golo.jpg"> -->
 
-		<form>
-			
-			<button>
-				
-			</button>
+		<br>
 
-		</form>
+		<!-- ///////////////////// LIEN USAGER & FORMULAIRE //////////////////// -->
+
+		<style type="text/css">
+		table{
+			font-style: none;
+			margin: 20px;
+		}
+
+		td
+		{
+			background-color: white;
+			padding: 10px;
+			margin: 30px;
+		}
+		</style>
+
 		
+		<table>
+			<td><a href="usagers/ajouter.php">Ajouter un usager</a></td>
+			<td><a href="usagers/modifier.php">Modifier un usager</a></td>
+			<td><a href="usagers/supprimer.php">Rechercher un usager</a></td>
+			<td><a href="usagers/supprimer.php">Supprimer un usager</a></td>
+		</table>
 	</body>
-
 </html>
