@@ -13,29 +13,22 @@
 
 	<body>
 
-    	<nav>
-    		<div class="table">
-			<ul>
-				<li class="menu"><a href="accueil_secretariat.php">Accueil</a></li>
+    	<!-- ///////////////////// NAVIGUATION BAR //////////////////// -->
+    	<?php 
+			$var = '1';
+			$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/header.php';
+			include($headerPath); 
+		?>
 
-				<li class="menu"><a href="usagers.php">Usagers</a></li>
-				<li class="menu"><a href="medecins.php">Medecins</a></li>
-
-				<li class="menu"><a href="planning.php">Planning</a></li>
-				<li class="menu"><a href="statistiques.php">Statistiques</a></li>
-				<li class="deconnexion"><a href="../index.html">Déconnexion</a></li>
-			</ul>
-			</div>
-		</nav>
+		<!-- 
+		<img src="../images/golo.jpg"> 
+		//include(dirname(__DIR__) . "/scripts/header.php"); 
+		-->
 		
-		<!-- <img src="../images/golo.jpg"> -->
-		
-		<section>
-
-			<p>
-				actions
-			</p>
-			
+		<section style="text-align: center">
+			<h1 style="font-family: arial;font-size: 5em;color: deeppink;, text-align: center !important;">
+				ACCUEIL
+			</h1>
 		</section>
 		
 	</body>

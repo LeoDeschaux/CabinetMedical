@@ -4,29 +4,24 @@
 	<head>
 		<title>Accueil Secrétariat</title>
     	<meta charset="utf-8" />
-    	<link rel="stylesheet" href="../../styles/defaut.css">
+    	<link rel="stylesheet" href="/www/CabinetMedical/styles/defaut.css">
 
 	</head>
 
-
-
 	<body>
 
-			<!-- ///////////////////// NAVIGUATION BAR //////////////////// -->
-    	<nav>
-    		<div class="table">
-			<ul>
-				<li class="menu"><a href="accueil_secretariat.php">Accueil</a></li>
+		<!-- ///////////////////// NAVIGUATION BAR //////////////////// -->
+    	<?php 
+			$var = '1';
+			$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/header.php';
+			include($headerPath); 
+		?>
 
-				<li class="menu"><a href="usagers.php">Usagers</a></li>
-				<li class="menu"><a href="medecins.php">Medecins</a></li>
-
-				<li class="menu"><a href="planning.php">Planning</a></li>
-				<li class="menu"><a href="statistiques.php">Statistiques</a></li>
-				<li class="deconnexion"><a href="../index.html">Déconnexion</a></li>
-			</ul>
-			</div>
-		</nav>
+		<!-- ///////////////////// USAGERS MENU //////////////////// -->
+		<?php 
+			$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/usagersMenu.php';
+			include($headerPath); 
+		?>
 
 		<!-- ///////////////////// FORMULAIRE //////////////////// -->
 		<?php

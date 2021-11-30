@@ -4,23 +4,8 @@
 	<head>
 		<title>Accueil Secrétariat</title>
     	<meta charset="utf-8" />
-    	<link rel="stylesheet" href="../styles/defaut.css">
-<style type="text/css">
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+    	<link rel="stylesheet" href="/www/CabinetMedical/styles/defaut.css">
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-}
-</style>
 
 
 	</head>
@@ -31,37 +16,42 @@ tr:nth-child(even) {
 
 	<body>
 
-    	<nav>
-    		<div class="table">
-			<ul>
-				<li class="menu"><a href="accueil_secretariat.php">Accueil</a></li>
+    	<!-- ///////////////////// NAVIGUATION BAR //////////////////// -->
+    	<?php 
+			$var = '1';
+			$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/header.php';
+			include($headerPath); 
+			?>
 
-				<li class="menu"><a href="usagers.php">Usagers</a></li>
-				<li class="menu"><a href="medecins.php">Medecins</a></li>
-
-				<li class="menu"><a href="planning.php">Planning</a></li>
-				<li class="menu"><a href="statistiques.php">Statistiques</a></li>
-				<li class="deconnexion"><a href="../index.html">Déconnexion</a></li>
-			</ul>
-			</div>
-		</nav>
+			<!-- ///////////////////// USAGERS MENU //////////////////// -->
+		<?php 
+			$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/usagersMenu.php';
+			include($headerPath); 
+		?>
 		
-		<!-- <img src="../images/golo.jpg"> -->
 
-		<br>
 
-		<form>
-			
-			<button type="submit" form="form1" value="Submit">Ajouter un usager</button>
+		<style type="text/css">
+		.tableau_table {
+		  font-family: arial, sans-serif;
+		  border-collapse: collapse;
+		  width: 100%;
 
-			<button type="submit" form="form1" value="Submit">Modifier un usager</button>
+		}
 
-			<button type="submit" form="form1" value="Submit">Supprimer un usager</button>
-		</form>
+		.tableau_cells {
+		  border: 1px solid #dddddd;
+		  text-align: left;
+		  padding: 8px;
+		}
 
-		<hr>
+		tr, th{
+			border: 1px solid #dddddd;
+			background-color: none;
+		}
 
-		<h1></h1>
+		</style>
+
 		<form>
 			
   			<input type="text" id="fname" name="fname" value="nom, prenom, etc.">
@@ -69,9 +59,9 @@ tr:nth-child(even) {
   			<br><br>
 		</form>
 		
+		<table class="tableau_table">
 
-		<table>
-			<tr>
+			<tr class="tableau_cells">
 				<th>Nom</th>
 				<th>Prenom</th>
 				<th>Adresse</th>
@@ -82,7 +72,7 @@ tr:nth-child(even) {
 				<th>Supprimer</th>
 			</tr>
 
-			<tr>
+			<tr class="tableau_cells">
 				<td></td>
 				<td></td>
 				<td></td>
@@ -92,7 +82,6 @@ tr:nth-child(even) {
 				<td></td>
 				<td></td>
 			</tr>
-
 		</table>
 	</body>
 </html>

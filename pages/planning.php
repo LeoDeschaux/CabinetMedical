@@ -9,25 +9,17 @@
 
 	<body>
 
-    	<nav>
-    		<div class="table">
-			<ul>
-				<li class="menu"><a href="accueil_secretariat.php">Accueil Secrétariat</a></li>
-				<li class="menu"><a href="statistiques.php">Statistiques</a></li>
-				
-				<li class="deconnexion"><a href="../index.html">Déconnexion</a></li>
-			</ul>
-			</div>
-		</nav>
+    	<!-- ///////////////////// NAVIGUATION BAR //////////////////// -->
+    	<?php 
+			$var = '1';
+			$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/header.php';
+			include($headerPath); 
+		?>
 		
-		<img src="../images/golo.jpg">
-		
-		<section>
-
-			<p>
-				emplois du temps
-			</p>
-			
+		<section style="text-align: center">
+			<h1 style="font-family: arial;font-size: 5em;color: deeppink;, text-align: center !important;">
+				PLANNING
+			</h1>
 		</section>
 		
 	</body>
