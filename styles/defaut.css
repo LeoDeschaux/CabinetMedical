@@ -38,7 +38,8 @@ nav a{
 }
 
 .menu:hover{ 
-	border-top: 3px solid #9BA0C8;
+	border-right: 3px solid #9BA0C8;
+	border-left:  3px solid #9BA0C8;
 	background-color: rgba(155, 160, 200, 0.15);
 }
 
@@ -52,8 +53,8 @@ nav a{
 }
 
 .deconnexion:hover{
-	right: 2em;
-	border-top: 3px solid #F91111;
+	border-right: 3px solid #F91111;
+	border-left:  3px solid #F91111;
 	background-color: rgba(254, 49, 49, 0.25);
 }
 

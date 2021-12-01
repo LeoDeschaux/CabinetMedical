@@ -4,7 +4,7 @@
 if($var == '1') {
 
 $path = '/www/CabinetMedical/';
-//echo $path;
+//echo $path; 
 ?>
 
 <nav>
@@ -51,8 +51,7 @@ else{
 			?>
 			<style type="text/css"> 
 				.accueil {
-					border-top: 3px solid #9BA0C8;
-					background-color: rgba(155, 160, 200, 0.15);
+					background-color: rgba(155, 160, 200, 0.50);
 				}
 			</style>
 			<?php
@@ -62,8 +61,7 @@ else{
 			?>
 			<style type="text/css"> 
 				.planning {
-					border-top: 3px solid #9BA0C8;
-					background-color: rgba(155, 160, 200, 0.15);
+					background-color: rgba(155, 160, 200, 0.50);
 				}
 			</style>
 			<?php
@@ -73,8 +71,7 @@ else{
 			?>
 			<style type="text/css"> 
 				.statistiques {
-					border-top: 3px solid #9BA0C8;
-					background-color: rgba(155, 160, 200, 0.15);
+					background-color: rgba(155, 160, 200, 0.50);
 				}
 			</style>
 			<?php
@@ -84,8 +81,7 @@ else{
 			?>
 			<style type="text/css"> 
 				.usagers {
-					border-top: 3px solid #9BA0C8;
-					background-color: rgba(155, 160, 200, 0.15);
+					background-color: rgba(155, 160, 200, 0.50);
 				}
 			</style>
 			<?php
@@ -95,8 +91,7 @@ else{
 			?>
 			<style type="text/css"> 
 				.medecins {
-					border-top: 3px solid #9BA0C8;
-					background-color: rgba(155, 160, 200, 0.15);
+					background-color: rgba(155, 160, 200, 0.50);
 				}
 			</style>
 			<?php
