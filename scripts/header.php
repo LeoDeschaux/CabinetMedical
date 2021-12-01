@@ -19,7 +19,7 @@ $path = '/www/CabinetMedical/';
 		</li>
 		
 		<li class="menu">
-			<a href="<?php echo $path.'pages/medecins.php';?>">Medecin</a>
+			<a href="<?php echo $path.'pages/medecins.php';?>">Medecins</a>
 		</li>
 
 		<li class="menu">

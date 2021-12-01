@@ -19,7 +19,7 @@
 
 		<section style="text-align: center">
 			<h1 style="font-family: arial;font-size: 5em;color: deeppink;, text-align: center !important;">
-				MEDECIN
+				MEDECINS
 			</h1>
 		</section>
 	</body>
