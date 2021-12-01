@@ -45,23 +45,23 @@
 		</p>
 
 		<p>
-		<label>Prenom</label><input type="text" id="fname" name="fname" placeholder="Julien"><br>
+		<label>Prenom</label><input type="text" id="fname" name="fname" placeholder="ex : Julien"><br>
 		</p>
 
 		<p>
-		<label>Adresse</label><input type="text" id="fname" name="fname" placeholder="18 rue des coquelicot"><br>
+		<label>Adresse</label><input type="text" id="fname" name="fname" placeholder="ex : 18 rue des coquelicot"><br>
 		</p>
 
 		<p>
-		<label>Code Postal</label><input type="text" id="fname" name="fname" placeholder="31300"><br>
+		<label>Code Postal</label><input type="text" id="fname" name="fname" placeholder="ex : 31300"><br>
 		</p>
 
 		<p>
-		<label>Ville</label><input type="text" id="fname" name="fname" placeholder="Toulouse"><br>
+		<label>Ville</label><input type="text" id="fname" name="fname" placeholder="ex : Toulouse"><br>
 		</p>
 
 		<p>
-		<label>Num Tel</label><input type="text" id="fname" name="fname" placeholder="0102030405"><br>
+		<label>Num Tel</label><input type="text" id="fname" name="fname" placeholder="ex : 0102030405"><br>
 		</p>
 
 		<p>

@@ -16,6 +16,7 @@
     	<!-- ///////////////////// NAVIGUATION BAR //////////////////// -->
     	<?php 
 			$var = '1';
+			$CouleurMenu = 'Accueil';
 			$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/header.php';
 			include($headerPath); 
 		?>
