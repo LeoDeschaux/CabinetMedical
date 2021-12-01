@@ -11,7 +11,7 @@ $path = '/www/CabinetMedical/';
 	<div class="table">
 	<ul>
 		<li class="menu">
-			<a href="<?php echo $path.'pages/accueil_secretariat.php';?>">Accueil</a>
+			<a href="<?php echo $path.'pages/accueil.php';?>">Accueil</a>
 		</li>
 
 		<li class="menu">
@@ -31,7 +31,7 @@ $path = '/www/CabinetMedical/';
 		</li>
 		
 		<li class="deconnexion">
-			<a href="<?php echo $path.'index.html';?>">Déconnexion</a>
+			<a href="<?php echo $path.'index.php';?>">Déconnexion</a>
 		</li>
 	</ul>
 	</div>

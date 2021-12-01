@@ -16,25 +16,28 @@
 	<body>
 
 
-
 		<div class="formulaire_inscripton">
 
-			
 
-			<form action="seconnecter.php" method="post">
+			<form action="verification.php" method="post">
 				
 				<strong>Se connecter</strong>
-				<p>Identifiant : <input type="text" name="id" /></p>
-				<p>Mot de passe : <input type="text" name="mdp" /></p>
+					<p><input type="text" name="id" placeholder="Identifiant" ></p>
+					<p><input type="password" name="mdp" placeholder=" Mot de passe" ></p>
+
+				<?php
+                if(isset($_GET['erreur'])){
+                    $err = $_GET['erreur'];
+                    if($err==1 || $err==2)
+                        echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
+                }
+                ?>
 
 				<input type="reset" value="Annuler">
 				<input type="submit" name = "valider" value="valider">
 				
 		
 			</form>
-
-			<br>
-			<a href="pages/accueil_secretariat.php">CHEAT - go to secretariat</a>
 
 		</div>
 		

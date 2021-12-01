@@ -32,7 +32,7 @@ $path = '/www/CabinetMedical/';
 	<div class="table">
 	<ul>
 		<li class="menu">
-			<a href="<?php echo $path.'pages/accueil_secretariat.php';?>">Accueil</a>
+			<a href="<?php echo $path.'pages/accueil.php';?>">Accueil</a>
 		</li>
 
 		<li class="menu">

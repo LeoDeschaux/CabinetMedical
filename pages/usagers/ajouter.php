@@ -41,27 +41,27 @@
 		<form method="get" id="nameform">
 		
 		<p>
-		<label>Nom</label><input type="text" onfocus="this.value=''" id="fname" name="fname" value="nom"><br>
+		<label>Nom</label><input type="text" id="fname" name="fname" placeholder="ex : BROISIN"><br>
 		</p>
 
 		<p>
-		<label>Prenom</label><input type="text" onfocus="this.value=''" id="fname" name="fname" value="prenom"><br>
+		<label>Prenom</label><input type="text" id="fname" name="fname" placeholder="Julien"><br>
 		</p>
 
 		<p>
-		<label>Adresse</label><input type="text" onfocus="this.value=''" id="fname" name="fname" value="adresse"><br>
+		<label>Adresse</label><input type="text" id="fname" name="fname" placeholder="18 rue des coquelicot"><br>
 		</p>
 
 		<p>
-		<label>Code Postal</label><input type="text" onfocus="this.value=''" id="fname" name="fname" value="code postal"><br>
+		<label>Code Postal</label><input type="text" id="fname" name="fname" placeholder="31300"><br>
 		</p>
 
 		<p>
-		<label>Ville</label><input type="text" onfocus="this.value=''" id="fname" name="fname" value="ville"><br>
+		<label>Ville</label><input type="text" id="fname" name="fname" placeholder="Toulouse"><br>
 		</p>
 
 		<p>
-		<label>Num Tel</label><input type="text" onfocus="this.value=''" id="fname" name="fname" value="numéro de téléphone"><br>
+		<label>Num Tel</label><input type="text" id="fname" name="fname" placeholder="0102030405"><br>
 		</p>
 
 		<p>
