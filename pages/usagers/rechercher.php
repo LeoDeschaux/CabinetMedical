@@ -10,78 +10,201 @@
 
 	</head>
 
+	<body>
+
+	<!-- ///////////////////// NAVIGUATION BAR //////////////////// -->
+	<?php 
+		$var = '1';
+		$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/header.php';
+		include($headerPath); 
+		?>
+
+		<!-- ///////////////////// USAGERS MENU //////////////////// -->
+	<?php 
+		$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/usagersMenu.php';
+		include($headerPath); 
+	?>
+	
+
+	<style type="text/css">
+	.tableau_table {
+	  font-family: arial, sans-serif;
+	  border-collapse: collapse;
+	  width: 100%;
+
+	}
+
+	.tableau_cell_title {
+	  border: 1px solid #dddddd;
+	  text-align: left;
+	  padding: 8px;
+	}
+
+	.tableau_cell{
+		border: 1px solid #dddddd;
+	}
+
+	tr, th{
+		border: 1px solid #dddddd;
+		background-color: none;
+	}
+	</style>
+
+	<br>
+
+	<form method="post">
+			<input type="text" name="search" placeholder="nom, prenom, etc.">
+			<button type="submit" name="send" value="send">Rechercher</button>
+			<br>
+	</form>
+
+	<br>
+
 	<?php
+	onFieldChange();
+
+	function onFieldChange()
+	{
+		if(empty($_POST['search']))
+		{
+			echo "show all";
+			showAllUsagers();
+		}
+		else
+		{
+			echo "show corresponding";
+			showCorrespondingUsagers();
+		}
+	}
 
 	?>
 
-	<body>
+	<?php 
 
-    	<!-- ///////////////////// NAVIGUATION BAR //////////////////// -->
-    	<?php 
-			$var = '1';
-			$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/header.php';
-			include($headerPath); 
-			?>
+	function showCorrespondingUsagers()
+	{
+		///Connexion au serveur MySQL
+	    $login = 'root';
+	    $mdp = '';
+	    $server = '127.0.0.1';
+	    $db = 'cabinet';
 
-			<!-- ///////////////////// USAGERS MENU //////////////////// -->
-		<?php 
-			$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/usagersMenu.php';
-			include($headerPath); 
-		?>
-		
+	    try {
+	        $linkpdo = new PDO("mysql:host=$server;dbname=$db", $login, $mdp);
+	    }
+	        catch (Exception $e) {
+	        die('Erreur : ' . $e->getMessage());
+	    }
+
+	    $req = $linkpdo->prepare("SELECT * FROM usager WHERE nom=:nom OR prenom=:prenom OR adresse=:adresse OR cp=:cp OR ville=:ville");
+    
+	    $field = $_POST['search'];
+
+	    $req->execute(array(
+	    'nom' => $field,
+	    'prenom' => $field,
+	    'adresse' => $field,
+	    'cp' => $field,
+	    'ville' => $field));
+	    
+	    ///Affichage des entrées du résultat une à une
+	    echo "<h2>Liste de tous les contacts :</h2>";
+
+	    echo "<table class=\"tableau_table\">";
+	    echo "<tr class=\"tableau_cell_title\">";
+	        echo "<th>Nom</th>";
+	        echo "<th>Prenom</th>";
+	        echo "<th>Adresse</th>";
+	        echo "<th>CodePostal</th>";
+	        echo "<th>Ville</th>";
+	    echo "</tr>";
+
+	    while ($row = $req->fetch())
+	    {
+	        echo "<tr class=\"tableau_cell_title\">";
+	            echo "<td class=\"tableau_cell\">" . $row['nom'] . "</td>";
+	            echo "<td class=\"tableau_cell\">" . $row['prenom'] . "</td>";
+	            echo "<td class=\"tableau_cell\">" . $row['adresse'] . "</td>";
+	            echo "<td class=\"tableau_cell\">" . $row['cp'] . "</td>";
+	            echo "<td class=\"tableau_cell\">" . $row['ville'] . "</td>";
+	        echo "</tr>";
+	    }
+
+	    echo "</table>";
+	    
+	    $req->closeCursor(); 
+	}
 
 
-		<style type="text/css">
-		.tableau_table {
-		  font-family: arial, sans-serif;
-		  border-collapse: collapse;
-		  width: 100%;
+	function showAllUsagers()
+	{
+		///Connexion au serveur MySQL
+	    $login = 'root';
+	    $mdp = '';
+	    $server = '127.0.0.1';
+	    $db = 'cabinet';
 
-		}
+	    try {
+	        $linkpdo = new PDO("mysql:host=$server;dbname=$db", $login, $mdp);
+	    }
+	        catch (Exception $e) {
+	        die('Erreur : ' . $e->getMessage());
+	    }
 
-		.tableau_cells {
-		  border: 1px solid #dddddd;
-		  text-align: left;
-		  padding: 8px;
-		}
+	    ///Sélection de tout le contenu de la table carnet_adresse
+	    $req = $linkpdo->query("SELECT * FROM usager");
+	    
+	    ///Affichage des entrées du résultat une à une
+	    echo "<h2>Liste de tous les contacts :</h2>";
 
-		tr, th{
-			border: 1px solid #dddddd;
-			background-color: none;
-		}
+	    echo "<table class=\"tableau_table\">";
+	    echo "<tr class=\"tableau_cell_title\">";
+	        echo "<th>Nom</th>";
+	        echo "<th>Prenom</th>";
 
-		</style>
+	        echo "<th>Civilité</th>";
+	        echo "<th>Num Sécu</th>";
+	        
+	        echo "<th>Adresse</th>";
+	        echo "<th>CP</th>";
+	        echo "<th>Ville</th>";
+	        
+	        echo "<th>Lieu de naissance</th>";
+	        echo "<th>Date de naissance</th>";
 
-		<form>
-			
-  			<input type="text" id="fname" name="fname" value="nom, prenom, etc.">
-			<button type="submit" form="form1" value="Submit">Rechercher</button>
-  			<br><br>
-		</form>
-		
-		<table class="tableau_table">
+	        echo "<th>Modifier</th>";
+	        echo "<th>Supprimer</th>";
+	    echo "</tr>";
 
-			<tr class="tableau_cells">
-				<th>Nom</th>
-				<th>Prenom</th>
-				<th>Adresse</th>
-				<th>Code Postal</th>
-				<th>Ville</th>
-				<th>Num Téléphone</th>
-				<th>Modifier</th>
-				<th>Supprimer</th>
-			</tr>
+	    while ($row = $req->fetch())
+	    {
+	    	$id = $row['id_u'];
 
-			<tr class="tableau_cells">
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-		</table>
+	        echo "<tr class=\"tableau_cell_title\">";
+	            echo "<td class=\"tableau_cell\">" . $row['nom'] . "</td>";
+	            echo "<td class=\"tableau_cell\">" . $row['prenom'] . "</td>";
+
+	            echo "<td class=\"tableau_cell\">" . $row['civilite'] . "</td>";
+				echo "<td class=\"tableau_cell\">" . $row['num_secu'] . "</td>";
+	            
+	            echo "<td class=\"tableau_cell\">" . $row['adresse'] . "</td>";
+	            echo "<td class=\"tableau_cell\">" . $row['cp'] . "</td>";
+	            echo "<td class=\"tableau_cell\">" . $row['ville'] . "</td>";
+
+	            echo "<td class=\"tableau_cell\">" . $row['lieu_naissance'] . "</td>";
+	            echo "<td class=\"tableau_cell\">" . $row['date_naissance'] . "</td>";
+
+	            echo "<td class=\"tableau_cell\"><a href=\"modification.php?id=$id\">Modifier</a></td>";
+                echo "<td class=\"tableau_cell\"><a href=\"suppression.php?id=$id\">Supprimer</a></td>";
+	        echo "</tr>";
+	    }
+
+	    echo "</table>";
+	    
+	    $req->closeCursor(); 
+	}
+
+	?>
+
 	</body>
 </html>

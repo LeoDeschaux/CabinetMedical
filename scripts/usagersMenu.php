@@ -27,38 +27,6 @@ $path = '/www/CabinetMedical/';
 	<td class="usager_button"><a href="/www/CabinetMedical/pages/usagers/supprimer.php">Supprimer un usager</a></td>
 </table>
 
-<!-- 
-<nav>
-	<div class="table">
-	<ul>
-		<li class="menu">
-			<a href="<?php echo $path.'pages/accueil.php';?>">Accueil</a>
-		</li>
-
-		<li class="menu">
-			<a href="<?php echo $path.'pages/usagers.php';?>">Usagers</a>
-		</li>
-		
-		<li class="menu">
-			<a href="<?php echo $path.'pages/medecins.php';?>">Medecin</a>
-		</li>
-
-		<li class="menu">
-			<a href="<?php echo $path.'pages/planning.php';?>">Planning</a>
-		</li>
-		
-		<li class="menu">
-			<a href="<?php echo $path.'pages/statistiques.php';?>">Statistiques</a>
-		</li>
-		
-		<li class="deconnexion">
-			<a href="<?php echo $path.'index.html';?>">Déconnexion</a>
-		</li>
-	</ul>
-	</div>
-</nav>
--->
-
 <?php
 }
 else{

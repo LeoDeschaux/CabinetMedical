@@ -30,7 +30,6 @@ if($currentPageName == "planning.php")
 
 if($currentPageName == "statistiques.php")
 	$stylePage5 = "menu-current";
-
 ?>
 
 <nav>

@@ -2,6 +2,7 @@ body{
 	margin:0px;
 	padding:0px;
 	background-color: #238CE5;
+	font-family: "Arial", sans-serif;
 }
 
 nav{
@@ -35,6 +36,11 @@ nav a{
 	text-decoration: none;
 	padding: 20px 30px;
 	color: #FFF;
+}
+
+a{
+	font-family: "Arial", sans-serif;
+	text-decoration: none; /* no underline */
 }
 
 .menu:hover{ 
