@@ -119,6 +119,8 @@
 			$req->execute(array('nom' => $nom, 'prenom' => $prenom));
 			if($req->rowCount() == 1)
 				echo "Usager Ajouté";
+			else
+				echo "Erreur, certains champs sont faux";
 		}
 	}
 
@@ -180,7 +182,7 @@
 	</p>
 
 	<p>
-	<label>Date de naissance</label><input type="text" name="date_naissance" placeholder="ex : 01/01/1990"><br>
+	<label>Date de naissance</label><input type="date" name="date_naissance" placeholder="ex : 01/01/1990"><br>
 	</p>
 
 

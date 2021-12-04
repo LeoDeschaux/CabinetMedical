@@ -194,8 +194,8 @@
 	            echo "<td class=\"tableau_cell\">" . $row['lieu_naissance'] . "</td>";
 	            echo "<td class=\"tableau_cell\">" . $row['date_naissance'] . "</td>";
 
-	            echo "<td class=\"tableau_cell\"><a href=\"modification.php?id=$id\">Modifier</a></td>";
-                echo "<td class=\"tableau_cell\"><a href=\"suppression.php?id=$id\">Supprimer</a></td>";
+	            echo "<td class=\"tableau_cell\"><a href=\"modifier.php?id=$id\">Modifier</a></td>";
+                echo "<td class=\"tableau_cell\"><a href=\"supprimer.php?id=$id\">Supprimer</a></td>";
 	        echo "</tr>";
 	    }
 
