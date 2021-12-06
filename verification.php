@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 if(isset($_POST['id']) && isset($_POST['mdp']))
 {
     // connexion à la base de données
@@ -24,8 +24,8 @@ if(isset($_POST['id']) && isset($_POST['mdp']))
         $count = $reponse['count(*)'];
         if($count!=0) // nom d'utilisateur et mot de passe correctes
         {
-           $_SESSION['id'] = $id;
-           header('Location: pages/accueil.php');
+           $_SESSION['connexion'] = 'oui';
+           header('Location: pages/usagers/rechercher.php');
         }
         else
         {

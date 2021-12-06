@@ -1,3 +1,12 @@
+
+<?php
+	session_start();
+	if ($_SESSION['connexion'] !== 'oui') {
+		header('Location: /www/CabinetMedical/index.php');
+	}
+	
+?>
+
 <!-- ///////////////////// NAVIGUATION BAR //////////////////// -->
 
 <?php 
@@ -14,12 +23,8 @@ $stylePage5 = "menu";
 
 $currentPageName = basename($_SERVER['PHP_SELF']);
 
-if($currentPageName == "accueil.php")
-	$stylePage1 = "menu-current";
-
 if($currentPageName == "usagers.php" || $currentPageName == "ajouter.php" ||
-   $currentPageName == "modifier.php" || $currentPageName == "rechercher.php" ||
-   $currentPageName == "supprimer.php")
+    $currentPageName == "rechercher.php")
 	$stylePage2 = "menu-current";
 
 if($currentPageName == "medecins.php")
@@ -35,10 +40,6 @@ if($currentPageName == "statistiques.php")
 <nav>
 	<div class="table">
 	<ul>
-		<li class="<?php echo $stylePage1;?>">
-			<a class ="accueil" href="<?php echo $path.'pages/accueil.php';?>">Accueil</a>
-		</li>
-
 		<li class="<?php echo $stylePage2;?>">
 			<a class ="usagers" href="<?php echo $path.'pages/usagers.php';?>">Usagers</a>
 		</li>
@@ -56,7 +57,9 @@ if($currentPageName == "statistiques.php")
 		</li>
 		
 		<li class="deconnexion">
-			<a href="<?php echo $path.'index.php';?>">Déconnexion</a>
+			<form>
+				<a href="<?php echo $path.'index.php';?>">Déconnexion</a>
+			</form>
 		</li>
 	</ul>
 	</div>
