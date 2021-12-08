@@ -7,6 +7,9 @@
 		<title>Médecins</title>
     	<meta charset="utf-8" />
     	<link rel="stylesheet" href="../styles/defaut.css">
+    	<?php 
+			include($_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/connexion.php'); 
+		?>
 	</head>
 
 	<body>

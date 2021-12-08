@@ -1,0 +1,21 @@
+
+.tableau_table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tableau_cell_title {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.tableau_cell{
+	border: 1px solid #dddddd;
+}
+
+tr, th{
+  border: 1px solid #dddddd;
+  background-color: none;
+}

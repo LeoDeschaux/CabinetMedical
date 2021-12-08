@@ -1,11 +1,4 @@
 
-<?php
-	session_start();
-	if ($_SESSION['connexion'] !== 'oui') {
-		header('Location: /www/CabinetMedical/index.php');
-	}	
-?>
-
 <!-- ///////////////////// NAVIGUATION BAR //////////////////// -->
 
 <?php 
@@ -57,22 +50,12 @@ if($currentPageName == "statistiques.php")
 	</ul>
 	</div>
 	<li class="deconnexion">
-		<form method="post">
-			<input type="submit" name="deconnexion" value="Déconnexion">
-
+		<form method="post" action="/www/CabinetMedical/scripts/connexion.php">
+			<a><input type="submit" name="deconnexion" value="Déconnexion"></a>
 		</form>
 	</li>
 </nav>
 
 <?php
-}
-?>
-
-<?php
-if (isset($_POST['deconnexion'])) {
-	if ($_POST['deconnexion']) {
-		session_destroy();
-		header("Refresh:0");
-	}
 }
 ?>

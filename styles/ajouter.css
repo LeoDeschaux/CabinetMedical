@@ -1,0 +1,26 @@
+form  { 
+	display: table;      
+}
+
+p     { 
+	display: table-row;  
+}
+
+label { 
+	display: table-cell; 
+}
+
+input { 
+	display: table-cell; 
+}
+
+.fiche_inscription{
+	display: table;
+	margin:auto;
+	margin-top: 3em;
+	height:40%;
+	width:60%;
+	border-radius: 10px;
+	border: solid;
+	background-color: white;
+}

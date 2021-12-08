@@ -5,9 +5,11 @@
 		<title>Accueil Secrétariat</title>
     	<meta charset="utf-8" />
     	<link rel="stylesheet" href="/www/CabinetMedical/styles/defaut.css">
+      	<link rel="stylesheet" href="/www/CabinetMedical/styles/rechercher.css">
 
-
-
+    	<?php 
+			include($_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/connexion.php'); 
+		?>
 	</head>
 
 	<body>
@@ -24,31 +26,6 @@
 		$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/usagersMenu.php';
 		include($headerPath); 
 	?>
-	
-
-	<style type="text/css">
-	.tableau_table {
-	  font-family: arial, sans-serif;
-	  border-collapse: collapse;
-	  width: 100%;
-
-	}
-
-	.tableau_cell_title {
-	  border: 1px solid #dddddd;
-	  text-align: left;
-	  padding: 8px;
-	}
-
-	.tableau_cell{
-		border: 1px solid #dddddd;
-	}
-
-	tr, th{
-		border: 1px solid #dddddd;
-		background-color: none;
-	}
-	</style>
 
 	<br>
 

@@ -5,7 +5,11 @@
 		<title>Accueil Secrétariat</title>
     	<meta charset="utf-8" />
     	<link rel="stylesheet" href="/www/CabinetMedical/styles/defaut.css">
-
+    	<link rel="stylesheet" href="/www/CabinetMedical/styles/ajouter.css">
+    	
+    	<?php 
+			include($_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/connexion.php'); 
+		?>
 	</head>
 
 	<body>
@@ -128,83 +132,61 @@
 
 	<br>
 	<br>
-
-	<style type="text/css">
-		form  { display: table;      }
-		p     { display: table-row;  }
-		label { display: table-cell; }
-		input { display: table-cell; }
-	</style>
-
-	<form method="post">
-	
-	<p>
-	<label>Nom</label><input type="text" name="nom" placeholder="ex : BROISIN"><br>
-	</p>
-
-	<p>
-	<label>Prenom</label><input type="text" name="prenom" placeholder="ex : Julien"><br>
-	</p>
-
-	<br>
-
-	<p>
-	<label>Civilité</label>
-	<select name="civilite"*>
-    	<option value="M">Monsieur</option>
-    	<option value="Mme">Madame</option>
-    	<option value="Mlle">Mademoiselle</option>
-  	</select>
-	</p>
-
-	<p>
-	<label>Numéro de sécurité social</label><input type="text" name="num_secu" placeholder="ex : 0123456789"><br>
-	</p>
-
-	<br>
-
-	<p>
-	<label>Adresse</label><input type="text" name="adresse" placeholder="ex : 18 rue des coquelicot"><br>
-	</p>
-
-	<p>
-	<label>Code Postal</label><input type="text" name="cp" placeholder="ex : 31300"><br>
-	</p>
-
-	<p>
-	<label>Ville</label><input type="text" name="ville" placeholder="ex : Toulouse"><br>
-	</p>
-
-	<br>
-
-	<p>
-	<label>Lieu de naissance</label><input type="text" name="lieu_naissance" placeholder="ex : Toulouse"><br>
-	</p>
-
-	<p>
-	<label>Date de naissance</label><input type="date" name="date_naissance" placeholder="ex : 01/01/1990"><br>
-	</p>
+		<div class="fiche_inscription">
+			<form method="post">
+				<p>
+					<label>Nom</label><input type="text" name="nom" placeholder="ex : BROISIN"><br>
+				</p>
+				<p>
+					<label>Prenom</label><input type="text" name="prenom" placeholder="ex : Julien"><br>
+				</p>
+				<br>
+				<p>
+					<label>Civilité</label>
+					<select name="civilite"*>
+				    	<option value="M">Monsieur</option>
+				    	<option value="Mme">Madame</option>
+				    	<option value="Mlle">Mademoiselle</option>
+				  	</select>
+				</p>
+				<p>
+					<label>N° de sécurité social</label><input type="text" name="num_secu" placeholder="ex : 0123456789"><br>
+				</p>
+				<br>
+				<p>
+					<label>Adresse</label><input type="text" name="adresse" placeholder="ex : 18 rue des coquelicot"><br>
+				</p>
+				<p>
+					<label>Code Postal</label><input type="text" name="cp" placeholder="ex : 31300"><br>
+				</p>
+				<p>
+					<label>Ville</label><input type="text" name="ville" placeholder="ex : Toulouse"><br>
+				</p>
+				<br>
+				<p>
+					<label>Lieu de naissance</label><input type="text" name="lieu_naissance" placeholder="ex : Toulouse"><br>
+				</p>
+				<p>
+					<label>Date de naissance</label><input type="date" name="date_naissance" placeholder="ex : 01/01/1990"><br>
+				</p>
 
 
-	<!-- CONTACT ? 
-	<br>
+				<!-- CONTACT ? 
+				<br>
 
-	<p>
-	<label>Num Tel</label><input type="text" name="n6" placeholder="ex : 0102030405"><br>
-	</p>
-	<p>
-	<label>Adresse mail</label><input type="text" name="n6" placeholder="ex : prenom.nom@gmail.com"><br>
-	</p>
-	-->
-
-	<br>
-
-	<p>
-	<button type="submit" name ="send" value="send">Ajouter</button>
-	</p>
-
-	</form>
-
-
+				<p>
+				<label>Num Tel</label><input type="text" name="n6" placeholder="ex : 0102030405"><br>
+				</p>
+				<p>
+				<label>Adresse mail</label><input type="text" name="n6" placeholder="ex : prenom.nom@gmail.com"><br>
+				</p>
+				-->
+				<br>
+				<p>
+					<input type="reset" value="Annuler">
+					<button type="submit" name ="send" value="send">Ajouter</button>
+				</p>
+			</form>
+		</div>
 	</body>
 </html>
