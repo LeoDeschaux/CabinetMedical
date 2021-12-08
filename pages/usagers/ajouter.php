@@ -171,6 +171,13 @@
 				</p>
 
 
+				<br>
+
+				<p>
+					<label>Médecin référent</label><input type="search" name="medecin_referent" placeholder="ex: Dr. X"><br>
+				</p>
+
+
 				<!-- CONTACT ? 
 				<br>
 
