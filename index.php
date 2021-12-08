@@ -1,7 +1,7 @@
 <?php
 	session_start();
-	$_SESSION['connexion'] = 'non';
-
+	$_SESSION['connexion'] = 'non'; 
+	include($_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/connexion.php'); 
 ?>
 <!DOCTYPE HTML>
 <html lang="fr">

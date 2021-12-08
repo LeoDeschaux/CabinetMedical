@@ -57,7 +57,6 @@
 	?>
 
 	<?php 
-
 	function showCorrespondingUsagers()
 	{
 		///Connexion au serveur MySQL
@@ -169,7 +168,7 @@
 	            echo "<td class=\"tableau_cell\">" . $row['ville'] . "</td>";
 
 	            echo "<td class=\"tableau_cell\">" . $row['lieu_naissance'] . "</td>";
-	            echo "<td class=\"tableau_cell\">" . $Date("d-m-Y",row['date_naissance']). "</td>";
+	            echo "<td class=\"tableau_cell\">" . Date("d-m-Y",$row['date_naissance']). "</td>";
 
 	            echo "<td class=\"tableau_cell\"><a href=\"modifier.php?id=$id\">Modifier</a></td>";
                 echo "<td class=\"tableau_cell\"><a href=\"supprimer.php?id=$id\">Supprimer</a></td>";
