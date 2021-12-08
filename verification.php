@@ -2,14 +2,6 @@
 session_start();
 if(isset($_POST['id']) && isset($_POST['mdp']))
 {
-    // connexion à la base de données
-    $bdd_nom = 'root';
-    $bdd_mdp = '';
-    $bdd_table = 'cabinet';
-    $bdd_host = 'localhost';
-    $db = mysqli_connect($bdd_host, $bdd_nom, $bdd_mdp,$bdd_table)
-           or die('could not connect to database');
-    
     // on applique les deux fonctions mysqli_real_escape_string et htmlspecialchars
     // pour éliminer toute attaque de type injection SQL et XSS
     $id = mysqli_real_escape_string($db,htmlspecialchars($_POST['id'])); 

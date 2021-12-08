@@ -57,7 +57,6 @@
 	?>
 
 	<?php 
-
 	function showCorrespondingUsagers()
 	{
 		///Connexion au serveur MySQL
