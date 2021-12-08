@@ -105,7 +105,7 @@
 		        cp, ville, lieu_naissance, date_naissance) 
 		        VALUES(:nom, :prenom, :civilite, :num_secu, :adresse, :cp, :ville, :lieu_naissance, :date_naissance)
 		    ");
-
+		    $date_naissance = strtotime($date_naissance);
 		    ///Exécution de la requête
 		    $req->execute(array(
 		    'nom' => $nom,
