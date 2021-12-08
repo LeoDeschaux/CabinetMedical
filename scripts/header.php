@@ -3,8 +3,7 @@
 	session_start();
 	if ($_SESSION['connexion'] !== 'oui') {
 		header('Location: /www/CabinetMedical/index.php');
-	}
-	
+	}	
 ?>
 
 <!-- ///////////////////// NAVIGUATION BAR //////////////////// -->
@@ -41,7 +40,7 @@ if($currentPageName == "statistiques.php")
 	<div class="table">
 	<ul>
 		<li class="<?php echo $stylePage2;?>">
-			<a class ="usagers" href="<?php echo $path.'pages/usagers.php';?>">Usagers</a>
+			<a class ="usagers" href="<?php echo $path.'pages/usagers/rechercher.php';?>">Usagers</a>
 		</li>
 		
 		<li class="<?php echo $stylePage3;?>">
@@ -55,16 +54,25 @@ if($currentPageName == "statistiques.php")
 		<li class="<?php echo $stylePage5;?>">
 			<a class ="statistiques" href="<?php echo $path.'pages/statistiques.php';?>">Statistiques</a>
 		</li>
-		
-		<li class="deconnexion">
-			<form>
-				<a href="<?php echo $path.'index.php';?>">Déconnexion</a>
-			</form>
-		</li>
 	</ul>
 	</div>
+	<li class="deconnexion">
+		<form method="post">
+			<input type="submit" name="deconnexion" value="Déconnexion">
+
+		</form>
+	</li>
 </nav>
 
 <?php
+}
+?>
+
+<?php
+if (isset($_POST['deconnexion'])) {
+	if ($_POST['deconnexion']) {
+		session_destroy();
+		header("Refresh:0");
+	}
 }
 ?>

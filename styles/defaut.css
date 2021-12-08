@@ -58,6 +58,12 @@ a{
 	background-color: rgb(30,30,50);
 }
 
+.deconnexion {
+	position: absolute;
+	right: 0px;
+	top:0px;
+}
+
 .deconnexion:hover{
 	border-right: 3px solid #F91111;
 	border-left:  3px solid #F91111;
