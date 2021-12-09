@@ -1,7 +1,4 @@
 <?php
-	session_start();
-	$_SESSION['connexion'] = 'non'; 
-	include($_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/connexion.php'); 
 ?>
 <!DOCTYPE HTML>
 <html lang="fr">
@@ -21,17 +18,14 @@
 				<strong>Se connecter</strong>
 					<p><input type="text" name="id" placeholder="Identifiant" ></p>
 					<p><input type="password" name="mdp" placeholder=" Mot de passe" ></p>
-				<?php
-                if(isset($_GET['erreur'])){
-                    $err = $_GET['erreur'];
-                    if($err==1 || $err==2)
-                        echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
-                    	session_destroy();
-                }
-                ?>
 				<input type="reset" value="Annuler">
 				<input type="submit" name = "valider" value="valider">
 			</form>
+
+			<br>
+			
+			<a href="/www/CabinetMedical/pages/usagers/rechercher.php">CHEAT GO TO ACCUEIL</a>
+
 		</div>
 	</body>
 </html>

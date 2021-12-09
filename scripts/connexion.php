@@ -18,5 +18,4 @@
 			header("Refresh:0");
 		}
 	}
-	
 ?>

@@ -6,10 +6,6 @@
     	<meta charset="utf-8" />
     	<link rel="stylesheet" href="/www/CabinetMedical/styles/defaut.css">
     	<link rel="stylesheet" href="/www/CabinetMedical/styles/ajouter.css">
-    	
-    	<?php 
-			include($_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/connexion.php'); 
-		?>
 	</head>
 
 	<body>
@@ -52,33 +48,6 @@
 		$lieu_naissance = $_POST['lieu_naissance'];
 		$date_naissance = $_POST['date_naissance'];
 
-		/*
-	    if(!empty($_POST['n1']))
-	    {
-	        $n1 = $_POST['n1'];
-	    }
-	     if(!empty($_POST['n2']))
-	    {
-	        $n2 = $_POST['n2'];
-	    }
-	     if(!empty($_POST['n3']))
-	    {
-	        $n3 = $_POST['n3'];
-	    }
-	     if(!empty($_POST['n4']))
-	    {
-	        $n4 = $_POST['n4'];
-	    }
-	     if(!empty($_POST['n5']))
-	    {
-	        $n5 = $_POST['n5'];
-	    }
-	     if(!empty($_POST['n6']))
-	    {
-	        $n6 = $_POST['n6'];
-	    }
-	    */
-
 	    ///Connexion au serveur MySQL
 		$login = 'root';
 		$mdp = '';
@@ -105,7 +74,9 @@
 		        cp, ville, lieu_naissance, date_naissance) 
 		        VALUES(:nom, :prenom, :civilite, :num_secu, :adresse, :cp, :ville, :lieu_naissance, :date_naissance)
 		    ");
+		    
 		    $date_naissance = strtotime($date_naissance);
+		    
 		    ///Exécution de la requête
 		    $req->execute(array(
 		    'nom' => $nom,
@@ -173,10 +144,38 @@
 
 				<br>
 
-				<p>
-					<label>Médecin référent</label><input type="search" name="medecin_referent" placeholder="ex: Dr. X"><br>
-				</p>
+				<?php
+					echo "<p>";
+					echo "<label>Médecin référent</label>";
+					echo "<select name=\"medecin_referent\"*>";
 
+					///Connexion au serveur MySQL
+					$login = 'root';
+					$mdp = '';
+
+					$server = '127.0.0.1';
+					$db = 'cabinet';
+
+					try {
+					    $linkpdo = new PDO("mysql:host=$server;dbname=$db", $login, $mdp);
+					}
+					    catch (Exception $e) {
+					    die('Erreur : ' . $e->getMessage());
+					}
+
+			    	///Sélection de tout le contenu de la table carnet_adresse
+			    	$req = $linkpdo->query("SELECT * FROM medecin ORDER BY nom");
+
+			    	echo "<option value=\"clef\"></option>";
+
+					while ($row = $req->fetch())
+				    {
+				    	echo "<option value=\"" . $row['id_m'] . "\">"  . $row['nom'] . " " . $row['prenom'] . "</option>";
+				    }
+
+				  	echo "</select>";
+					echo "</p>";
+				?>
 
 				<!-- CONTACT ? 
 				<br>
@@ -188,6 +187,7 @@
 				<label>Adresse mail</label><input type="text" name="n6" placeholder="ex : prenom.nom@gmail.com"><br>
 				</p>
 				-->
+
 				<br>
 				<p>
 					<input type="reset" value="Annuler">

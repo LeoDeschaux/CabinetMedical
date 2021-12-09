@@ -6,10 +6,6 @@
     	<meta charset="utf-8" />
     	<link rel="stylesheet" href="/www/CabinetMedical/styles/defaut.css">
       	<link rel="stylesheet" href="/www/CabinetMedical/styles/rechercher.css">
-
-    	<?php 
-			include($_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/connexion.php'); 
-		?>
 	</head>
 
 	<body>
