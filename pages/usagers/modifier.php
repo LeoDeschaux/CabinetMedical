@@ -4,7 +4,7 @@
 	<head>
 		<title>Accueil Secrétariat</title>
     	<meta charset="utf-8" />
-    	<link rel="stylesheet" href="/www/CabinetMedical/styles/defaut.css">
+    	<link rel="stylesheet" href="/CabinetMedical/styles/defaut.css">
 	</head>
 
 	<?php
@@ -16,13 +16,13 @@
 	<!-- ///////////////////// NAVIGUATION BAR //////////////////// -->
 	<?php 
 		$var = '1';
-		$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/header.php';
+		$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php';
 		include($headerPath); 
 	?>
 
 	<!-- ///////////////////// USAGERS MENU //////////////////// -->
 	<?php 
-		$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/usagersMenu.php';
+		$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/usagersMenu.php';
 		include($headerPath); 
 	?>
 

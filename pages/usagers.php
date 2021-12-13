@@ -6,7 +6,7 @@
     	<meta charset="utf-8" />
     	<link rel="stylesheet" href="../styles/defaut.css">
     	<?php 
-			include($_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/connexion.php'); 
+			include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php'); 
 		?>
 	</head>
 
@@ -20,13 +20,13 @@
     	<?php 
 			$var = '1';
 			$CouleurMenu = 'Usagers';
-			$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/header.php';
+			$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php';
 			include($headerPath); 
 		?>
 
 		<!-- ///////////////////// USAGER MENU //////////////////// -->
 		<?php 
-			$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/www/CabinetMedical/scripts/usagersMenu.php';
+			$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/usagersMenu.php';
 			include($headerPath); 
 		?>
 		

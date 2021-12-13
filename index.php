@@ -24,7 +24,7 @@
 
 			<br>
 			
-			<a href="/www/CabinetMedical/pages/usagers/rechercher.php">CHEAT GO TO ACCUEIL</a>
+			<a href="/CabinetMedical/pages/usagers/rechercher.php">CHEAT GO TO ACCUEIL</a>
 
 		</div>
 	</body>

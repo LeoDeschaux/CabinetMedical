@@ -3,7 +3,7 @@
 <?php 
 if($var == '1') {
 
-$path = '/www/CabinetMedical/';
+$path = '/CabinetMedical/';
 //echo $path;
 ?>
 
@@ -21,8 +21,8 @@ $path = '/www/CabinetMedical/';
 </style>
 
 <table class="usager_menu">
-	<td class="usager_button"><a href="/www/CabinetMedical/pages/usagers/rechercher.php">Rechercher un usager</a></td>
-	<td class="usager_button"><a href="/www/CabinetMedical/pages/usagers/ajouter.php">Ajouter un usager</a></td>
+	<td class="usager_button"><a href="/CabinetMedical/pages/usagers/rechercher.php">Rechercher un usager</a></td>
+	<td class="usager_button"><a href="/CabinetMedical/pages/usagers/ajouter.php">Ajouter un usager</a></td>
 </table>
 
 <?php

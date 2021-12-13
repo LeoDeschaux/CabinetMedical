@@ -4,7 +4,7 @@
 <?php 
 if($var == '1') {
 
-$path = '/www/CabinetMedical/';
+$path = '/CabinetMedical/';
 //echo $path; 
 
 $stylePage1 = "menu";
@@ -50,7 +50,7 @@ if($currentPageName == "statistiques.php")
 	</ul>
 	</div>
 	<li class="deconnexion">
-		<form method="post" action="/www/CabinetMedical/scripts/connexion.php">
+		<form method="post" action="/CabinetMedical/scripts/connexion.php">
 			<a><input type="submit" name="deconnexion" value="Déconnexion"></a>
 		</form>
 	</li>
