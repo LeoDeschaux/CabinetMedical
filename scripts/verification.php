@@ -1,36 +1,32 @@
 <?php
-if(isset($_POST['id']) && isset($_POST['mdp']))
-{
-    // on applique les deux fonctions mysqli_real_escape_string et htmlspecialchars
-    // pour éliminer toute attaque de type injection SQL et XSS
-    $id = mysqli_real_escape_string($db,htmlspecialchars($_POST['id'])); 
-    $mdp = mysqli_real_escape_string($db,htmlspecialchars($_POST['mdp']));
-    
-    if($id !== "" && $mdp !== "")
-    {
-        $requete = "SELECT count(*) FROM secretariat where 
-              id = '".$id."' and mdp = '".$mdp."' ";
-        $exec_requete = mysqli_query($db,$requete);
-        $reponse      = mysqli_fetch_array($exec_requete);
-        $count = $reponse['count(*)'];
-        if($count!=0) // nom d'utilisateur et mot de passe correctes
-        {
-           $_SESSION['connexion'] = 'oui';
-           header('Location: pages/usagers/rechercher.php');
-        }
-        else
-        {
-           header('Location: index.php?erreur=1'); // utilisateur ou mot de passe incorrect
-        }
-    }
-    else
-    {
-       header('Location: index.php?erreur=2'); // utilisateur ou mot de passe vide
-    }
-}
-else
-{
-   header('Location: index.php');
-}
-mysqli_close($db); // fermer la connexion
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php'); 
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php'); 
+
+  echo "ttttttttttttttttttttttttttttttttttttttt";
+
+//if(isset($_POST['id']) && isset($_POST['mdp'])) {
+  /*
+  $reqU = $pdo->prepare("SELECT * FROM secretariat WHERE id = ?");
+  $reqU->execute([$_POST['id']]);
+  $user = $reqU->fetch();
+  
+  $reqP = $pdo->prepare("SELECT * FROM secretariat WHERE mdp = ?");
+  $reqP->execute([$_POST['mdp']]);
+  $password = $reqP->fetch();
+  echo $req->fetch;
+  */
+
+  $req = $linkpdo->prepare("SELECT count(*) FROM secretariat WHERE id=:id AND mdp=:mdp");
+  $req->execute(array('id' => $_POST['id'],
+                      'mdp' => $_POST['mdp'] ));
+
+  echo "rrrrrrrrrrr";
+  echo "\n".$req->rowCount();
+  if ($req->rowCount() > 0) {
+      $_SESSION['connexion'] = 'oui';
+      header('Location: /CabinetMedical/pages/usagers/rechercher.php');
+    } else {
+      header('Location: /CabinetMedical/index.php?erreur=1');
+  }
+//}
 ?>

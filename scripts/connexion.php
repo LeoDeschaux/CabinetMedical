@@ -1,22 +1,25 @@
 <?php
-	// connexion à la base de données
-    $bdd_nom = 'root';
-    $bdd_mdp = '';
-    $bdd_table = 'cabinet';
-    $bdd_host = 'localhost';
-    $db = mysqli_connect($bdd_host, $bdd_nom, $bdd_mdp,$bdd_table)
-           or die('could not connect to database');
-    /*
-	session_start();
+	///Connexion au serveur MySQL
+	$login = 'root';
+    $mdp = '';
+  	$server = '127.0.0.1';
+	$db = 'cabinet';
+	try {
+	    $linkpdo = new PDO("mysql:host=$server;dbname=$db", $login, $mdp);
+	}
+	    catch (Exception $e) {
+	    die('Erreur : ' . $e->getMessage());
+	}
+
 	if ($_SESSION['connexion'] !== 'oui') {
-		header('Location: /www/CabinetMedical/index.php');
+		header('Location: /CabinetMedical/index.php');
 	}
 	
 	if (isset($_POST['deconnexion'])) {
 		if ($_POST['deconnexion']) {
-			session_destroy();
+			$_SESSION['connexion'] = 'non';  
 			header("Refresh:0");
 		}
 	}
-	*/
+	
 ?>
