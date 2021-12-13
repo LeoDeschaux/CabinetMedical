@@ -14,7 +14,7 @@
 	</head>
 	<body>
 		<div class="formulaire_inscripton">
-			<form action="verification.php" method="post">
+			<form action="scripts/verification.php" method="post">
 				<strong>Se connecter</strong>
 					<p><input type="text" name="id" placeholder="Identifiant" ></p>
 					<p><input type="password" name="mdp" placeholder=" Mot de passe" ></p>

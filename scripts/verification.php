@@ -1,5 +1,4 @@
 <?php
-session_start();
 if(isset($_POST['id']) && isset($_POST['mdp']))
 {
     // on applique les deux fonctions mysqli_real_escape_string et htmlspecialchars
