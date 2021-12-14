@@ -20,7 +20,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php')
 		include($headerPath); 
 		?>
 
-		<!-- ///////////////////// USAGERS MENU //////////////////// -->
+	<!-- ///////////////////// USAGERS MENU //////////////////// -->
 	<?php 
 		$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/usagersMenu.php';
 		include($headerPath); 
