@@ -6,8 +6,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/usagersMenu.php'); 	// USAGERS MENU
 ?>
 <!DOCTYPE HTML>
-<html>
-	
+<html>	
 	<head>
 		<title>Accueil Secrétariat</title>
     	<meta charset="utf-8" />
@@ -18,12 +17,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/usagersMenu.php'); 
 	<body>
 
 		<br>
-
 		<form method="post">
 			<input type="text" name="search" placeholder="nom, prenom, etc.">
 			<button type="submit" name="send" value="send">Rechercher</button> <br>
 		</form>
-
 		<br>
 
 		<?php

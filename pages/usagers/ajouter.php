@@ -3,11 +3,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php')
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 $var = '1';		
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			// NAVIGUATION BAR
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/usagersMenu.php'); 	// USAGERS MENU												
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/usagersMenu.php'); 	// USAGERS MENU
 ?>
 <!DOCTYPE HTML>
 <html>
-	
 	<head>
 		<title>Accueil Secrétariat</title>
     	<meta charset="utf-8" />

@@ -7,13 +7,11 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/usagersMenu.php'); 
 ?>
 <!DOCTYPE HTML>
 <html>
-	
 	<head>
 		<title>Accueil Secrétariat</title>
     	<meta charset="utf-8" />
     	<link rel="stylesheet" href="/CabinetMedical/styles/defaut.css">
     	<link rel="stylesheet" href="/CabinetMedical/styles/modifier.css">
-
 	</head>
 
 	<body>
