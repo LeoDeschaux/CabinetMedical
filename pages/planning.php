@@ -1,5 +1,6 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php'); 
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php');  
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -31,38 +32,25 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php')
 		-->
 
 	<?php
-	onFieldChange();
+	onFieldChange($linkpdo);
 
-	function onFieldChange()
+	function onFieldChange($linkpdo)
 	{
 		if(empty($_POST['search']))
 		{
-			showAllUsagers();
+			showAllUsagers($linkpdo);
 		}
 		else
 		{
-			showCorrespondingUsagers();
+			showCorrespondingUsagers($linkpdo);
 		}
 	}
 
 	?>
 
 	<?php 
-	function showCorrespondingUsagers()
+	function showCorrespondingUsagers($linkpdo)
 	{
-		///Connexion au serveur MySQL
-	    $login = 'root';
-	    $mdp = '';
-	    $server = '127.0.0.1';
-	    $db = 'cabinet';
-
-	    try {
-	        $linkpdo = new PDO("mysql:host=$server;dbname=$db", $login, $mdp);
-	    }
-	        catch (Exception $e) {
-	        die('Erreur : ' . $e->getMessage());
-	    }
-
 	    $req = $linkpdo->prepare("SELECT * FROM usager WHERE nom=:nom OR prenom=:prenom OR adresse=:adresse OR cp=:cp OR ville=:ville");
     
 	    $field = $_POST['search'];
@@ -94,21 +82,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php')
 	}
 
 
-	function showAllUsagers()
+	function showAllUsagers($linkpdo)
 	{
-		///Connexion au serveur MySQL
-	    $login = 'root';
-	    $mdp = '';
-	    $server = '127.0.0.1';
-	    $db = 'cabinet';
-
-	    try {
-	        $linkpdo = new PDO("mysql:host=$server;dbname=$db", $login, $mdp);
-	    }
-	        catch (Exception $e) {
-	        die('Erreur : ' . $e->getMessage());
-	    }
-
 	    ///Sélection de tout le contenu de la table carnet_adresse
 	    $req = $linkpdo->query("SELECT * FROM usager");
 	    
