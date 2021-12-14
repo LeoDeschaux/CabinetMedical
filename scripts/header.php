@@ -49,13 +49,10 @@ if($currentPageName == "statistiques.php")
 		</li>
 	</ul>
 	</div>
-	<li class="deconnexion">
-		<form method="post" action="/CabinetMedical/scripts/connexion.php">
-			<a><input type="submit" name="deconnexion" value="Déconnexion"></a>
-		</form>
-	</li>
 </nav>
-
+	<form method="post" action="/CabinetMedical/scripts/connexion.php">
+		<div class="deconnexion"><a><input type="submit" name="deconnexion" value="Déconnexion" style="all:unset" ></a></div> <!-- style="all:unset" pour supprimer le style par défaul-->
+	</form>
 <?php
 }
 ?>

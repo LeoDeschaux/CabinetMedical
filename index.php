@@ -33,7 +33,7 @@ $_SESSION['connexion'] = 'non';
 
 			<br>
 			
-			<a href="/CabinetMedical/pages/usagers/rechercher.php">CHEAT GO TO ACCUEIL</a>
+			<!-- <a href="/CabinetMedical/pages/usagers/rechercher.php">CHEAT GO TO ACCUEIL</a> -->
 
 		</div>
 	</body>

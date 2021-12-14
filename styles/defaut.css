@@ -58,13 +58,16 @@ a{
 	background-color: rgb(30,30,50);
 }
 
-.deconnexion {
+.deconnexion a{
+	all:unset; /* ne marche pas, cf balise style dans le header.php */ 
+	padding: 20px 30px;
 	position: absolute;
+	color: #FFF;
 	right: 0px;
 	top:0px;
 }
 
-.deconnexion:hover{
+.deconnexion a:hover{
 	border-right: 3px solid #F91111;
 	border-left:  3px solid #F91111;
 	background-color: rgba(254, 49, 49, 0.25);
