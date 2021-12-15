@@ -4,6 +4,7 @@ $_SESSION['connexion'] = 'non';
 ?>
 <!DOCTYPE HTML>
 <html lang="fr">
+	
 	<head>
     	<meta charset="utf-8" />
     	<link href="styles/index.css" rel="stylesheet" type="text/css">
@@ -29,7 +30,11 @@ $_SESSION['connexion'] = 'non';
 				<input type="reset" value="Annuler">
 				<input type="submit" name = "valider" value="valider">
 			</form>
+
 			<br>
+			
+			<!-- <a href="/CabinetMedical/pages/usagers/rechercher.php">CHEAT GO TO ACCUEIL</a> -->
+
 		</div>
 	</body>
 </html>
