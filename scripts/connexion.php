@@ -1,5 +1,5 @@
 <?php
-	///Connexion au serveur MySQL
+	// Connexion au serveur MySQL
 	$login = 'root';
     $mdp = '';
   	$server = '127.0.0.1';
@@ -11,10 +11,12 @@
 	    die('Erreur : ' . $e->getMessage());
 	}
 
+	// Empêche la navigation via l'url si l'utilisateur ne s'est pas connécté 
 	if ($_SESSION['connexion'] !== 'oui') {
 		header('Location: /CabinetMedical/index.php');
 	}
 	
+	// déconnecte l'utilisateur et le redirige vers index.php 
 	if (isset($_POST['deconnexion'])) {
 		if ($_POST['deconnexion']) {
 			$_SESSION['connexion'] = 'non';  
