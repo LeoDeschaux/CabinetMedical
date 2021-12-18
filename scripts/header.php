@@ -35,11 +35,11 @@ if($currentPageName == "statistiques.php")
 		</li>
 		
 		<li class="<?php echo $stylePage3;?>">
-			<a class ="medecins" href="<?php echo $path.'pages/medecins.php';?>">Medecins</a>
+			<a class ="medecins" href="<?php echo $path.'pages/medecins.php';?>">Médecins</a>
 		</li>
 
 		<li class="<?php echo $stylePage4;?>">
-			<a class ="planning" href="<?php echo $path.'pages/planning.php';?>">Planning</a>
+			<a class ="planning" href="<?php echo $path.'pages/planning.php';?>">Consultations</a>
 		</li>
 		
 		<li class="<?php echo $stylePage5;?>">
