@@ -33,13 +33,17 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/usagersMenu.php'); 
 
 		function showUsagers($linkpdo) {
 
-			if(empty($_POST['search'])) {
-				$req = $linkpdo->query("SELECT * FROM usager");
+			$field = "";
+
+			if(isset($_POST['search']))
+				$field = $_POST['search'];
+
+			if(empty($field)) {
+				$req = $linkpdo->query("SELECT * FROM usager ORDER BY id_u DESC");
 			} else {
-				$req = $linkpdo->prepare("SELECT * FROM usager WHERE nom LIKE :nom OR prenom LIKE :prenom OR adresse LIKE :adresse OR cp LIKE :cp OR ville LIKE :ville");
+				$req = $linkpdo->prepare("SELECT * FROM usager WHERE nom LIKE :nom OR prenom LIKE :prenom OR adresse LIKE :adresse OR cp LIKE :cp OR ville LIKE :ville ORDER BY nom, prenom ASC");
 			}
 
-		    $field = $_POST['search'];
 
 		    $req->execute(array(
 		    'nom' => $field . "%",
