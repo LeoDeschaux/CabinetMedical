@@ -8,7 +8,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php');
 	<head>
 		<title>Médecins</title>
     	<meta charset="utf-8" />
-    	<link rel="stylesheet" href="../styles/defaut.css">
+    	<link rel="stylesheet" href="/CabinetMedical/styles/defaut.css">
     	<?php 
 			include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php'); 
 		?>
@@ -27,7 +27,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php');
 
 		<section style="text-align: center">
 			<h1 style="font-family: arial;font-size: 5em;color: deeppink;, text-align: center !important;">
-				MEDECINS
+				MEDECINS - Rechercher
 			</h1>
 		</section>
 	</body>

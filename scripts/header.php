@@ -13,6 +13,7 @@ $stylePage5 = "menu";
 
 $currentPageName = basename($_SERVER['PHP_SELF']);
 
+/*
 if($currentPageName == "usagers.php" || $currentPageName == "ajouter.php" ||
     $currentPageName == "rechercher.php")
 	$stylePage2 = "menu-current";
@@ -25,6 +26,8 @@ if($currentPageName == "planning.php")
 
 if($currentPageName == "statistiques.php")
 	$stylePage5 = "menu-current";
+*/
+	
 ?>
 
 <nav>
@@ -35,11 +38,11 @@ if($currentPageName == "statistiques.php")
 		</li>
 		
 		<li class="<?php echo $stylePage3;?>">
-			<a class ="medecins" href="<?php echo $path.'pages/medecins.php';?>">Médecins</a>
+			<a class ="medecins" href="<?php echo $path.'pages/medecins/rechercher.php';?>">Médecins</a>
 		</li>
 
 		<li class="<?php echo $stylePage4;?>">
-			<a class ="planning" href="<?php echo $path.'pages/planning.php';?>">Consultations</a>
+			<a class ="consultations" href="<?php echo $path.'pages/consultations/rechercher.php';?>">Consultations</a>
 		</li>
 		
 		<li class="<?php echo $stylePage5;?>">
