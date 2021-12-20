@@ -22,6 +22,19 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
 		<br>
 		<form method="post">
 			<input type="text" name="search" placeholder="nom, prenom, etc.">
+			<select name="id_m" label="">
+		    	<option value="0" selected>Tous les médecins</option>
+
+		    	<?php
+		    		$req = $linkpdo->query("SELECT * FROM medecin ORDER BY nom, prenom DESC");
+		    		while($row = $req->fetch())
+		    		{
+		    			echo "<option value=" . $row['id_m'] . ">" . 
+		    			$row['nom'] . " " . $row['prenom'] . "</option>";
+		    		}
+		    	?>
+
+		    </select>
 			<button type="submit" name="send" value="send">Rechercher</button> <br>
 		</form>
 		<br>
@@ -36,34 +49,42 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
 
 		function showConsultations($linkpdo) {
 
+			$select_filter = "";
+			$search_filter = "";
 			$field = "";
 
 			if(isset($_POST['search']))
+			{
 				$field = $_POST['search'];
 
-			if(empty($field)) {
-				$req = $linkpdo->query(
-					"SELECT consultation.id_c, consultation.date_heure, consultation.duree, usager.nom as nom_usager, usager.prenom as prenom_usager, medecin.nom as nom_medecin, medecin.prenom as prenom_medecin 
-					FROM consultation, usager, medecin 
-					WHERE consultation.id_m = medecin.id_m
-					AND consultation.id_u = usager.id_u
-					AND usager.id_m = medecin.id_m 
-					ORDER BY consultation.date_heure DESC"
-				);
-			} else {
-				$req = $linkpdo->prepare(
-					"SELECT * FROM usager WHERE nom LIKE :nom OR prenom LIKE :prenom OR adresse LIKE :adresse OR cp LIKE :cp OR ville LIKE :ville ORDER BY nom, prenom ASC"
-				);
+				if($_POST['id_m'] != 0)
+					$select_filter = "AND consultation.id_m=" . $_POST['id_m'];
 
-				/*
-				$req->execute(array(
-			    'nom' => $field . "%",
-			    'prenom' => $field . "%",
-			    'adresse' => $field . "%",
-			    'cp' => $field . "%",
-			    'ville' => $field . "%"));
-			    */
+				if(!empty($_POST['search']))
+				{
+					$search_filter = "AND (usager.nom LIKE :field
+					OR usager.prenom LIKE :field
+					OR medecin.nom LIKE :field
+					OR medecin.prenom LIKE :field)";
+				}
 			}
+
+			$query = "SELECT consultation.id_c, consultation.date_heure, consultation.duree, usager.nom as nom_usager, usager.prenom as prenom_usager,medecin.nom as nom_medecin, medecin.prenom as prenom_medecin  
+			FROM consultation, usager, medecin 
+			WHERE consultation.id_m = medecin.id_m
+			AND consultation.id_u = usager.id_u" . " " .
+			$select_filter . " " . 
+			$search_filter .
+			"ORDER BY consultation.date_heure DESC";
+
+			$req = $linkpdo->prepare($query);
+
+			$req->execute(array(
+		    'field' => $field . "%"));
+
+
+
+		    
 
 		    ///Affichage des entrées du résultat une à une
 		    echo "<h2>Liste de toutes les consultations :</h2>";
@@ -86,32 +107,19 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
 
 		    while ($row = $req->fetch()) {
 
-		    	$jourConsultation = Date('d-m-Y', $row['date_heure']);
+		    	$jourConsultation = Date('d/m/Y', $row['date_heure']);
 		    	
 		    	$heureConsultation = date('H', $row['date_heure']) . "h" . date('i', $row['date_heure']);
 		    	
 		    	$tmp_heures = floor($row['duree'] / 60);
 				$tmp_minutes = $row['duree'] - ($tmp_heures*60);
 		    	
-		    	$dureeConsultation = sprintf('%02d:%02d', $tmp_heures, $tmp_minutes);
+		    	$dureeConsultation = sprintf('%02dh%02dm', $tmp_heures, $tmp_minutes);
 
 		    	$medecin = $row['nom_medecin'] . " " . $row['prenom_medecin'];
 
 		    	$id_c = $row['id_c'];
 
-
-		    	/*
-		    	$req_medecin = $linkpdo->prepare("SELECT medecin.nom, medecin.prenom FROM medecin, usager WHERE medecin.id_m=:id_m");
-
-		    	$req_medecin->execute(array(
-		    		'id_m' => $row['id_m'] 
-		    	));
-
-		    	while($medecin_row = $req_medecin->fetch())
-		    	{
-		    		$medecin_referent = $medecin_row['nom'] . " " . $medecin_row['prenom']; 
-		    	}
-		    	*/
 
 		        echo "<tr class=\"tableau_cell_title\">";
 

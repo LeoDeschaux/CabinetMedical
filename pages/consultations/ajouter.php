@@ -14,62 +14,89 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
 	</head>
 
 	<body>
-		<!-- ///////////////////// FORMULAIRE //////////////////// -->
-		<?php 
+	<!-- ///////////////////// FORMULAIRE //////////////////// -->
+	<?php 
 
-		$nom = '';
-		$prenom = '';
-		$civilite = '';
-		$num_secu = '';
-		$adresse = '';
-		$cp = '';
-		$ville = '';
-		$lieu_naissance = '';
-		$date_naissance = '';
+		$id_u = '';
+		$id_m = '';
+		$date_heure = '';
+		$duree = '';
+
+		if(!empty($_GET['id_u']))
+		{
+			$id_u = $_GET['id_u'];
+
+			$req = $linkpdo->prepare("SELECT id_m FROM usager WHERE id_u=:id_u");
+			$req->execute(array('id_u' => $id_u));
+
+			while ($row = $req->fetch())
+		    {
+		    	$id_m = $row['id_m'];	
+		    }
+
+		    echo "id_m: " . $id_m;
+		}
 
 		if(isset($_POST['send'])) {
-			$nom = $_POST['nom'];
-			$prenom = $_POST['prenom'];
-			$civilite = $_POST['civilite'];
-			$num_secu = $_POST['num_secu'];
-			$adresse = $_POST['adresse'];
-			$cp = $_POST['cp'];
-			$ville = $_POST['ville'];
-			$lieu_naissance = $_POST['lieu_naissance'];
-			$date_naissance = $_POST['date_naissance'];
 
-			//CHECK IF USAGER EXIST 
-			$req = $linkpdo->prepare("SELECT * FROM usager WHERE nom=:nom AND prenom=:prenom");
-			$req->execute(array('nom' => $nom, 'prenom' => $prenom));
+			$id_u = $_POST['id_u'];
+			$id_m = $_POST['id_m'];
+			$date_heure = date("Y-m-d H:i:s", 
+				strtotime($_POST['jour_consultation']) + $_POST['heure_consultation']);
+			$duree = $_POST['duree_consultation'];
 
-			//IF USAGER NOT FOUND THEN ADD NEW USAGER
+			echo "id_u: " . $id_u . "<br>";
+			echo "id_m: " . $id_m . "<br>";
+			echo "date_heure: " . $date_heure . "<br>";
+			echo "duree: " . $duree . "<br>";
+
+			echo "<br>";
+			echo "heure: " . date('H\hi', $_POST['heure_consultation']) . "<br>";
+
+			//CHECK IF CRENEAU DISPO
+			$req = $linkpdo->prepare("
+				SELECT * 
+				FROM consultation 
+				WHERE consultation.id_m=:id_m
+				AND consultation.date_heure=:date_heure
+			");
+			
+			$req->execute(array(
+				'id_m' => $_POST['id_m'], 
+				'date_heure' => strtotime($date_heure)
+			));
+
+			//IF CONSULTATION NOT FOUND THEN ADD NEW CONSULTATION
 			if($req->rowCount() == 0) {
 			    $req = $linkpdo->prepare("
-			        INSERT INTO usager(nom, prenom, civilite, num_secu, adresse, 
-			        cp, ville, lieu_naissance, date_naissance) 
-			        VALUES(:nom, :prenom, :civilite, :num_secu, :adresse, :cp, :ville, :lieu_naissance, :date_naissance)");
-			    
-			    $date_naissance = strtotime($date_naissance);
+			        INSERT INTO consultation(date_heure, duree, id_m, id_u) 
+			        VALUES(:date_heure, :duree, :id_m, :id_u)");
 			    
 			    ///Exécution de la requête
 			    $req->execute(array(
-			    'nom' => $nom,
-			    'prenom' => $prenom,
-			    'civilite' => $civilite,
-			    'num_secu' => $num_secu,
-			    'adresse' => $adresse,
-			    'cp' => $cp,
-			    'ville' => $ville,
-			    'lieu_naissance' => $lieu_naissance,
-				'date_naissance' => $date_naissance));
+				    'date_heure' => strtotime($date_heure),
+				    'duree' => $_POST['duree_consultation'],
+				    'id_m' => $_POST['id_m'],
+					'id_u' => $_POST['id_u']
+				));
 
-			    //CHECK IF USAGER ADDED 
-				$req = $linkpdo->prepare("SELECT * FROM usager WHERE nom=:nom AND prenom=:prenom");
-				$req->execute(array('nom' => $nom, 'prenom' => $prenom));
+			    //CHECK IF CONSULTATION ADDED 
+				$req = $linkpdo->prepare("
+					SELECT * 
+					FROM consultation 
+					WHERE consultation.id_m=:id_m
+					AND consultation.date_heure=:date_heure
+				");
+				
+				$req->execute(array(
+					'id_m' => $_POST['id_m'],
+					'date_heure' => strtotime($date_heure)
+				));
+				
 				if($req->rowCount() == 1) {
-					echo "Usager Ajouté";
+					echo "Consultation Ajoutée";
 				} else {
-					echo "Erreur, certains champs sont faux";
+					echo "Erreur, la consultation n'a pas pu être ajoutée";
 				}
 			}
 		}
@@ -84,85 +111,93 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
 				<h2>Usager</h2>
 
 				<p>	
-				<input list="brow" placeholder="nom, prenom">
-				<datalist id="brow">
-				  <option value="Usager 1">
-				  <option value="Usager 2">
-				</datalist>  
+				<select name="id_u" label="nom, prenom">
+		    	<option value="" disabled selected hidden>Selectionner un usager</option>
 
-				<!-- BOUTON AJOUTER USAGER
-				<style type="text/css">
-				.button{
-					background: lightgreen;
-					color: black;
-					border: black 1px solid;
-					border-radius: 12px;
+				<?php
+		    	///Sélection de tout le contenu de la table carnet_adresse
+		    	$req = $linkpdo->query("SELECT * FROM usager ORDER BY nom, prenom");
 
-					padding: 6px;
-					margin: 10px;
-				}
-
-				</style>
-
-				<a href="#" class="button" style="display: table-cell";>Ajouter un nouvel usager</a>	
+				while ($row = $req->fetch())
+			    {
+			    	if($row['id_u'] == $id_u)
+			    		echo "<option value=\"" . $row['id_u'] . "\" selected>"  . $row['nom'] . " " . $row['prenom'] . "</option>";
+			    	else
+			    		echo "<option value=\"" . $row['id_u'] . "\">"  . $row['nom'] . " " . $row['prenom'] . "</option>";
+			    }
+				?>
+			 	</select>
 				</p>
-				-->
 
 				<p> <label>Nom</label><input type="text" name="nom" placeholder="ex : nom" disabled><br></p>
 				<p> <label>Prenom</label><input type="text" name="prenom" placeholder="ex : prenom" disabled><br></p>
 				<p> <label>Médecin référent</label><input type="text" name="medecin_referent" placeholder="ex : medecin" disabled><br></p>
 				<br>
-			</form>
-		</div>
 
 		<hr>
 
-		<div class="fiche_inscription">
-			<form method="post">
 
 				<h2>Médecin</h2>
 
 				<p>	
-				<input list="brow2" placeholder="nom, prenom">
-				<datalist id="brow2">
-				  <option value="Medecin 1">
-				  <option value="Medecin 2">
-				</datalist>  
+				<select name="id_m" label="nom, prenom">
+		    	<option value="" disabled selected hidden>Selectionner un médecin</option>
+
+				<?php
+		    	///Sélection de tout le contenu de la table carnet_adresse
+		    	$req = $linkpdo->query("SELECT * FROM medecin ORDER BY nom, prenom");
+
+				while ($row = $req->fetch())
+			    {
+			    	if($row['id_m'] == $id_m)
+			    		echo "<option value=\"" . $row['id_m'] . "\"selected>"  . $row['nom'] . " " . $row['prenom'] . "</option>";
+			    	else
+			    		echo "<option value=\"" . $row['id_m'] . "\">"  . $row['nom'] . " " . $row['prenom'] . "</option>";
+			    }
+				?>
+			 	</select>
 				</p>
 
 				<p> <label>Nom</label><input type="text" name="nom" placeholder="ex : nom" disabled><br></p>
 				<p> <label>Prenom</label><input type="text" name="prenom" placeholder="ex : prenom" disabled><br></p>
 				<br>
-			</form>
-		</div>
 
 		<hr>
 
-		<div class="fiche_inscription">
-			<form method="post">
-
 				<h2>Consultation</h2>
-				<p> <label>Jour</label><input type="date" name="nom" placeholder="ex : BROISIN"><br></p>
+
+				<p> <label>Jour</label><input type="date" name="jour_consultation" placeholder="ex : BROISIN"><br></p>
 				
-				<p> <label>Durée</label><input type="text" name="prenom" placeholder="ex : 15 minutes"><br></p>
+				<p> <label>Durée</label><input type="text" name="duree_consultation" placeholder="ex : 15 minutes"><br></p>
+
+
 
 				<p><label>Horaires Disponibles</label>
-				<select name="horaire" placeholder="ex : 14h30">
-					<option value="">14h20</option>
-					<option value="">14h30</option>
+				<select name="heure_consultation" placeholder="ex : 14h30">
+
+				<?php 
+					for($heure = 8; $heure < 18; $heure++)
+					{
+						for($minutes = 0; $minutes < 60; $minutes+=5)
+						{
+							echo 
+							"<option value=" . (($heure*60*60) + $minutes*60) . ">" . date('H\hi', (($heure*60*60) + $minutes*60)) . 
+							"&nbsp &nbsp</option>";
+						}
+					}	
+				?>
+
 				</select>
-				<br>
-				</p>
+
+			</div>
 				
 				<br>
 
-			</form>
-		</div>
-
-		<p> 
-			<input type="reset" value="Annuler la consultation"> 
-			<button type="submit" name ="send" value="send">Valider la consultation</button> 
-		</p>
+				<p> 
+					<input type="reset" value="Annuler la consultation"> 
+					<button type="submit" name ="send" value="send">Valider la consultation</button> 
+				</p>
+		</form>
 
 	</body>
 </html>
