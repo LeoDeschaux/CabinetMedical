@@ -8,7 +8,6 @@ if(isset($_POST['id']) && isset($_POST['mdp'])) {
   $req->execute(array('id' => $_POST['id'],
                       'mdp' => $_POST['mdp'] ));
 
-  echo "\n".$req->rowCount();
   if ($req->rowCount() > 0) {
       $_SESSION['connexion'] = 'oui';
       header('Location: /CabinetMedical/pages/usagers/rechercher.php');

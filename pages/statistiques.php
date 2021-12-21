@@ -15,7 +15,15 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 	</head>
 	<body>
 		<?php
-			$req = $linkpdo->query("SELECT count(*) FROM usager ");
+		$format = "Y-m-d";
+		$timestamp = date_timestamp_get(date_create());
+		$date_jour = date($format, $timestamp);
+		$req = $linkpdo->prepare("SELECT * FROM usager WHERE date_naissance - $date_jour < 788 400 000 AND civilite = 'M' ");
+		$req->execute(array());
+		echo "\n".$req->rowCount();
+		
+
+			 
 		?>
 		<table>
 			<thead>
@@ -28,7 +36,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 			<tbody>
 				<tr>
 					<td>Moins de 25 ans</td>
-					<td> </td>
+					<td><?php //echo $req; ?></td>
 					<td> </td>
 				</tr>
 				<tr>
