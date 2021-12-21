@@ -2,6 +2,8 @@
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php'); 
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php'); 
 $type = 'statistique';
+$var ='1';
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -10,20 +12,10 @@ $type = 'statistique';
 		<title>Statistiques</title>
     	<meta charset="utf-8" />
     	<link rel="stylesheet" href="../styles/defaut.css">
-    	<?php 
-			include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php'); 
-		?>
 	</head>
 
 	<body>
 
-    	<!-- ///////////////////// NAVIGUATION BAR //////////////////// -->
-    	<?php 
-			$var = '1';
-			$CouleurMenu = 'Statistiques';
-			$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php';
-			include($headerPath); 
-		?>
 		<!--
 		<img src="../images/golo.jpg">
 		-->
