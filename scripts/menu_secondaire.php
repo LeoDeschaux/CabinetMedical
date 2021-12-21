@@ -33,8 +33,8 @@ if($var == '1') {
 		case 'medecin':
 			?>
 			<table class="usager_menu">
-				<td class="usager_button"><a href="/CabinetMedical/pages/usagers/rechercher.php">Rechercher un medecin</a></td>
-				<td class="usager_button"><a href="/CabinetMedical/pages/usagers/ajouter.php">Ajouter un medecin</a></td>
+				<td class="usager_button"><a href="/CabinetMedical/pages/medecins/rechercher.php">Rechercher un medecin</a></td>
+				<td class="usager_button"><a href="/CabinetMedical/pages/medecins/ajouter.php">Ajouter un medecin</a></td>
 			</table>
 			<?php
 			break;

@@ -1,9 +1,10 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php'); 	// Session Start 
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
-$var = '1';																			// A COMPLETER
+$var = '1';
+$type = 'usager';																	// A COMPLETER
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			// NAVIGUATION BAR
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/usagersMenu.php'); 	// USAGERS MENU
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php'); // USAGERS MENU
 ?>
 <!DOCTYPE HTML>
 <html>

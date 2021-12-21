@@ -13,11 +13,10 @@ $stylePage5 = "menu";
 
 $currentPageName = basename($_SERVER['PHP_SELF']);
 
-if($currentPageName == "usagers.php" || $currentPageName == "ajouter.php" ||
-    $currentPageName == "rechercher.php")
+if($type == "usager")
 	$stylePage2 = "menu-current";
 
-if($currentPageName == "medecins.php")
+if($type == "medecin")
 	$stylePage3 = "menu-current";
 
 if($currentPageName == "planning.php")
@@ -35,7 +34,7 @@ if($currentPageName == "statistiques.php")
 		</li>
 		
 		<li class="<?php echo $stylePage3;?>">
-			<a class ="medecins" href="<?php echo $path.'pages/medecins.php';?>">Médecins</a>
+			<a class ="medecins" href="<?php echo $path.'pages/medecins/rechercher.php';?>">Médecins</a>
 		</li>
 
 		<li class="<?php echo $stylePage4;?>">
@@ -49,7 +48,7 @@ if($currentPageName == "statistiques.php")
 	</div>
 </nav>
 	<form method="post" action="/CabinetMedical/scripts/connexion.php">
-		<div class="deconnexion"><a><input type="submit" name="deconnexion" value="Déconnexion" style="all:unset" ></a></div> <!-- style="all:unset" pour supprimer le style par défaul-->
+		<div class="deconnexion"><a><input type="submit" name="deconnexion" value="Déconnexion" style="all:unset" ></a></div> <!-- style="all:unset" pour supprimer le style par défaul du bouton submit-->
 	</form>
 <?php
 }
