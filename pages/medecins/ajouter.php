@@ -74,7 +74,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php
 				<br>
 				<br>
 				<p> 
-				<input type="reset" value="Annuler"> 
+				<input type="reset" value="Vider les champs"> 
+				<button><a href="/CabinetMedical/pages/medecins/rechercher.php">Retour</a></button> 
 				<button type="submit" name ="send" value="send">Ajouter</button> 
 				</p>
 			</form>
