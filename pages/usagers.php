@@ -23,6 +23,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php');
 		<!-- ///////////////////// NAVIGUATION BAR //////////////////// -->
     	<?php 
 			$var = '1';
+			$type = 'usager';
 			$CouleurMenu = 'Usagers';
 			$headerPath =  $_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php';
 			include($headerPath); 
