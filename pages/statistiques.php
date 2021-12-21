@@ -14,6 +14,9 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
     	<link rel="stylesheet" href="../styles/statistiques.css">
 	</head>
 	<body>
+		<?php
+			$req = $linkpdo->query("SELECT count(*) FROM usager ");
+		?>
 		<table>
 			<thead>
 				<tr>
@@ -22,25 +25,23 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 					<th>Nb Femmes</th>
 				</tr>
 			</thead>
-			<tfoot>
-				<tbody>
-					<tr>
-						<td>Moins de 25 ans</td>
-						<td> - 25 ans Hommes</td>
-						<td> - 25 ans Femmes</td>
-					</tr>
-					<tr>
-						<td>Entre 25 et 50 ans</td>
-						<td>hommes</td>
-						<td>femmes</td>
-					</tr>
-					<tr>
-						<td>Plus de 50 ans</td>
-						<td> + 50 ans Hommes</td>
-						<td> + 50 ans Femmes</td>
-					</tr>
-				</tbody>
-			</tfoot>
+			<tbody>
+				<tr>
+					<td>Moins de 25 ans</td>
+					<td> </td>
+					<td> </td>
+				</tr>
+				<tr>
+					<td>Entre 25 et 50 ans</td>
+					<td> </td>
+					<td> </td>
+				</tr>
+				<tr>
+					<td>Plus de 50 ans</td>
+					<td> </td>
+					<td> </td>
+				</tr>
+			</tbody>
 		</table>
 	</body>
 </html>
