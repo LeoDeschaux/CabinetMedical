@@ -20,7 +20,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
 		$id_u = '';
 		$id_m = '';
 		$date_heure = '';
-		$duree = '';
+		$duree_consultation = '';
 
 		if(!empty($_GET['id_u']))
 		{
@@ -39,32 +39,68 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
 
 		if(isset($_POST['send'])) {
 
+			//GET ROW COUNT 
+			$req = $linkpdo->query("SELECT * FROM consultation");
+			$my_row_count = $req->rowCount();
+			echo "rowCount: " . $my_row_count . "<br>";
+
 			$id_u = $_POST['id_u'];
 			$id_m = $_POST['id_m'];
 			$date_heure = date("Y-m-d H:i:s", 
 				strtotime($_POST['jour_consultation']) + $_POST['heure_consultation']);
-			$duree = $_POST['duree_consultation'];
+			$duree_consultation = $_POST['duree_consultation'] * 60;
 
 			echo "id_u: " . $id_u . "<br>";
 			echo "id_m: " . $id_m . "<br>";
 			echo "date_heure: " . $date_heure . "<br>";
-			echo "duree: " . $duree . "<br>";
+			echo "duree: " . $duree_consultation . "<br>";
 
 			echo "<br>";
-			echo "heure: " . date('H\hi', $_POST['heure_consultation']) . "<br>";
+			echo "heure: " . date('H\hi', $_POST['heure_consultation']) . "<br><br>";
 
 			//CHECK IF CRENEAU DISPO
 			$req = $linkpdo->prepare("
 				SELECT * 
 				FROM consultation 
 				WHERE consultation.id_m=:id_m
-				AND consultation.date_heure=:date_heure
+
+				AND 
+				(	
+					(consultation.date_heure BETWEEN 
+					:date_heure AND (:date_heure+:duree_consultation))
+
+					OR 
+
+					((consultation.date_heure + consultation.duree) BETWEEN
+					:date_heure AND (:date_heure+:duree_consultation))
+
+					OR 
+
+					(:date_heure BETWEEN consultation.date_heure AND (consultation.date_heure + consultation.duree))
+				)
 			");
-			
+
+			echo "début: " . strtotime($date_heure) . "<br>";
+			echo "fin: " . (strtotime($date_heure) + $duree_consultation) . "<br><hr>";
+
+			/*
+				AND consultation.date_heure BETWEEN 
+				:date_heure AND (:date_heure+:duree_consultation)
+
+				OR (consultation.date_heure + consultation.duree) BETWEEN
+				:date_heure AND (:date_heure+:duree_consultation)
+
+				OR :date_heure BETWEEN consultation.date_heure
+				AND (consultation.date_heure + consultation.duree_consultation)
+			*/
+
 			$req->execute(array(
 				'id_m' => $_POST['id_m'], 
-				'date_heure' => strtotime($date_heure)
+				'date_heure' => strtotime($date_heure),
+				'duree_consultation' => $duree_consultation
 			));
+
+			echo "ROW SELECTED: " . $req->rowCount() . "<br>";
 
 			//IF CONSULTATION NOT FOUND THEN ADD NEW CONSULTATION
 			if($req->rowCount() == 0) {
@@ -75,29 +111,19 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
 			    ///Exécution de la requête
 			    $req->execute(array(
 				    'date_heure' => strtotime($date_heure),
-				    'duree' => $_POST['duree_consultation'],
+				    'duree' => ($_POST['duree_consultation'] * 60),
 				    'id_m' => $_POST['id_m'],
 					'id_u' => $_POST['id_u']
 				));
+			}
 
-			    //CHECK IF CONSULTATION ADDED 
-				$req = $linkpdo->prepare("
-					SELECT * 
-					FROM consultation 
-					WHERE consultation.id_m=:id_m
-					AND consultation.date_heure=:date_heure
-				");
-				
-				$req->execute(array(
-					'id_m' => $_POST['id_m'],
-					'date_heure' => strtotime($date_heure)
-				));
-				
-				if($req->rowCount() == 1) {
-					echo "Consultation Ajoutée";
-				} else {
-					echo "Erreur, la consultation n'a pas pu être ajoutée";
-				}
+			$req = $linkpdo->query("SELECT * FROM consultation");
+			echo "newRowCount: " . $req->rowCount() . "<br>";
+
+			if($req->rowCount() == ($my_row_count + 1)) {
+				echo "Consultation Ajoutée";
+			} else {
+				echo "Erreur, la consultation n'a pas pu être ajoutée";
 			}
 		}
 		?>
@@ -166,11 +192,9 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
 
 				<h2>Consultation</h2>
 
-				<p> <label>Jour</label><input type="date" name="jour_consultation" placeholder="ex : BROISIN"><br></p>
+				<p> <label>Jour</label><input type="date" name="jour_consultation" value="<?php echo date('Y-m-d');?>"><br></p>
 				
-				<p> <label>Durée</label><input type="text" name="duree_consultation" placeholder="ex : 15 minutes"><br></p>
-
-
+				<p> <label>Durée</label><input type="number" min="5" max="120" step="5" name="duree_consultation" value="5">minutes<br></p>
 
 				<p><label>Horaires Disponibles</label>
 				<select name="heure_consultation" placeholder="ex : 14h30">

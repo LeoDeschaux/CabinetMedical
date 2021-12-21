@@ -52,7 +52,8 @@ if($currentPageName == "statistiques.php")
 	</div>
 </nav>
 	<form method="post" action="/CabinetMedical/scripts/connexion.php">
-		<div class="deconnexion"><a><input type="submit" name="deconnexion" value="Déconnexion" style="all:unset" ></a></div> <!-- style="all:unset" pour supprimer le style par défaul-->
+		<div class="deconnexion"><a><input type="submit" name="deconnexion" value="Déconnexion" style="all:unset" ></a></div> 
+		<!-- style="all:unset" pour supprimer le style par défaul-->
 	</form>
 <?php
 }
