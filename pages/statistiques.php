@@ -15,7 +15,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 	</head>
 	<body>
 		<?php
-
 		$moins25_h = '';
 		$entre25et50_h = '';
 		$plus50_h = '';
@@ -29,15 +28,13 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 			SELECT date_naissance, 
 			floor( (UNIX_TIMESTAMP(NOW()) - date_naissance) / (60*60*24*365) ) as age
 			FROM usager
-			ORDER BY age DESC
-		");
+			ORDER BY age DESC");
 
-		while($row = $req->fetch())
-		{
+		while($row = $req->fetch()) {
 			echo "Date: " . $row['date_naissance'] . ", age: " . $row['age'] . "<br>";
 		}
 
-		//MOINS DE 25 ANS
+		//MOINS DE 25 ANS HOMMES
 		$req = $linkpdo->query("
 			SELECT count(*) as nb_moins25_h
 			FROM usager
@@ -47,8 +44,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 		");
 		$moins25_h = ($req->fetch())['nb_moins25_h'];
 
-
-		//ENTRE 25 ET 50
+		//ENTRE 25 ET 50 HOMMES
 		$req = $linkpdo->query("
 			SELECT count(*) as nb_entre25et50_h
 			FROM usager
@@ -58,7 +54,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 		");
 		$entre25et50_h = ($req->fetch())['nb_entre25et50_h'];
 
-		//PLUS DE 50 ANS
+		//PLUS DE 50 ANS HOMMES
 		$req = $linkpdo->query("
 			SELECT count(*) as nb_plus50_h
 			FROM usager
@@ -68,12 +64,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 		");
 		$plus50_h = ($req->fetch())['nb_plus50_h'];
 
-
-
-
-
-
-		//MOINS DE 25 ANS
+		//MOINS DE 25 ANS FEMMES
 		$req = $linkpdo->query("
 			SELECT count(*) as nb_moins25_f
 			FROM usager
@@ -83,8 +74,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 		");
 		$moins25_f = ($req->fetch())['nb_moins25_f'];
 
-
-		//ENTRE 25 ET 50
+		//ENTRE 25 ET 50 FEMMES
 		$req = $linkpdo->query("
 			SELECT count(*) as nb_entre25et50_f
 			FROM usager
@@ -94,7 +84,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 		");
 		$entre25et50_f = ($req->fetch())['nb_entre25et50_f'];
 
-		//PLUS DE 50 ANS
+		//PLUS DE 50 ANS FEMMES
 		$req = $linkpdo->query("
 			SELECT count(*) as nb_plus50_f
 			FROM usager
@@ -103,23 +93,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 			floor( (UNIX_TIMESTAMP(NOW()) - date_naissance) / (60*60*24*365) ) > 50
 		");
 		$plus50_f = ($req->fetch())['nb_plus50_f'];
-
-
-		echo "HOMME <br>";
-		echo "NB moins de 25 ans: " . $moins25_h . "<br>";
-		echo "NB entre 25 et 50 ans: " . $entre25et50_h . "<br>";
-		echo "NB plus de 50 ans: " . $plus50_h . "<br>";
-
-		echo "<br>";
-		echo "FEMME <br>";
-		echo "NB moins de 25 ans: " . $moins25_f . "<br>";
-		echo "NB entre 25 et 50 ans: " . $entre25et50_f . "<br>";
-		echo "NB plus de 50 ans: " . $plus50_f . "<br>";
-
 		?>
-
 		<br>
-
 		<table>
 			<thead>
 				<tr>
