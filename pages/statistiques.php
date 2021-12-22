@@ -120,8 +120,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 
 		<br>
 
-		<!--
-
 		<table>
 			<thead>
 				<tr>
@@ -134,21 +132,19 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 				<tr>
 					<td>Moins de 25 ans</td>
 					<td><?php echo $moins25_h ?></td>
-					<td> </td>
+					<td><?php echo $moins25_f ?></td>
 				</tr>
 				<tr>
 					<td>Entre 25 et 50 ans</td>
-					<td> </td>
-					<td> </td>
+					<td><?php echo $entre25et50_h ?></td>
+					<td><?php echo $entre25et50_f ?></td>
 				</tr>
 				<tr>
 					<td>Plus de 50 ans</td>
-					<td> </td>
-					<td> </td>
+					<td><?php echo $plus50_h ?></td>
+					<td><?php echo $plus50_f ?></td>
 				</tr>
 			</tbody>
 		</table>
-
-		-->
 	</body>
 </html>
