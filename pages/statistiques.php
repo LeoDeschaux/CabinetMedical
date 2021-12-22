@@ -17,13 +17,11 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 		<?php
 		$format = "Y-m-d";
 		$timestamp = date_timestamp_get(date_create());
-		$date_jour = date($format, $timestamp);
-		$req = $linkpdo->prepare("SELECT * FROM usager WHERE date_naissance - $date_jour < 788 400 000 AND civilite = 'M' ");
-		$req->execute(array());
-		echo "\n".$req->rowCount();
-		
-
-			 
+		$date = date('Y-m-d H:i:s');
+		$req = $linkpdo->query("SELECT count(*) FROM usager WHERE date_naissance < date('Y-m-d', strtotime($date. ' + 25 years')) AND civilite = 'M' "); // Moins de 25 ans Hommes
+		$req->execute();
+		print_r($req); 	 
+		echo strtotime("25");
 		?>
 		<table>
 			<thead>
