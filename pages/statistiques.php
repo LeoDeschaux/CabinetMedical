@@ -23,25 +23,12 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 		$entre25et50_f = '';
 		$plus50_f = '';
 
-		// GET AGE
-		$req = $linkpdo->query("
-			SELECT date_naissance, 
-			floor( (UNIX_TIMESTAMP(NOW()) - date_naissance) / (60*60*24*365) ) as age
-			FROM usager
-			ORDER BY age DESC");
-
-		while($row = $req->fetch()) {
-			echo "Date: " . $row['date_naissance'] . ", age: " . $row['age'] . "<br>";
-		}
-
 		//MOINS DE 25 ANS HOMMES
 		$req = $linkpdo->query("
 			SELECT count(*) as nb_moins25_h
 			FROM usager
 			WHERE civilite = 'M'
-			AND 
-			floor( (UNIX_TIMESTAMP(NOW()) - date_naissance) / (60*60*24*365) ) < 25
-		");
+			AND floor( (UNIX_TIMESTAMP(NOW()) - date_naissance) / (60*60*24*365) ) < 25");
 		$moins25_h = ($req->fetch())['nb_moins25_h'];
 
 		//ENTRE 25 ET 50 HOMMES
@@ -49,9 +36,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 			SELECT count(*) as nb_entre25et50_h
 			FROM usager
 			WHERE civilite = 'M'
-			AND 
-			floor( (UNIX_TIMESTAMP(NOW()) - date_naissance) / (60*60*24*365) ) BETWEEN 25 AND 50
-		");
+			AND floor( (UNIX_TIMESTAMP(NOW()) - date_naissance) / (60*60*24*365) ) BETWEEN 25 AND 50");
 		$entre25et50_h = ($req->fetch())['nb_entre25et50_h'];
 
 		//PLUS DE 50 ANS HOMMES
@@ -59,9 +44,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 			SELECT count(*) as nb_plus50_h
 			FROM usager
 			WHERE civilite = 'M'
-			AND 
-			floor( (UNIX_TIMESTAMP(NOW()) - date_naissance) / (60*60*24*365) ) > 50
-		");
+			AND floor( (UNIX_TIMESTAMP(NOW()) - date_naissance) / (60*60*24*365) ) > 50");
 		$plus50_h = ($req->fetch())['nb_plus50_h'];
 
 		//MOINS DE 25 ANS FEMMES
@@ -69,9 +52,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 			SELECT count(*) as nb_moins25_f
 			FROM usager
 			WHERE (civilite = 'Mme' OR civilite = 'Mlle') 
-			AND 
-			floor( (UNIX_TIMESTAMP(NOW()) - date_naissance) / (60*60*24*365) ) < 25
-		");
+			AND floor( (UNIX_TIMESTAMP(NOW()) - date_naissance) / (60*60*24*365) ) < 25");
 		$moins25_f = ($req->fetch())['nb_moins25_f'];
 
 		//ENTRE 25 ET 50 FEMMES
@@ -79,9 +60,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 			SELECT count(*) as nb_entre25et50_f
 			FROM usager
 			WHERE (civilite = 'Mme' OR civilite = 'Mlle') 
-			AND 
-			floor( (UNIX_TIMESTAMP(NOW()) - date_naissance) / (60*60*24*365) ) BETWEEN 25 AND 50
-		");
+			AND floor( (UNIX_TIMESTAMP(NOW()) - date_naissance) / (60*60*24*365) ) BETWEEN 25 AND 50");
 		$entre25et50_f = ($req->fetch())['nb_entre25et50_f'];
 
 		//PLUS DE 50 ANS FEMMES
@@ -90,8 +69,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 			FROM usager
 			WHERE (civilite = 'Mme' OR civilite = 'Mlle') 
 			AND 
-			floor( (UNIX_TIMESTAMP(NOW()) - date_naissance) / (60*60*24*365) ) > 50
-		");
+			floor( (UNIX_TIMESTAMP(NOW()) - date_naissance) / (60*60*24*365) ) > 50");
 		$plus50_f = ($req->fetch())['nb_plus50_f'];
 		?>
 		<br>
@@ -121,5 +99,44 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php');
 				</tr>
 			</tbody>
 		</table>
+		<?php
+		$req = $linkpdo->prepare("SELECT * FROM medecin, consutation WHERE medecin.id_m = consutation.id_m ORDER BY nom, prenom ASC");
+
+		$req->execute(array('id_m' => "" ));
+
+		echo "<table class=\"tableau_table\">";
+		echo "<tr class=\"tableau_cell_title\">";
+		    echo "<th>Médecin</th>";
+		    echo "<th>Nb Heures</th>";
+		echo "</tr>";
+
+		while ($row = $req->fetch()) {
+
+		    	if(!empty($row['id_m']))
+		    	{
+		    		$req = $linkpdo->query("
+						SELECT nom, prenom
+						FROM consutation, medecin
+						WHERE consutation.id_m = medecin.id_m");
+					$medecin = ($req->fetch())['medecin'];
+
+			    	$req = $linkpdo->query("
+						SELECT sum(duree) as duree_total
+						FROM consutation, medecin
+						WHERE consutation.id_m = medecin.id_m");
+					$duree_total = ($req->fetch())['duree_total'];
+		    	}
+
+		    	echo "<tr class=\"tableau_cell_title\">";
+		            echo "<td class=\"tableau_cell\">" . $row['medecin'] . "</td>";
+		            echo "<td class=\"tableau_cell\">" . $row['duree_total'] . "</td>";
+		        echo "</tr>";
+	}
+
+	echo "</table>";
+	$req->closeCursor(); 
+		
+		
+		?>
 	</body>
 </html>
