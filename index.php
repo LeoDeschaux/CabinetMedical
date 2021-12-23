@@ -20,12 +20,16 @@ $_SESSION['connexion'] = 'non';
 					<p><input type="text" name="id" placeholder="Identifiant" ></p>
 					<p><input type="password" name="mdp" placeholder=" Mot de passe" ></p>
 					<?php
-	                if(isset($_GET['erreur'])){
-	                    $err = $_GET['erreur'];
-	                    if($err==1)
-	                        echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
-	                }
-                	?>
+					if(isset($_GET['erreur'])){
+                        $err = $_GET['erreur'];
+                        if($err == 1) {
+                            echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
+                        }
+                        if ($err == 2) {
+                            echo "<p style='color:red'>Caractères spéciaux interdit !</p>";
+                        }
+                    }
+                    ?>
 				<input type="reset" value="Annuler">
 				<input type="submit" name = "valider" value="valider">
 			</form>
