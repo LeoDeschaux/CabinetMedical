@@ -1,12 +1,14 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php'); 
 $_SESSION['connexion'] = 'non';
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');
 ?>
 <!DOCTYPE HTML>
 <html lang="fr">
 	<head>
     	<meta charset="utf-8" />
     	<link href="styles/index.css" rel="stylesheet" type="text/css">
+    	<link href="styles/footer.css" rel="stylesheet" type="text/css">
     	<title>Accueil</title>
 	</head>
 	<body>
@@ -29,7 +31,7 @@ $_SESSION['connexion'] = 'non';
                  }
                  ?>
    				<input class="btn-annuler" type="reset" value="Annuler"> 
-				<input class="btn-valider" type="submit" value="valider">
+				<input class="btn-valider" type="submit" value="Valider">
 			</form>
 		</div>
 	</body>

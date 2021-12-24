@@ -3,7 +3,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php')
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 $var = '1';		
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			// NAVIGUATION BAR	
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/usagersMenu.php'); 	// USAGERS MENU											
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/usagersMenu.php'); 	// USAGERS MENU		
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php'); 		
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -12,6 +13,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/usagersMenu.php'); 
     	<meta charset="utf-8" />
     	<link rel="stylesheet" href="/CabinetMedical/styles/defaut.css">
     	<link rel="stylesheet" href="/CabinetMedical/styles/modifier.css">
+    	<link rel="stylesheet" href="/CabinetMedical/styles/footer.css">
 	</head>
 
 	<body>

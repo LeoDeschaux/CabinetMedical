@@ -2,9 +2,11 @@ form  {
 	display: table;      
 }
 
+
 p     { 
 	display: table-row;  
 }
+
 
 label { 
 	display: table-cell; 

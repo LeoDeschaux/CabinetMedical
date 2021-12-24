@@ -1,8 +1,11 @@
 body {
-	background-color: #238CE5	;
+	background-color: #238CE5;
+	margin: 0px;
+	padding:0px;
 }
 
 h1 {
+	padding-top: 20px;
 	color: white;
 	text-align: center;
 }
@@ -22,18 +25,20 @@ h1 {
 .btn-valider {
 	all:unset;
 	background-color:#404558;
-	padding: 8px 12px;
+	padding: 8px 18px;
 	border-radius: 15px;
 	border: 1px solid black;
+	color: #FFF;
 }
 
 
 .btn-annuler {
 	all:unset;
 	background-color:#404558;
-	padding: 8px 12px;
+	padding: 8px 15px;
 	border-radius: 15px;
 	border: 1px solid black;
+	color: #FFF;
 }
 
 .btn-valider:hover {
@@ -43,6 +48,9 @@ h1 {
 .btn-annuler:hover {
 	background-color: #DA0B0B;
 }
+
+
+
 
 
 
