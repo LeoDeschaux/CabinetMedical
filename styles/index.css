@@ -2,36 +2,47 @@ body {
 	background-color: #238CE5	;
 }
 
-header {
-	height:225px;
-	background-color: #2337E5;
-	border-radius: 20px;
-}
-
 h1 {
-	color: black;
+	color: white;
 	text-align: center;
 }
 
 .formulaire_inscripton {
 	width:400px;
-	height:180px;
+	height:200px;
 	background: white;
 	text-align: center;
 	margin-left: auto;
     margin-right: auto;
-    margin-top: 4em;
+    border: 3px solid #404558;
+    margin-top: 15%;
     border-radius: 15px;
 }
 
-.logo {
-	position: absolute;
-	border-radius: 1000px;
-	width: 150px;
-	height: 150px;
-	margin-left: 1em;
-	margin-top: 1em;
-
+.btn-valider {
+	all:unset;
+	background-color:#404558;
+	padding: 8px 12px;
+	border-radius: 15px;
+	border: 1px solid black;
 }
+
+
+.btn-annuler {
+	all:unset;
+	background-color:#404558;
+	padding: 8px 12px;
+	border-radius: 15px;
+	border: 1px solid black;
+}
+
+.btn-valider:hover {
+	background-color: #0BDA10;
+}
+
+.btn-annuler:hover {
+	background-color: #DA0B0B;
+}
+
 
 
