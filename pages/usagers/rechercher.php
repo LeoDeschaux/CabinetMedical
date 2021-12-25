@@ -82,7 +82,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');
 		    $medecin_referent = "null";
 
 		    while ($row = $req->fetch()) {
-		    	$id = $row['id_u'];
+		    	$id_u = $row['id_u'];
 
 		    	if(!empty($row['id_m']))
 		    	{
@@ -114,10 +114,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');
 
 		            echo "<td class=\"tableau_cell\">" . $medecin_referent . "</td>";
 
-            		echo "<td class=\"tableau_cell\"><a href=\"#\">Ajouter une consultation</a></td>";
+            		echo "<td class=\"tableau_cell\"><a href=\"../consultations/ajouter.php?id_u=$id_u\">Ajouter une consultation</a></td>";
 
-		            echo "<td class=\"tableau_cell\"><a href=\"modifier.php?id=$id\">Modifier</a></td>";
-	                echo "<td class=\"tableau_cell\"><a href=\"supprimer.php?id=$id\">Supprimer</a></td>";
+		            echo "<td class=\"tableau_cell\"><a href=\"modifier.php?id=$id_u\">Modifier</a></td>";
+	                echo "<td class=\"tableau_cell\"><a href=\"supprimer.php?id_u=$id_u\">Supprimer</a></td>";
 		        echo "</tr>";
 		    }
 
