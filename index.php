@@ -8,7 +8,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');
 	<head>
     	<meta charset="utf-8" />
     	<link href="styles/index.css" rel="stylesheet" type="text/css">
-    	<link href="styles/footer.css" rel="stylesheet" type="text/css">
     	<title>Accueil</title>
 	</head>
 	<body>

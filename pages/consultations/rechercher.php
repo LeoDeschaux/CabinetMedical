@@ -1,10 +1,10 @@
 <?php
+$page = 'consultation';																// type de la page
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php'); 	// Session Start 
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
-$var = '1';																			// A COMPLETER
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			// NAVIGUATION BAR
-
-//include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/usagersMenu.php'); 	// USAGERS MENU
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php'); // CONSULTATION MENU
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');			// bas de page	
 ?>
 <!DOCTYPE HTML>
 <html>	
@@ -14,10 +14,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
     	<link rel="stylesheet" href="/CabinetMedical/styles/defaut.css">
       	<link rel="stylesheet" href="/CabinetMedical/styles/rechercher.css">
 	</head>
-
 	<body>
-
-		<h2 style="color:deeppink">*Mettre boutons : ajouter et rechercher*</h2>
 
 		<br>
 		<form method="post">
@@ -26,24 +23,19 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
 		    	<option value="0" selected>Tous les médecins</option>
 
 		    	<?php
-		    		$req = $linkpdo->query("SELECT * FROM medecin ORDER BY nom, prenom DESC");
-		    		while($row = $req->fetch())
-		    		{
-		    			echo "<option value=" . $row['id_m'] . ">" . 
-		    			$row['nom'] . " " . $row['prenom'] . "</option>";
+		    	$req = $linkpdo->query("SELECT * FROM medecin ORDER BY nom, prenom DESC");
+		    	while($row = $req->fetch()) {
+		    		echo "<option value=" . $row['id_m'] . ">" . $row['nom'] . " " . $row['prenom'] . "</option>";
 		    		}
 		    	?>
-
 		    </select>
 			<button type="submit" name="send" value="send">Rechercher</button> <br>
 		</form>
 		<br>
-
 		<?php
 		onFieldChange($linkpdo);
 
-		function onFieldChange($linkpdo)
-		{
+		function onFieldChange($linkpdo) {
 			showConsultations($linkpdo);
 		}
 
@@ -53,15 +45,13 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
 			$search_filter = "";
 			$field = "";
 
-			if(isset($_POST['search']))
-			{
+			if(isset($_POST['search'])) {
 				$field = $_POST['search'];
 
 				if($_POST['id_m'] != 0)
 					$select_filter = "AND consultation.id_m=" . $_POST['id_m'];
 
-				if(!empty($_POST['search']))
-				{
+				if(!empty($_POST['search'])) {
 					$search_filter = "AND (usager.nom LIKE :field
 					OR usager.prenom LIKE :field
 					OR medecin.nom LIKE :field
@@ -82,11 +72,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
 			$req->execute(array(
 		    'field' => $field . "%"));
 
-
-
-		    
-
-		    ///Affichage des entrées du résultat une à une
+		    // Affichage des entrées du résultat une à une
 		    echo "<h2>Liste de toutes les consultations :</h2>";
 
 		    echo "<table class=\"tableau_table\">";
@@ -120,7 +106,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
 
 		    	$id_c = $row['id_c'];
 
-
 		        echo "<tr class=\"tableau_cell_title\">";
 
 		        	echo "<td class=\"tableau_cell\">" . $jourConsultation . "</td>";
@@ -136,7 +121,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
 	                echo "<td class=\"tableau_cell\"><a href=\"supprimer.php?id_c=$id_c\">Supprimer</a></td>";
 		        echo "</tr>";
 		    }
-
 		    echo "</table>";
 		    $req->closeCursor(); 
 		}

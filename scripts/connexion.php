@@ -10,7 +10,7 @@
 	    catch (Exception $e) {
 	    die('Erreur : ' . $e->getMessage());
 	}
-
+	
 	// Empêche la navigation via l'url si l'utilisateur ne s'est pas connécté 
 	if ($_SESSION['connexion'] !== 'oui') {
 		header('Location: /CabinetMedical/index.php');

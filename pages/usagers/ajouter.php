@@ -1,11 +1,10 @@
 <?php
+$page = 'usager';																	// type de la page
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php'); 	// Session Start 
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
-$var = '1';	
-$type = 'usager';				
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			// NAVIGUATION BAR
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php'); // USAGERS MENU
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');			// bas de page
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -14,11 +13,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php
     	<meta charset="utf-8" />
     	<link rel="stylesheet" href="/CabinetMedical/styles/defaut.css">
     	<link rel="stylesheet" href="/CabinetMedical/styles/ajouter.css">
-    	<link rel="stylesheet" href="/CabinetMedical/styles/footer.css">
 	</head>
-
 	<body>
-		<!-- ///////////////////// FORMULAIRE //////////////////// -->
 		<?php 
 
 		$nom = '';
@@ -78,7 +74,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php
 			}
 		}
 		?>
-
 		<br>
 		<br>
 		<div class="fiche_inscription">
@@ -94,15 +89,12 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php
 				   	<option value="Mlle">Mademoiselle</option>
 				</select>
 				</p>
-				<p> <label>N° de sécurité social</label><input type="text" name="num_secu" placeholder="ex : 0123456789"><br> </p>
-				<br>
+				<p> <label>N° de sécurité social</label><input type="text" name="num_secu" placeholder="ex : 0123456789"><br> </p> 	<br>
 				<p> <label>Adresse</label><input type="text" name="adresse" placeholder="ex : 18 rue des coquelicot"><br> </p>
 				<p> <label>Code Postal</label><input type="text" name="cp" placeholder="ex : 31300"><br> </p>
-				<p> <label>Ville</label><input type="text" name="ville" placeholder="ex : Toulouse"><br> </p>
-				<br>
+				<p> <label>Ville</label><input type="text" name="ville" placeholder="ex : Toulouse"><br> </p> <br>
 				<p> <label>Lieu de naissance</label><input type="text" name="lieu_naissance" placeholder="ex : Toulouse"><br> </p>
-				<p> <label>Date de naissance</label><input type="date" name="date_naissance" placeholder="ex : 01/01/1990"><br> </p>
-				<br>
+				<p> <label>Date de naissance</label><input type="date" name="date_naissance" placeholder="ex : 01/01/1990"><br> </p> <br>
 				<?php
 				echo "<p>";
 				echo "<label>Médecin référent</label>";

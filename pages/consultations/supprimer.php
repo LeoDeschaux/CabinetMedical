@@ -1,8 +1,10 @@
 <?php
+$page = 'consultation';																// type de la page
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php'); 	// Session Start 
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
-$var = '1';																			// A COMPLETER
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			// NAVIGUATION BAR
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php'); // CONSULTATION MENU
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');			// bas de page	
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -12,7 +14,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
     	<link rel="stylesheet" href="/CabinetMedical/styles/defaut.css">
    	    <link rel="stylesheet" href="/CabinetMedical/styles/supprimer.css">
    	</head>   
-   	
 	<body>
 	
 		<h1>Etes vous sur de vouloir supprimer la consultation suivante ?</h1>
@@ -25,7 +26,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
 		    $id_c = $_POST['id_c'];
 		}
 
-		showUsager($id_c, $linkpdo);
+		showConsultations($id_c, $linkpdo);
 
 		if(isset($_POST["send"])) {
 		    $req = $linkpdo->prepare("DELETE FROM consultation WHERE id_c=:id_c");
@@ -47,8 +48,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
 		</form>
 
 		<?php
-		function showUsager($id_c,$linkpdo) {
-		    ///Sélection de tout le contenu de la table carnet_adresse
+		function showConsultations($id_c,$linkpdo) {
+		    // Sélection de tout le contenu de la table carnet_adresse
 		    $req = $linkpdo->prepare("
 		    	SELECT consultation.id_c, consultation.date_heure, consultation.duree, usager.nom as nom_usager, usager.prenom as prenom_usager, medecin.nom as nom_medecin, medecin.prenom as prenom_medecin 
 				FROM consultation, usager, medecin 
@@ -60,7 +61,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
 
 		    $req->execute(array('id_c' => $id_c)); 
 		    
-		    ///Affichage des entrées du résultat une à une
+		    // Affichage des entrées du résultat une à une
 		    echo "<table class=\"tableau_table\">";
 		    echo "<tr class=\"tableau_cell_title\">";
 
@@ -89,7 +90,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
 
 		    	$id_c = $row['id_c'];
 
-
 		        echo "<tr class=\"tableau_cell_title\">";
 
 		        	echo "<td class=\"tableau_cell\">" . $jourConsultation . "</td>";
@@ -103,7 +103,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			//
 
 		        echo "</tr>";
 		    }
-
 		    echo "</table>";
 		    $req->closeCursor(); 
 		}

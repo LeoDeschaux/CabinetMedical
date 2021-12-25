@@ -1,9 +1,5 @@
 <!-- ///////////////////// NAVIGUATION BAR //////////////////// -->
-<?php 
-if($var == '1') {
-
-$path = '/CabinetMedical/';
-//echo $path; 
+<?php
 
 $stylePage1 = "menu";
 $stylePage2 = "menu";
@@ -13,49 +9,45 @@ $stylePage5 = "menu";
 
 $currentPageName = basename($_SERVER['PHP_SELF']);
 
-if($type == "medecin")
+if($page == "medecin")
 	$stylePage1 = "menu-current";
 
-if($type == "usager")
+if($page == "usager")
 	$stylePage2 = "menu-current";
 
-if($type == "medecin")
+if($page == "medecin")
 	$stylePage3 = "menu-current";
 
-if($currentPageName == "planning.php")
+if($page == "consultation")
 	$stylePage4 = "menu-current";
 
 if($currentPageName == "statistiques.php")
-	$stylePage5 = "menu-current";
-
-	
+	$stylePage5 = "menu-current";	
 ?>
 
 <nav>
 	<div class="table">
 	<ul>
 		<li class="<?php echo $stylePage2;?>">
-			<a class ="usagers" href="<?php echo $path.'pages/usagers/rechercher.php';?>">Usagers</a>
+			<a class ="usagers" href="/CabinetMedical/pages/usagers/rechercher.php">Usagers</a>
 		</li>
 		
 		<li class="<?php echo $stylePage3;?>">
-			<a class ="medecins" href="<?php echo $path.'pages/medecins/rechercher.php';?>">Médecins</a>
+			<a class ="medecins" href="/CabinetMedical/pages/medecins/rechercher.php">Médecins</a>
 		</li>
 
 		<li class="<?php echo $stylePage4;?>">
-			<a class ="consultations" href="<?php echo $path.'pages/consultations/rechercher.php';?>">Consultations</a>
+			<a class ="consultations" href="/CabinetMedical/pages/consultations/rechercher.php">Consultations</a>
 		</li>
 		
 		<li class="<?php echo $stylePage5;?>">
-			<a class ="statistiques" href="<?php echo $path.'pages/statistiques.php';?>">Statistiques</a>
+			<a class ="statistiques" href="/CabinetMedical/pages/Statistiques/rechercher.php">Statistiques</a>
 		</li>
 	</ul>
 	</div>
 </nav>
-	<form method="post" action="/CabinetMedical/scripts/connexion.php">Z
-		<div class="deconnexion"><a><input type="submit" name="deconnexion" value="Déconnexion" style="all:unset" ></a></div> 
-		<!-- style="all:unset" pour supprimer le style par défaul du bouton submit-->
-	</form>
-<?php
-}
-?>
+
+<form method="post" action="/CabinetMedical/scripts/connexion.php">
+	<div class="deconnexion"><a><input type="submit" name="deconnexion" value="Déconnexion" style="all:unset" ></a></div> 
+	<!-- style="all:unset" pour supprimer le style par défaul du bouton submit-->
+</form>

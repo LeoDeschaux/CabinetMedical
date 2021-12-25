@@ -1,11 +1,10 @@
 <?php
+$page = 'usager';																	// type de la page
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php'); 	// Session Start 
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
-$var = '1';																			// A COMPLETER
-$type = 'usager';																	// A COMPLETER
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			// NAVIGUATION BAR
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php'); // USAGERS MENU
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');			// bas de page
 ?>
 <!DOCTYPE HTML>
 <html>	
@@ -14,7 +13,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php
     	<meta charset="utf-8" />
     	<link rel="stylesheet" href="/CabinetMedical/styles/defaut.css">
       	<link rel="stylesheet" href="/CabinetMedical/styles/rechercher.css">
-      	<link rel="stylesheet" href="/CabinetMedical/styles/footer.css">
 	</head>
 
 	<body>
@@ -84,21 +82,16 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php
 
 		    while ($row = $req->fetch()) {
 		    	$id_u = $row['id_u'];
-
-		    	if(!empty($row['id_m']))
-		    	{
+		    	if(!empty($row['id_m'])) {
 			    	$req_medecin = $linkpdo->prepare("SELECT medecin.nom, medecin.prenom FROM medecin, usager WHERE medecin.id_m=:id_m");
 
 			    	$req_medecin->execute(array(
-			    		'id_m' => $row['id_m'] 
-			    	));
+			    		'id_m' => $row['id_m'] ));
 
-			    	while($medecin_row = $req_medecin->fetch())
-			    	{
+			    	while($medecin_row = $req_medecin->fetch()) {
 			    		$medecin_referent = $medecin_row['nom'] . " " . $medecin_row['prenom']; 
 			    	}
 		    	}
-
 		        echo "<tr class=\"tableau_cell_title\">";
 		            echo "<td class=\"tableau_cell\">" . $row['nom'] . "</td>";
 		            echo "<td class=\"tableau_cell\">" . $row['prenom'] . "</td>";
@@ -121,7 +114,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php
 	                echo "<td class=\"tableau_cell\"><a href=\"supprimer.php?id_u=$id_u\">Supprimer</a></td>";
 		        echo "</tr>";
 		    }
-
 		    echo "</table>";
 		    $req->closeCursor(); 
 		}

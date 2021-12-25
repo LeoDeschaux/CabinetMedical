@@ -1,10 +1,10 @@
 <?php
+$page = 'medecin';																	// type de la page	
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php'); 	// Session Start 
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
-$var = '1';		
-$type = 'medecin';	
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			// NAVIGUATION BAR	
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php'); // MEDECINS MENU											
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			// NAVIGUATION BAR
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php'); // MEDECINS MENU
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');			// bas de page
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -14,7 +14,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php
     	<link rel="stylesheet" href="/CabinetMedical/styles/defaut.css">
     	<link rel="stylesheet" href="/CabinetMedical/styles/modifier.css">
 	</head>
-
 	<body>
 
 		<?php 
@@ -56,14 +55,14 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php
 		    }
 		}
 
-		//MODIFICATION
+		// MODIFICATION
 		if(isset($_POST["send"])) {
 		    $req = $linkpdo->prepare("
 		        UPDATE usager
 		        SET nom=:nom, prenom=:prenom, civilite=:civilite, num_secu=:num_secu, adresse=:adresse, cp=:cp, ville=:ville, lieu_naissance=:lieu_naissance, date_naissance=:date_naissance, id_m=:id_m
 		        WHERE id_u=:id_u");
 
-		    ///Exécution de la requête
+		    // Exécution de la requête
 		    $req->execute(array(
 		    'id_u' => $id_u,
 		    'nom' => $_POST['nom'],
@@ -91,72 +90,67 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php
 			$id_m = $_POST['id_m'];
 
 		    echo "*modifications* <br>";
-		    header('Location: /CabinetMedical/pages/usagers/rechercher');
+		    header('Location: /CabinetMedical/pages/medecin/rechercher');
 		}
 		?>
 		
-		<div class="fiche_inscription">
-			
-		<form method="post">
+		<div class="fiche_inscription">	
+			<form method="post">
 
-			<input type="hidden" name="id_u" value="<?php echo $id_u; ?>">
-			
-			<p><label>Nom</label><input type="text" name="nom" placeholder="ex : BROISIN" value="<?php echo $nom; ?>"><br> </p>
-			<p><label>Prenom</label><input type="text" name="prenom" placeholder="ex : Julien" value="<?php echo $prenom; ?>"><br> </p>
-			<br>
-			<p>
-			<label>Civilité</label>
-			<select name="civilite">
-		    	<option value="M" <?php if($civilite=="M") echo "selected"?>>Monsieur</option>
-		    	<option value="Mme" <?php if($civilite=="Mme") echo "selected"?>>Madame</option>
-		    	<option value="Mlle" <?php if($civilite=="Mlle") echo "selected"?>>Mademoiselle</option>
-		  	</select>
-			</p>
-			<p><label>Numéro de sécurité social</label><input type="text" name="num_secu" placeholder="ex : 0123456789" value="<?php echo $num_secu; ?>"><br></p>
-			<br>
-			<p><label>Adresse</label><input type="text" name="adresse" placeholder="ex : 18 rue des coquelicot" value="<?php echo $adresse; ?>"><br></p>
-			<p><label>Code Postal</label><input type="text" name="cp" placeholder="ex : 31300" value="<?php echo $cp; ?>"><br></p>
-			<p><label>Ville</label><input type="text" name="ville" placeholder="ex : Toulouse" value="<?php echo $ville; ?>"><br></p>
-			<br>
-			<p><label>Lieu de naissance</label><input type="text" name="lieu_naissance" placeholder="ex : Toulouse" value="<?php echo $lieu_naissance; ?>"><br></p>
-			<p><label>Date de naissance</label><input type="date" name="date_naissance" placeholder="ex : 01/01/1990" value="<?php echo $date_naissance; ?>"><br></p>
-			<br>
+				<input type="hidden" name="id_u" value="<?php echo $id_u; ?>">
+				
+				<p><label>Nom</label><input type="text" name="nom" placeholder="ex : BROISIN" value="<?php echo $nom; ?>"><br> </p>
+				<p><label>Prenom</label><input type="text" name="prenom" placeholder="ex : Julien" value="<?php echo $prenom; ?>"><br> </p>
+				<br>
+				<p>
+				<label>Civilité</label>
+				<select name="civilite">
+			    	<option value="M" <?php if($civilite=="M") echo "selected"?>>Monsieur</option>
+			    	<option value="Mme" <?php if($civilite=="Mme") echo "selected"?>>Madame</option>
+			    	<option value="Mlle" <?php if($civilite=="Mlle") echo "selected"?>>Mademoiselle</option>
+			  	</select>
+				</p>
+				<p><label>Numéro de sécurité social</label><input type="text" name="num_secu" placeholder="ex : 0123456789" value="<?php echo $num_secu; ?>"><br></p>
+				<br>
+				<p><label>Adresse</label><input type="text" name="adresse" placeholder="ex : 18 rue des coquelicot" value="<?php echo $adresse; ?>"><br></p>
+				<p><label>Code Postal</label><input type="text" name="cp" placeholder="ex : 31300" value="<?php echo $cp; ?>"><br></p>
+				<p><label>Ville</label><input type="text" name="ville" placeholder="ex : Toulouse" value="<?php echo $ville; ?>"><br></p>
+				<br>
+				<p><label>Lieu de naissance</label><input type="text" name="lieu_naissance" placeholder="ex : Toulouse" value="<?php echo $lieu_naissance; ?>"><br></p>
+				<p><label>Date de naissance</label><input type="date" name="date_naissance" placeholder="ex : 01/01/1990" value="<?php echo $date_naissance; ?>"><br></p>
+				<br>
 
-			<?php
-				echo "<p>";
-				echo "<label>Médecin référent</label>";
-				echo "<select name=\"id_m\"*>";
+				<?php
+					echo "<p>";
+						echo "<label>Médecin référent</label>";
+						echo "<select name=\"id_m\"*>";
+					    	// Sélection de tout le contenu de la table carnet_adresse
+					    	$req = $linkpdo->query("SELECT * FROM medecin ORDER BY nom");
 
-		    	///Sélection de tout le contenu de la table carnet_adresse
-		    	$req = $linkpdo->query("SELECT * FROM medecin ORDER BY nom");
+					    	echo "<option value=\"0\"></option>";
 
-		    	echo "<option value=\"0\"></option>";
-
-				while ($row = $req->fetch())
-			    {
-			    	if($id_m == $row['id_m'])
-			    	{
-			    		echo "<option value=\"" . $row['id_m'] . "\"selected>"  . $row['nom'] . " " . $row['prenom'] . "</option>";
-			    	}
-			    	else
-			    	{
-			    		echo "<option value=\"" . $row['id_m'] . "\">"  . $row['nom'] . " " . $row['prenom'] . "</option>";
-			    	}
-			    }
-
-			  	echo "</select>";
-				echo "</p>";
-
-				echo 'id_m: ' . $id_m;
-			?>
-			<br>
-		 
-			<p>
-			<button type="submit" name ="send" value="send"><a href=""></a>Valider les modifications</button>
-			<button><a href="/CabinetMedical/pages/usagers/rechercher.php">Annuler</a></button>
-			</p>
-		</form>
+							while ($row = $req->fetch())
+						    {
+						    	if($id_m == $row['id_m'])
+						    	{
+						    		echo "<option value=\"" . $row['id_m'] . "\"selected>"  . $row['nom'] . " " . $row['prenom'] . "</option>";
+						    	}
+						    	else
+						    	{
+						    		echo "<option value=\"" . $row['id_m'] . "\">"  . $row['nom'] . " " . $row['prenom'] . "</option>";
+						    	}
+						    }
+					  	echo "</select>";
+					echo "</p>";
+					echo 'id_m: ' . $id_m;
+				?>
+				<br>
+			 
+				<p>
+				<button type="submit" name ="send" value="send"><a href=""></a>Valider les modifications</button>
+				<button><a href="/CabinetMedical/pages/medecins/rechercher.php">Annuler</a></button>
+				</p>
+			</form>
 		</div>
-		
 	</body>
 </html>

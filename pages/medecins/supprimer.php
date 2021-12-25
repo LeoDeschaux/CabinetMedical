@@ -1,10 +1,10 @@
 <?php
+$page = 'medecin';																	// type de la page	
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php'); 	// Session Start 
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
-$var = '1';		
-$type = 'medecin';																	// A COMPLETER
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			// NAVIGUATION BAR
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php'); // MEDECINS MENU
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');			// bas de page
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -14,7 +14,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php
     	<link rel="stylesheet" href="/CabinetMedical/styles/defaut.css">
    	    <link rel="stylesheet" href="/CabinetMedical/styles/supprimer.css">
    	</head>   
-   	
 	<body>
 	
 		<h1>Etes vous sur de vouloir supprimer le medecin suivant ?</h1>
@@ -47,21 +46,18 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php
 			    </tr>
 			</table>
 		</form>
-
 		<?php
 		function showUsager($id,$linkpdo) {
-		    ///Sélection de tout le contenu de la table carnet_adresse
+		    // Sélection de tout le contenu de la table carnet_adresse
 		    $req = $linkpdo->prepare("SELECT * FROM medecin WHERE id_m=:id");
 		    $req->execute(array('id' => $id)); 
 		    
-		    ///Affichage des entrées du résultat une à une
+		    // Affichage des entrées du résultat une à une
 		    echo "<table class=\"tableau_table\">";
 		    echo "<tr class=\"tableau_cell_title\">";
 		        echo "<th>Nom</th>";
 		        echo "<th>Prenom</th>";
-
 		        echo "<th>Civilité</th>";
-		       
 		    echo "</tr>";
 
 		    while ($row = $req->fetch()) {
@@ -69,9 +65,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php
 		        echo "<tr class=\"tableau_cell_title\">";
 		            echo "<td class=\"tableau_cell\">" . $row['nom'] . "</td>";
 		            echo "<td class=\"tableau_cell\">" . $row['prenom'] . "</td>";
-
-		            echo "<td class=\"tableau_cell\">" . $row['civilite'] . "</td>";
-					
+		            echo "<td class=\"tableau_cell\">" . $row['civilite'] . "</td>";	
 		        echo "</tr>";
 		    }
 		    echo "</table>";   
