@@ -12,3 +12,14 @@ footer  {
 	color: white;
 	text-align: center;
 }
+
+.logo {
+	position: absolute;
+	top: 1px;
+	left: 20px;
+	height: 50px;
+	width: 50px;
+	border-radius: 100%;
+	border: 1px solid black;
+	bottom: 10px;
+}
