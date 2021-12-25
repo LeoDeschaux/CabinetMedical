@@ -1,11 +1,10 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php'); 	// Session Start 
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
-$var = '1';
-$type = 'usager';																	// A COMPLETER
+$var = '1';		
+$type = 'medecin';																	// A COMPLETER
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			// NAVIGUATION BAR
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php'); // USAGERS MENU
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php'); // MEDECINS MENU
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -14,12 +13,11 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php
     	<meta charset="utf-8" />
     	<link rel="stylesheet" href="/CabinetMedical/styles/defaut.css">
    	    <link rel="stylesheet" href="/CabinetMedical/styles/supprimer.css">
-   	    <link rel="stylesheet" href="/CabinetMedical/styles/footer.css">
    	</head>   
    	
 	<body>
 	
-		<h1>Etes vous sur de vouloir supprimer l'usager suivant ?</h1>
+		<h1>Etes vous sur de vouloir supprimer le medecin suivant ?</h1>
 
 		<?php
 		$id = '';
@@ -32,11 +30,11 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php
 		showUsager($id,$linkpdo);
 
 		if(isset($_POST["send"])) {
-		    $req = $linkpdo->prepare("DELETE FROM usager WHERE id_u=:id");
+		    $req = $linkpdo->prepare("DELETE FROM medecin WHERE id_m=:id");
 		    $req->execute(array('id' => $id)); 
 
 		    echo "CONTACT SUPPRIMÉ";
-		    header('Location: /CabinetMedical/pages/usagers/rechercher.php');
+		    header('Location: /CabinetMedical/pages/medecins/rechercher.php');
 		}
 		?>
 		<br>
@@ -45,7 +43,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php
 			<table>
 			    <tr>
 			        <td><input type="submit" name="send" value="VALIDER LA SUPPRESSION"></td>
-			        <button><a href="/CabinetMedical/pages/usagers/rechercher.php">Annuler</a></button>
+			        <button><a href="/CabinetMedical/pages/medecins/rechercher.php">Annuler</a></button>
 			    </tr>
 			</table>
 		</form>
@@ -53,7 +51,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php
 		<?php
 		function showUsager($id,$linkpdo) {
 		    ///Sélection de tout le contenu de la table carnet_adresse
-		    $req = $linkpdo->prepare("SELECT * FROM usager WHERE id_u=:id");
+		    $req = $linkpdo->prepare("SELECT * FROM medecin WHERE id_m=:id");
 		    $req->execute(array('id' => $id)); 
 		    
 		    ///Affichage des entrées du résultat une à une
@@ -63,31 +61,17 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php
 		        echo "<th>Prenom</th>";
 
 		        echo "<th>Civilité</th>";
-		        echo "<th>Num Sécu</th>";
-		        
-		        echo "<th>Adresse</th>";
-		        echo "<th>CP</th>";
-		        echo "<th>Ville</th>";
-		        
-		        echo "<th>Lieu de naissance</th>";
-		        echo "<th>Date de naissance</th>";
+		       
 		    echo "</tr>";
 
 		    while ($row = $req->fetch()) {
-		    	$id = $row['id_u'];
+		    	$id = $row['id_m'];
 		        echo "<tr class=\"tableau_cell_title\">";
 		            echo "<td class=\"tableau_cell\">" . $row['nom'] . "</td>";
 		            echo "<td class=\"tableau_cell\">" . $row['prenom'] . "</td>";
 
 		            echo "<td class=\"tableau_cell\">" . $row['civilite'] . "</td>";
-					echo "<td class=\"tableau_cell\">" . $row['num_secu'] . "</td>";
-		            
-		            echo "<td class=\"tableau_cell\">" . $row['adresse'] . "</td>";
-		            echo "<td class=\"tableau_cell\">" . $row['cp'] . "</td>";
-		            echo "<td class=\"tableau_cell\">" . $row['ville'] . "</td>";
-
-		            echo "<td class=\"tableau_cell\">" . $row['lieu_naissance'] . "</td>";
-		            echo "<td class=\"tableau_cell\">" . Date('d-m-Y', $row['date_naissance']) . "</td>";
+					
 		        echo "</tr>";
 		    }
 		    echo "</table>";   

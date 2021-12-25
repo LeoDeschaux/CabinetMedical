@@ -13,12 +13,13 @@ $stylePage5 = "menu";
 
 $currentPageName = basename($_SERVER['PHP_SELF']);
 
-/*
-if($currentPageName == "usagers.php" || $currentPageName == "ajouter.php" ||
-    $currentPageName == "rechercher.php")
+if($type == "medecin")
+	$stylePage1 = "menu-current";
+
+if($type == "usager")
 	$stylePage2 = "menu-current";
 
-if($currentPageName == "medecins.php")
+if($type == "medecin")
 	$stylePage3 = "menu-current";
 
 if($currentPageName == "planning.php")
@@ -26,7 +27,7 @@ if($currentPageName == "planning.php")
 
 if($currentPageName == "statistiques.php")
 	$stylePage5 = "menu-current";
-*/
+
 	
 ?>
 
@@ -51,9 +52,9 @@ if($currentPageName == "statistiques.php")
 	</ul>
 	</div>
 </nav>
-	<form method="post" action="/CabinetMedical/scripts/connexion.php">
+	<form method="post" action="/CabinetMedical/scripts/connexion.php">Z
 		<div class="deconnexion"><a><input type="submit" name="deconnexion" value="Déconnexion" style="all:unset" ></a></div> 
-		<!-- style="all:unset" pour supprimer le style par défaul-->
+		<!-- style="all:unset" pour supprimer le style par défaul du bouton submit-->
 	</form>
 <?php
 }

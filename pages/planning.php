@@ -1,6 +1,7 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php');  
+$type = 'consultation';
 ?>
 <!DOCTYPE HTML>
 <html>

@@ -1,10 +1,11 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php'); 	// Session Start 
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
-$var = '1';		
+$var = '1';	
+$type = 'usager';				
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			// NAVIGUATION BAR
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/usagersMenu.php'); 	// USAGERS MENU
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php'); // USAGERS MENU
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -120,7 +121,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');
 				?>
 				<br>
 				<p> 
-				<input type="reset" value="Annuler"> 
+				<input type="reset" value="Vider les champs"> 
+				<button><a href="/CabinetMedical/pages/usagers/rechercher.php">Retour</a></button>
 				<button type="submit" name ="send" value="send">Ajouter</button> 
 				</p>
 			</form>
