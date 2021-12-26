@@ -72,8 +72,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');			// 
 			<br>
 			<br>
 			<p> 
-				<input type="reset" value="Vider les champs"> 
-				<button><a href="/CabinetMedical/pages/medecins/rechercher.php">Retour</a></button> 
+				<button><a href="/CabinetMedical/pages/medecins/rechercher.php">Annuler</a></button> 
 				<button type="submit" name ="send" value="send">Ajouter</button> 
 			</p>
 		</form>

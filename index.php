@@ -22,14 +22,14 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');
 				if(isset($_GET['erreur'])){
                     $err = $_GET['erreur'];
                     if($err == 1) {
-                        echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
+                        echo "<p style='color:red'>Identifiant ou Mot de passe incorrect</p>";
                     }
                     if ($err == 2) {
                         echo "<p style='color:red'>Caractères spéciaux interdit !</p>";
                     }
                  }
                  ?>
-   				<input class="btn-annuler" type="reset" value="Annuler"> 
+                 <button class="btn-annuler"><a href="/CabinetMedical/index.php" style="text-decoration:none; color: #FFF;">Annuler</a></button> 
 				<input class="btn-valider" type="submit" value="Valider">
 			</form>
 		</div>

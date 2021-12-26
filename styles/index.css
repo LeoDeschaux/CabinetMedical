@@ -23,7 +23,6 @@ h1 {
 }
 
 .btn-valider {
-	all:unset;
 	background-color:#404558;
 	padding: 8px 18px;
 	border-radius: 15px;
@@ -33,12 +32,11 @@ h1 {
 
 
 .btn-annuler {
-	all:unset;
 	background-color:#404558;
+	color: #FFF;
 	padding: 8px 15px;
 	border-radius: 15px;
 	border: 1px solid black;
-	color: #FFF;
 }
 
 .btn-valider:hover {

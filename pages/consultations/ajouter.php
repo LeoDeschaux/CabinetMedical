@@ -163,7 +163,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');			// 
 				</select>
 			<br>
 			<p> 
-				<input type="reset" value="Annuler la consultation"> 
+				<button><a href="/CabinetMedical/pages/consultations/rechercher.php">Annuler</a></button> 
 				<button type="submit" name ="send" value="send">Valider la consultation</button> 
 			</p>
 		</form>
