@@ -19,10 +19,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');
 				<p><input type="text" name="id" placeholder="Identifiant" ></p>
 				<p><input type="password" name="mdp" placeholder=" Mot de passe" ></p>
 				<?php
-				if(isset($_GET['erreur'])){
+				if(isset($_GET['erreur'])){	 // les messages affichés vont dépendre de verification.php en fonction de l'erreur si il y en a une
                     $err = $_GET['erreur'];
                     if($err == 1) {
-                        echo "<p style='color:red'>Identifiant ou Mot de passe incorrect</p>";
+                        echo "<p style='color:red'>Identifiant ou Mot de passe incorrect</p>"; 
                     }
                     if ($err == 2) {
                         echo "<p style='color:red'>Caractères spéciaux interdit !</p>";

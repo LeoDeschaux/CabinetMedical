@@ -1,6 +1,5 @@
 <?php
 $page = 'usager';																	// type de la page
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php'); 	// Session Start 
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			// NAVIGUATION BAR
 include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php'); // USAGERS MENU
@@ -20,10 +19,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');			// 
 
 		<?php
 		$id = '';
-		if(!empty($_GET['id'])) {
-		    $id = $_GET['id'];
+		if(!empty($_GET['id_u'])) {
+		    $id = $_GET['id_u'];
 		} else {
-		    $id = $_POST['id'];
+		    $id = $_POST['id_u'];
 		}
 
 		showUsager($id,$linkpdo);

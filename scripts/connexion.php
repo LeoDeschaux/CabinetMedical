@@ -1,4 +1,6 @@
 <?php
+	include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php'); 
+
 	// Connexion au serveur MySQL
 	$login = 'root';
     $mdp = '';
@@ -11,16 +13,14 @@
 	    die('Erreur : ' . $e->getMessage());
 	}
 	
-	// Empêche la navigation via l'url si l'utilisateur ne s'est pas connécté 
-	if ($_SESSION['connexion'] !== 'oui') {
-		header('Location: /CabinetMedical/index.php');
+	if ($_SESSION['connexion'] !== 'oui') {									// Empêche la navigation via l'url si l'utilisateur ne s'est pas connécté 
+		header('Location: /CabinetMedical/index.php');						// redirige l'utilisateur vers index.php
 	}
 	
-	// Déconnecte l'utilisateur et le redirige vers index.php 
-	if (isset($_POST['deconnexion'])) {
+	if (isset($_POST['deconnexion'])) {										// Déconnecte l'utilisateur et le redirige vers index.php 
 		if ($_POST['deconnexion']) {
-			$_SESSION['connexion'] = 'non';  
-			header("Refresh:0");
+			$_SESSION['connexion'] = 'non';  								// deconnecte l'utilisateur
+			header("Refresh:0");											// comme l'utilisateur est déconnecté alors il est redirigé vers index.php
 		}
 	}
 	

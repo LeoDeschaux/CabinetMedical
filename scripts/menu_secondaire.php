@@ -1,8 +1,8 @@
 <!-- ///////////////////// NAVIGUATION BAR //////////////////// -->
 <link href="/CabinetMedical/styles/menu_secondaire.css" rel="stylesheet" type="text/css">
 
-<?php
-switch ($page) {
+<?php   				// les pages d'usagers, de medecins et de consultations renseignent leur type (usager, medecin, consultation) 
+switch ($page) { 		// afin de pouvoir afficher leur menu secondaire en conséquence	
 	case 'usager':
 		?>
 		<table class="usager_menu">
