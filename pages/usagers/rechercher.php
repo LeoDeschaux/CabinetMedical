@@ -103,7 +103,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');			// 
 		            echo "<td class=\"tableau_cell\">" . $row['ville'] . "</td>";
 
 		            echo "<td class=\"tableau_cell\">" . $row['lieu_naissance'] . "</td>";
-		            echo "<td class=\"tableau_cell\">" . Date("d-m-Y", $row['date_naissance']). "</td>";
+		            echo "<td class=\"tableau_cell\">" . Date("d/m/Y", $row['date_naissance']). "</td>";
 
 		            echo "<td class=\"tableau_cell\">" . $medecin_referent . "</td>";
 
