@@ -1,17 +1,18 @@
 <?php
 $page = 'usager';																	// type de la page
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			// NAVIGUATION BAR
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php'); // USAGERS MENU
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');			// bas de page
+include($_SERVER['DOCUMENT_ROOT'] . '/scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
+include($_SERVER['DOCUMENT_ROOT'] . '/scripts/header.php'); 			// NAVIGUATION BAR
+include($_SERVER['DOCUMENT_ROOT'] . '/scripts/menu_secondaire.php'); // USAGERS MENU
+
+include($_SERVER['DOCUMENT_ROOT'] . '/scripts/footer.php');			// bas de page
 ?>
 <!DOCTYPE HTML>
 <html>	
 	<head>
 		<title>Accueil Secrétariat</title>
     	<meta charset="utf-8" />
-    	<link rel="stylesheet" href="/CabinetMedical/styles/defaut.css">
-      	<link rel="stylesheet" href="/CabinetMedical/styles/rechercher.css">
+    	<link rel="stylesheet" href="/styles/defaut.css">
+      	<link rel="stylesheet" href="/styles/rechercher.css">
 	</head>
 
 	<body>

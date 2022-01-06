@@ -1,7 +1,7 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . '/scripts/session_start.php'); 
 $_SESSION['connexion'] = 'non';
-//include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');
+//include($_SERVER['DOCUMENT_ROOT'] . '/scripts/footer.php');
 ?>
 <!DOCTYPE HTML>
 <html lang="fr">
@@ -30,7 +30,7 @@ $_SESSION['connexion'] = 'non';
                     }
                  }
                  ?>
-                 <button class="btn-annuler"><a href="/CabinetMedical/index.php" style="text-decoration:none; color: #FFF;">Annuler</a></button> 
+                 <button class="btn-annuler"><a href="/index.php" style="text-decoration:none; color: #FFF;">Annuler</a></button> 
 				<input class="btn-valider" type="submit" value="Valider">
 			</form>
 		</div>

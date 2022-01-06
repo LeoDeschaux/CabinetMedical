@@ -1,20 +1,25 @@
 <?php
-	include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php'); 
+	include($_SERVER['DOCUMENT_ROOT'] . '/scripts/session_start.php'); 
 
 	// Connexion au serveur MySQL
-	$login = 'root';
-    $mdp = '';
-  	$server = '127.0.0.1';
-	$db = 'cabinet';
+  	$server = 'localhost';//'127.0.0.1';
+	$login = 'id18235165_root';
+    $mdp = '@(bCM&?(MJvS875A';
+	$db = 'id18235165_cabinetmedical';
 	try {
-	    $linkpdo = new PDO("mysql:host=$server;dbname=$db", $login, $mdp);
+
+		$linkpdo = new PDO("mysql:host=$server;dbname=$db", $login, $mdp);
+
+		$linkpdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+	    //$linkpdo = new PDO("mysql:host=$server;dbname=$db", $login, $mdp);
 	}
 	    catch (Exception $e) {
 	    die('Erreur : ' . $e->getMessage());
 	}
 	
 	if ($_SESSION['connexion'] !== 'oui') {									// Empêche la navigation via l'url si l'utilisateur ne s'est pas connécté 
-		header('Location: /CabinetMedical/index.php');						// redirige l'utilisateur vers index.php
+		header('Location: /index.php');						// redirige l'utilisateur vers index.php
 	}
 	
 	if (isset($_POST['deconnexion'])) {										// Déconnecte l'utilisateur et le redirige vers index.php 
