@@ -99,10 +99,18 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');			// 
 				</tr>
 			</tbody>
 		</table>
-		<?php
-		$req = $linkpdo->prepare("SELECT * FROM medecin, consutation WHERE medecin.id_m = consutation.id_m ORDER BY nom, prenom ASC");
 
-		$req->execute(array('id_m' => "" ));
+
+
+
+
+		<br>
+
+		<?php
+		$req = $linkpdo->prepare("SELECT nom, prenom, sum(duree) as duree FROM medecin, consultation WHERE consultation.id_m=medecin.id_m GROUP BY medecin.id_m
+			ORDER BY duree DESC");
+
+		$req->execute(array());
 
 		echo "<table class=\"tableau_table\">";
 		echo "<tr class=\"tableau_cell_title\">";
@@ -112,31 +120,20 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');			// 
 
 		while ($row = $req->fetch()) {
 
-		    	if(!empty($row['id_m']))
-		    	{
-		    		$req = $linkpdo->query("
-						SELECT nom, prenom
-						FROM consutation, medecin
-						WHERE consutation.id_m = medecin.id_m");
-					$medecin = ($req->fetch())['medecin'];
-
-			    	$req = $linkpdo->query("
-						SELECT sum(duree) as duree_total
-						FROM consutation, medecin
-						WHERE consutation.id_m = medecin.id_m");
-					$duree_total = ($req->fetch())['duree_total'];
-		    	}
-
 		    	echo "<tr class=\"tableau_cell_title\">";
-		            echo "<td class=\"tableau_cell\">" . $row['medecin'] . "</td>";
-		            echo "<td class=\"tableau_cell\">" . $row['duree_total'] . "</td>";
+		            echo "<td class=\"tableau_cell\">" . $row['nom'] . "</td>";
+		            
+		            $init = $row['duree'];
+					$hours = floor($init / (60*60));
+					$minutes = floor(($init-($hours*60*60))/60);
+
+		            echo "<td class=\"tableau_cell\">" . $hours . "h" . $minutes . "m" . "</td>";
 		        echo "</tr>";
 	}
 
 	echo "</table>";
 	$req->closeCursor(); 
 		
-		
-		?>
+	?>
 	</body>
 </html>
