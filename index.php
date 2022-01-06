@@ -1,12 +1,13 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/session_start.php'); 
+include($_SERVER['DOCUMENT_ROOT'] . '/scripts/session_start.php'); 
 $_SESSION['connexion'] = 'non';
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');
+//include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');
 ?>
 <!DOCTYPE HTML>
 <html lang="fr">
 	<head>
     	<meta charset="utf-8" />
+    	<link href="styles/defaut.css" rel="stylesheet" type="text/css">
     	<link href="styles/index.css" rel="stylesheet" type="text/css">
     	<title>Accueil</title>
 	</head>
