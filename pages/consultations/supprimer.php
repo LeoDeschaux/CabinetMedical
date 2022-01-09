@@ -18,12 +18,12 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 		</header>
 	
 		<main>
+
+			<?php include('../../scripts/menu_secondaire.php'); // USAGERS MENU ?>
+
 			<h1>Etes vous sur de vouloir supprimer la consultation suivante ?</h1>
 
 			<?php
-
-			include('../../scripts/menu_secondaire.php'); // USAGERS MENU
-
 			$id_c = '';
 			if(!empty($_GET['id_c'])) {
 			    $id_c = $_GET['id_c'];
@@ -46,7 +46,7 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 				<input type="hidden" name="id_c" value="<?php echo $id_c; ?>">
 				<table>
 				    <tr>
-				        <td><input type="submit" name="send" value="VALIDER LA SUPPRESSION"></td>
+				        <input type="submit" name="send" value="Valider la suppression">
 				        <button><a href="rechercher.php">Annuler</a></button>
 				    </tr>
 				</table>

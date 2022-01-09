@@ -98,7 +98,7 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 			    header('Location: rechercher.php');
 			}
 			?>
-			
+			<br>
 			<div class="fiche_inscription">	
 				<form method="post">
 
