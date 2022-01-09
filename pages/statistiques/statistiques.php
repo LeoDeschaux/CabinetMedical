@@ -10,9 +10,9 @@ include('../../scripts/footer.php');			// bas de page
 	<head>
 		<title>Statistiques</title>
     	<meta charset="utf-8" />
-    	<link rel="stylesheet" href="../styles/defaut.css">
-    	<link rel="stylesheet" href="../styles/statistiques.css">
-    	<link rel="stylesheet" href="../styles/footer.css">
+    	<link rel="stylesheet" href="../../styles/defaut.css">
+    	<link rel="stylesheet" href="../../styles/statistiques.css">
+    	<link rel="stylesheet" href="../../styles/footer.css">
 	</head>
 	<body>
 		<?php

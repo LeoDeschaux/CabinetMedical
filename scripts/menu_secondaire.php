@@ -6,8 +6,8 @@ switch ($page) { 		// afin de pouvoir afficher leur menu secondaire en conséque
 	case 'usager':
 		?>
 		<table class="usager_menu">
-			<td class="usager_button"><a href="../pages/usagers/rechercher.php">Rechercher un usager</a></td>
-			<td class="usager_button"><a href="../pages/usagers/ajouter.php">Ajouter un usager</a></td>
+			<td class="usager_button"><a href="rechercher.php">Rechercher un usager</a></td>
+			<td class="usager_button"><a href="ajouter.php">Ajouter un usager</a></td>
 		</table>
 		<?php
 		break;
@@ -15,8 +15,8 @@ switch ($page) { 		// afin de pouvoir afficher leur menu secondaire en conséque
 	case 'medecin':
 		?>
 		<table class="usager_menu">
-			<td class="usager_button"><a href="../pages/medecins/rechercher.php">Rechercher un medecin</a></td>
-			<td class="usager_button"><a href="../pages/medecins/ajouter.php">Ajouter un medecin</a></td>
+			<td class="usager_button"><a href="rechercher.php">Rechercher un medecin</a></td>
+			<td class="usager_button"><a href="ajouter.php">Ajouter un medecin</a></td>
 		</table>
 		<?php
 		break;
@@ -24,8 +24,8 @@ switch ($page) { 		// afin de pouvoir afficher leur menu secondaire en conséque
 	case 'consultation':
 		?>
 		<table class="usager_menu">
-			<td class="usager_button"><a href="../pages/consultations/rechercher.php">Rechercher une consultation</a></td>
-			<td class="usager_button"><a href="../pages/consultations/ajouter.php">Ajouter une consultation</a></td>
+			<td class="usager_button"><a href="rechercher.php">Rechercher une consultation</a></td>
+			<td class="usager_button"><a href="ajouter.php">Ajouter une consultation</a></td>
 		</table>
 		<?php
 		break;

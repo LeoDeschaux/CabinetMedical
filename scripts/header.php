@@ -31,26 +31,26 @@ if($currentPageName == "statistiques.php")
 	<div class="table">
 	<ul>
 		<li class="<?php echo $stylePage2;?>">
-			<a class ="usagers" href="../pages/usager/rechercher.php">Usagers</a>
+			<a class ="usagers" href="../usagers/rechercher.php">Usagers</a>
 		</li>
 		
 		<li class="<?php echo $stylePage3;?>">
-			<a class ="medecins" href="../pages/medecins/rechercher.php">Médecins</a>
+			<a class ="medecins" href="../medecins/rechercher.php">Médecins</a>
 		</li>
 
 		<li class="<?php echo $stylePage4;?>">
-			<a class ="consultations" href="../pages/consultations/rechercher.php">Consultations</a>
+			<a class ="consultations" href="../consultations/rechercher.php">Consultations</a>
 		</li>
 		
 		<li class="<?php echo $stylePage5;?>">
-			<a class ="statistiques" href="../pages/statistiques.php">Statistiques</a>
+			<a class ="statistiques" href="../statistiques/statistiques.php">Statistiques</a>
 		</li>
 	</ul>
 	</div>
 </nav>
 
 <!-- bouton qui déconnecte l'utilisateur et le redirige vers index.php -->
-<form method="post" action="connexion.php">
+<form method="post" action="../../scripts/connexion.php">
 	<div class="deconnexion"><a><input type="submit" name="deconnexion" value="Déconnexion" style="all:unset" ></a></div> 
 	<!-- style="all:unset" pour supprimer le style par défaul du bouton submit-->
 </form>
