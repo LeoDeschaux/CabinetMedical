@@ -2,8 +2,7 @@
 $page = 'medecin';																	// type de la page	
 include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 include('../../scripts/header.php'); 			// NAVIGUATION BAR
-
-
+			
 ?>
 <!DOCTYPE HTML>
 <html>	
@@ -16,8 +15,8 @@ include('../../scripts/header.php'); 			// NAVIGUATION BAR
 
 	<body>
 
+		<!-- MAIN -->
 		<main>
-
 		<?php
 			include('../../scripts/menu_secondaire.php'); // USAGERS MENU
 		?>
@@ -87,10 +86,12 @@ include('../../scripts/header.php'); 			// NAVIGUATION BAR
 		    $req->closeCursor(); 
 		}
 		?>
+
 		</main>
+
 	</body>
 
-	<?php  
+	<?php
 		include('../../scripts/footer.php'); // bas de page
 	?>
 </html>

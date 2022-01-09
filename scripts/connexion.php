@@ -27,7 +27,7 @@
 	}
 	
 	if ($_SESSION['connexion'] !== 'oui') {									// Empêche la navigation via l'url si l'utilisateur ne s'est pas connécté 
-		header('Location: ../index.php');						// redirige l'utilisateur vers index.php
+		header('Location: ../../index.php?ablablablabla');						// redirige l'utilisateur vers index.php
 	}
 	
 	if (isset($_POST['deconnexion'])) {										// Déconnecte l'utilisateur et le redirige vers index.php 

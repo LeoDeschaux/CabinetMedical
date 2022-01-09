@@ -1,7 +1,7 @@
 <?php
 include('scripts/session_start.php'); 
 $_SESSION['connexion'] = 'non';
-//include($_SERVER['DOCUMENT_ROOT'] . '/scripts/footer.php');
+//
 ?>
 <!DOCTYPE HTML>
 <html lang="fr">
@@ -12,6 +12,7 @@ $_SESSION['connexion'] = 'non';
     	<title>Accueil</title>
 	</head>
 	<body>
+		<main>
 		<h1>BIENVENUE CHEZ ORDOMEDIC</h1>
 		<div class="formulaire_inscripton">
 			<form action="scripts/verification.php" method="post">
@@ -34,5 +35,24 @@ $_SESSION['connexion'] = 'non';
 				<input class="btn-valider" type="submit" value="Valider">
 			</form>
 		</div>
+		</main>
 	</body>
+
+	 <style>
+footer {
+    clear: both;
+    position: relative;
+    z-index: 1; 
+    margin-top: 5em;
+
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: white;
+    text-align: center;
+}
+</style>
+
+	<footer>
+		DESCHAUX-BEAUME Léo & BAUDRAND Paul-Alexandre | M3104 Groupe D 
+	</footer>
 </html>

@@ -3,14 +3,16 @@
 }
 
 html {
-	background-color: black;
+	background-color: #404558;
 }
 
 body{
 	margin:0px;
 	padding:0px;
 	/*background-color: #238CE5;*/
-	background-color:#5a6093;
+	/*background-color:#5a6093;*/
+	background-color:#404558 ;
+	min-height: 80%;
 }
 
 nav{
@@ -22,7 +24,7 @@ nav{
 main{
 	background-color: #238CE5;
 	padding: 10px;
-	min-height: 80%;
+	min-height: 75%;
 }
 
 img{

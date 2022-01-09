@@ -29,3 +29,6 @@ if(isset($_POST['id']) && isset($_POST['mdp'])) {
   }
 } 
 ?>
+
+etu
+$iutinfo
