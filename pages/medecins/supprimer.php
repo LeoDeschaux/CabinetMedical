@@ -1,5 +1,6 @@
 <?php
 $page = 'medecin';								// type de la page	
+$sous_menu = '';
 include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 s?>
 <!DOCTYPE HTML>
