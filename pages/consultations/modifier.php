@@ -104,30 +104,7 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 				}
 			}
 		?>
-		<br>
-		<br>
 		<form method="post">
-
-			<h2>Usager</h2>
-
-			<p>	
-				<select name="id_u" label="nom, prenom">
-			    	<option value="" disabled selected hidden>Selectionner un usager</option>
-					<?php
-			    	///Sélection de tout le contenu de la table carnet_adresse
-			    	$req = $linkpdo->query("SELECT * FROM usager ORDER BY nom, prenom");
-
-					while ($row = $req->fetch()) {
-				    	if($row['id_u'] == $id_u)
-				    		echo "<option value=\"" . $row['id_u'] . "\" selected>"  . $row['nom'] . " " . $row['prenom'] . "</option>";
-				    	else
-				    		echo "<option value=\"" . $row['id_u'] . "\">"  . $row['nom'] . " " . $row['prenom'] . "</option>";
-				    }
-					?>
-			 	</select>
-			</p>
-
-			<br>
 
 				<h2>Usager</h2>
 
@@ -147,35 +124,26 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 						?>
 				 	</select>
 				</p>
-
-				<p> <label>Nom</label><input type="text" name="nom" placeholder="ex : nom" disabled><br></p>
-				<p> <label>Prenom</label><input type="text" name="prenom" placeholder="ex : prenom" disabled><br></p>
-				<p> <label>Médecin référent</label><input type="text" name="medecin_referent" placeholder="ex : medecin" disabled><br></p> <br>
-
-			
 			<br>
 
-			<h2>Consultation</h2>
+			<h2>Médecin</h2>
+			<p>	
+				<select name="id_m" label="nom, prenom">
+		    	<option value="" disabled selected hidden>Selectionner un médecin</option>
 
-					<?php
-			    	///Sélection de tout le contenu de la table carnet_adresse
-			    	$req = $linkpdo->query("SELECT * FROM medecin ORDER BY nom, prenom");
+				<?php
+		    	///Sélection de tout le contenu de la table carnet_adresse
+		    	$req = $linkpdo->query("SELECT * FROM medecin ORDER BY nom, prenom");
 
-					while ($row = $req->fetch()) {
-				    	if($row['id_m'] == $id_m)
-				    		echo "<option value=\"" . $row['id_m'] . "\"selected>"  . $row['nom'] . " " . $row['prenom'] . "</option>";
-				    	else
-				    		echo "<option value=\"" . $row['id_m'] . "\">"  . $row['nom'] . " " . $row['prenom'] . "</option>";
-				    }
-					?>
-				 	</select>
-				</p>
-
-				<p> <label>Nom</label><input type="text" name="nom" placeholder="ex : nom" disabled><br></p>
-				<p> <label>Prenom</label><input type="text" name="prenom" placeholder="ex : prenom" disabled><br></p>
-				<br>
-
-				<hr>
+				while ($row = $req->fetch()) {
+			    	if($row['id_m'] == $id_m)
+			    		echo "<option value=\"" . $row['id_m'] . "\"selected>"  . $row['nom'] . " " . $row['prenom'] . "</option>";
+			    	else
+			    		echo "<option value=\"" . $row['id_m'] . "\">"  . $row['nom'] . " " . $row['prenom'] . "</option>";
+			    }
+				?>
+			 	</select>
+			</p>
 
 				<h2>Consultation</h2>
 
@@ -206,6 +174,23 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 			</form>
 		</main>
 		<?php include('../../scripts/footer.php');	// bas de page ?>
+
+
+
+		<br>
+		<br>
+		<br>
+
+		<br>
+		<br>
+		<br>
+
+		<br>
+		<br>
+		<br>
+
+		<br>
+		<br>
 
 	</body>
 </html>
