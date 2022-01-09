@@ -2,8 +2,7 @@
 $page = 'consultation';																// type de la page
 include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 include('../../scripts/header.php'); 			// NAVIGUATION BAR
-include('../../scripts/menu_secondaire.php'); // USAGERS MENU
-include('../../scripts/footer.php');			// bas de page
+
 ?>
 <!DOCTYPE HTML>
 <html>	
@@ -15,6 +14,12 @@ include('../../scripts/footer.php');			// bas de page
 	</head>
 	<body>
 
+		<main>
+
+		<?php 
+			include('../../scripts/menu_secondaire.php'); // USAGERS MENU
+		?>
+			
 		<br>
 		<form method="post">
 			<input type="text" name="search" placeholder="nom, prenom, etc.">
@@ -28,6 +33,17 @@ include('../../scripts/footer.php');			// bas de page
 		    		}
 		    	?>
 		    </select>
+
+		    <select name="filtre_consultation" label="">
+		    	<option value="0" selected>Consultations à venir</option>
+		    	<option value="1">Consultations passées</option>
+		    	<option value="2">Toutes les consultations</option>
+		    </select>
+
+		    <!--
+		    <input type="date" name="jour_consultation" value="<?php echo date('Y-m-d');?>">
+			-->
+
 			<button type="submit" name="send" value="send">Rechercher</button> <br>
 		</form>
 		<br>
@@ -42,6 +58,8 @@ include('../../scripts/footer.php');			// bas de page
 
 			$select_filter = "";
 			$search_filter = "";
+			$filtre_consultation = "AND consultation.date_heure
+						> UNIX_TIMESTAMP(NOW())";
 			$field = "";
 
 			if(isset($_POST['search'])) {
@@ -56,14 +74,31 @@ include('../../scripts/footer.php');			// bas de page
 					OR medecin.nom LIKE :field
 					OR medecin.prenom LIKE :field)";
 				}
+
+				switch ($_POST['filtre_consultation']) {
+					case 0:
+						$filtre_consultation = "AND consultation.date_heure
+						> UNIX_TIMESTAMP(NOW())";
+						break;
+
+					case 1:
+						$filtre_consultation = "AND consultation.date_heure
+						< UNIX_TIMESTAMP(NOW())";
+						break;
+
+					default:
+						$filtre_consultation = "";
+						break;
+				}
 			}
 
-			$query = "SELECT consultation.id_c, consultation.date_heure, consultation.duree, usager.nom as nom_usager, usager.prenom as prenom_usager,medecin.nom as nom_medecin, medecin.prenom as prenom_medecin  
+			$query = "SELECT consultation.id_c, consultation.date_heure, consultation.duree, usager.nom as nom_usager, usager.prenom as prenom_usager, medecin.nom as nom_medecin, medecin.prenom as prenom_medecin  
 			FROM consultation, usager, medecin 
 			WHERE consultation.id_m = medecin.id_m
 			AND consultation.id_u = usager.id_u" . " " .
 			$select_filter . " " . 
-			$search_filter .
+			$search_filter . " " . 
+			$filtre_consultation . " " . 
 			"ORDER BY consultation.date_heure DESC";
 
 			$req = $linkpdo->prepare($query);
@@ -92,7 +127,7 @@ include('../../scripts/footer.php');			// bas de page
 
 		    while ($row = $req->fetch()) {
 
-		    	$jourConsultation = Date('d/m/Y', $row['date_heure']);
+		    	$jourConsultation = date('d/m/Y', $row['date_heure']);
 		    	
 		    	$heureConsultation = date('H', $row['date_heure']) . "h" . date('i', $row['date_heure']);
 		    	
@@ -124,5 +159,11 @@ include('../../scripts/footer.php');			// bas de page
 		    $req->closeCursor(); 
 		}
 		?>
+		</main>
+
 	</body>
+
+	<?php
+		include('../../scripts/footer.php');			// bas de page
+	?>
 </html>
