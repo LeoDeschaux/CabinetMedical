@@ -39,17 +39,11 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 	    }
 
 
-		echo "id_u: " . $id_u . "<br>";
-		echo "id_m: " . $id_m . "<br>";
-
-
 		if(isset($_POST['search_button']))
 		{
-			echo "SEARCH<br>";
 		}
 		elseif(isset($_POST['send'])) 
 		{
-			echo "SEND<br>";
 
 			$id_m = $_POST['id_m'];
 
@@ -61,7 +55,6 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 		}
 		else
 		{
-			echo "INIT<br>";
 		}
 		?>
 
@@ -81,9 +74,6 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 			$my_row_count = $req->rowCount();
 			$date_heure = date("Y-m-d H:i:s", strtotime($jour) + $heure);
 			$duree_consultation = $duree * 60;
-
-			echo "id_u: " . $id_u . "<br>";
-			echo "id_m: " . $id_m . "<br>";
 
 			//CHECK IF CRENEAU DISPO
 			$req = $linkpdo->prepare("
@@ -143,9 +133,6 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 
 
 
-
-		<br>
-		<br>
 
 		<form method="post">
 		<h2>Usager</h2>

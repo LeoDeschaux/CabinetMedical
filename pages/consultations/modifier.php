@@ -54,11 +54,6 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 					strtotime($_POST['jour_consultation']) + $_POST['heure_consultation']);
 				$duree = $_POST['duree_consultation'];
 
-				echo "id_u: " . $id_u . "<br>";
-				echo "id_m: " . $id_m . "<br>";
-				echo "date_heure: " . $tmp_date_heure . "<br>";
-				echo "duree: " . $duree . "<br>";
-
 				//CHECK IF CRENEAU DISPO
 				$req = $linkpdo->prepare("
 					SELECT * 
@@ -97,9 +92,7 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 						'date_heure' => strtotime($tmp_date_heure)));
 					
 					if($req->rowCount() == 1) {
-						echo "Consultation Ajoutée";
 					} else {
-						echo "Erreur, la consultation n'a pas pu être ajoutée";
 					}
 				}
 			}
@@ -174,23 +167,6 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 			</form>
 		</main>
 		<?php include('../../scripts/footer.php');	// bas de page ?>
-
-
-
-		<br>
-		<br>
-		<br>
-
-		<br>
-		<br>
-		<br>
-
-		<br>
-		<br>
-		<br>
-
-		<br>
-		<br>
 
 	</body>
 </html>
