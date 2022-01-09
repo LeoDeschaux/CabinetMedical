@@ -45,8 +45,8 @@ include('../../scripts/footer.php');			// bas de page
 			if($req->rowCount() == 0) {
 			    $req = $linkpdo->prepare("
 			        INSERT INTO usager(nom, prenom, civilite, num_secu, adresse, 
-			        cp, ville, lieu_naissance, date_naissance) 
-			        VALUES(:nom, :prenom, :civilite, :num_secu, :adresse, :cp, :ville, :lieu_naissance, :date_naissance)");
+			        cp, ville, lieu_naissance, date_naissance, id_m) 
+			        VALUES(:nom, :prenom, :civilite, :num_secu, :adresse, :cp, :ville, :lieu_naissance, :date_naissance, :id_m)");
 			    
 			    $date_naissance = strtotime($date_naissance);
 			    
@@ -60,7 +60,8 @@ include('../../scripts/footer.php');			// bas de page
 			    'cp' => $cp,
 			    'ville' => $ville,
 			    'lieu_naissance' => $lieu_naissance,
-				'date_naissance' => $date_naissance));
+				'date_naissance' => $date_naissance,
+				'id_m' => $_POST['id_m']));
 
 			    //CHECK IF USAGER ADDED 
 				$req = $linkpdo->prepare("SELECT * FROM usager WHERE nom=:nom AND prenom=:prenom");
@@ -97,12 +98,12 @@ include('../../scripts/footer.php');			// bas de page
 				<?php
 				echo "<p>";
 				echo "<label>Médecin référent</label>";
-				echo "<select name=\"medecin_referent\"*>";
+				echo "<select name=\"id_m\"*>";
 
 			    ///Sélection de tout le contenu de la table carnet_adresse
 			    $req = $linkpdo->query("SELECT * FROM medecin ORDER BY nom");
 
-		    	echo "<option value=\"clef\"></option>";
+		    	echo "<option value=\"0\"></option>";
 
 				while ($row = $req->fetch()) {
 				    	echo "<option value=\"" . $row['id_m'] . "\">"  . $row['nom'] . " " . $row['prenom'] . "</option>";

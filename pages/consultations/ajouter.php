@@ -2,8 +2,7 @@
 $page = 'consultation';																// type de la page
 include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 include('../../scripts/header.php'); 			// NAVIGUATION BAR
-include('../../scripts/menu_secondaire.php'); // USAGERS MENU
-include('../../scripts/footer.php');			// bas de page
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -13,41 +12,75 @@ include('../../scripts/footer.php');			// bas de page
     	<link rel="stylesheet" href="../../styles/defaut.css">
     	<link rel="stylesheet" href="../../styles/modifier.css">
 	<body>
+
+		<main>
+
 		<?php 
+			include('../../scripts/menu_secondaire.php'); // USAGERS MENU 
+		?>
 
-		$id_u = '';
-		$id_m = '';
-		$date_heure = '';
-		$duree_consultation = '';
-
+		<?php 
+		$id_u = "";
 		if(!empty($_GET['id_u'])) {
-			$id_u = $_GET['id_u'];
-
-			$req = $linkpdo->prepare("SELECT id_m FROM usager WHERE id_u=:id_u");
-			$req->execute(array('id_u' => $id_u));
-
-			while ($row = $req->fetch()) {
-		    	$id_m = $row['id_m'];	
-		    }
+	    	$id_u = $_GET['id_u'];
+		} 
+		elseif(isset($_POST['id_u'])) {
+		    $id_u = $_POST['id_u'];
 		}
 
-		if(isset($_POST['send'])) {
+		$id_m = "";
+		$req = $linkpdo->prepare("SELECT id_m FROM usager WHERE id_u=:id_u");
+		$req->execute(array('id_u' => $id_u));
+		while ($row = $req->fetch()) {
+	    	$id_m = $row['id_m'];	
+	    }
+
+
+		echo "id_u: " . $id_u . "<br>";
+		echo "id_m: " . $id_m . "<br>";
+
+
+		if(isset($_POST['search_button']))
+		{
+			echo "SEARCH<br>";
+		}
+		elseif(isset($_POST['send'])) 
+		{
+			echo "SEND<br>";
+
+			$id_m = $_POST['id_m'];
+
+			$jour = $_POST['jour_consultation'];
+			$duree = $_POST['duree_consultation'];
+			$heure = $_POST['heure_consultation'];
+
+		    createConsultation($linkpdo, $id_u, $id_m, $jour, $duree, $heure);
+		}
+		else
+		{
+			echo "INIT<br>";
+		}
+		?>
+
+
+		<?php
+
+		function createConsultation($linkpdo, $id_u, $id_m, $jour, $duree, $heure)
+		{
+			if(empty($id_u) || empty($id_m))
+			{
+				echo "L'usager ou le médecin est vide";
+				return;
+			}
+
 			//GET ROW COUNT 
 			$req = $linkpdo->query("SELECT * FROM consultation");
 			$my_row_count = $req->rowCount();
-			echo "rowCount: " . $my_row_count . "<br>";
-
-			$id_u = $_POST['id_u'];
-			$id_m = $_POST['id_m'];
-			$date_heure = date("Y-m-d H:i:s", strtotime($_POST['jour_consultation']) + $_POST['heure_consultation']);
-			$duree_consultation = $_POST['duree_consultation'] * 60;
+			$date_heure = date("Y-m-d H:i:s", strtotime($jour) + $heure);
+			$duree_consultation = $duree * 60;
 
 			echo "id_u: " . $id_u . "<br>";
 			echo "id_m: " . $id_m . "<br>";
-			echo "date_heure: " . $date_heure . "<br>";
-			echo "duree: " . $duree_consultation . "<br>";
-			echo "<br>";
-			echo "heure: " . date('H\hi', $_POST['heure_consultation']) . "<br><br>";
 
 			//CHECK IF CRENEAU DISPO
 			$req = $linkpdo->prepare("
@@ -61,15 +94,10 @@ include('../../scripts/footer.php');			// bas de page
 
 					OR (:date_heure BETWEEN consultation.date_heure AND (consultation.date_heure + consultation.duree)))");
 
-			echo "début: " . strtotime($date_heure) . "<br>";
-			echo "fin: " . (strtotime($date_heure) + $duree_consultation) . "<br><hr>";
-
 			$req->execute(array(
-					'id_m' => $_POST['id_m'], 
+					'id_m' => $id_m, 
 					'date_heure' => strtotime($date_heure),
 					'duree_consultation' => $duree_consultation));
-
-			echo "ROW SELECTED: " . $req->rowCount() . "<br>";
 
 			//IF CONSULTATION NOT FOUND THEN ADD NEW CONSULTATION
 			if($req->rowCount() == 0) {
@@ -81,12 +109,11 @@ include('../../scripts/footer.php');			// bas de page
 			    $req->execute(array(
 					    'date_heure' => strtotime($date_heure),
 					    'duree' => ($_POST['duree_consultation'] * 60),
-					    'id_m' => $_POST['id_m'],
-						'id_u' => $_POST['id_u']));
+					    'id_m' => $id_m,
+						'id_u' => $id_u));
 			}
 
 			$req = $linkpdo->query("SELECT * FROM consultation");
-			echo "newRowCount: " . $req->rowCount() . "<br>";
 
 			if($req->rowCount() == ($my_row_count + 1)) {
 				echo "Consultation Ajoutée";
@@ -95,31 +122,189 @@ include('../../scripts/footer.php');			// bas de page
 			}
 		}
 		?>
-		<br>
-		<br>
-		<form method="post">
-			<h2>Usager</h2>
-			<p>	
-				<select name="id_u" label="nom, prenom">
-			    	<option value="" disabled selected hidden>Selectionner un usager</option>
-					<?php
-			    	///Sélection de tout le contenu de la table carnet_adresse
-			    	$req = $linkpdo->query("SELECT * FROM usager ORDER BY nom, prenom");
-					while ($row = $req->fetch()) {
-				    	if($row['id_u'] == $id_u)
-					    		echo "<option value=\"" . $row['id_u'] . "\" selected>"  . $row['nom'] . " " . $row['prenom'] . "</option>";
-					    	else
-					    		echo "<option value=\"" . $row['id_u'] . "\">"  . $row['nom'] . " " . $row['prenom'] . "</option>";
-					}
-					?>
-				</select>
-			</p>
 
-			<p> <label>Nom</label><input type="text" name="nom" placeholder="ex : nom" disabled><br></p>
-			<p> <label>Prenom</label><input type="text" name="prenom" placeholder="ex : prenom" disabled><br></p>
-			<p> <label>Médecin référent</label><input type="text" name="medecin_referent" placeholder="ex : medecin" disabled><br></p> <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<br>
+		<br>
+
+		<form method="post">
+		<h2>Usager</h2>
+
+		<input type="hidden" name="id_u" value="<?php echo $id_u;?>">	
+
+		<input type="text" name="search" placeholder="nom, prenom, etc.">
+		<button type="submit" name="search_button" value="search_button">Rechercher</button>
+
+		<?php
+
+		if(isset($_POST['search_button']))
+		{
+			showUsagers($linkpdo);
+		}	
+
+		function showUsagers($linkpdo) 
+		{
+			$field = "";
+
+			if(isset($_POST['search']))
+				$field = $_POST['search'];
+
+			$req = $linkpdo->prepare("
+				SELECT * 
+				FROM usager 
+				WHERE nom LIKE :nom 
+				OR prenom LIKE :prenom 
+				OR adresse LIKE :adresse 
+				OR cp LIKE :cp 
+				OR ville LIKE :ville 
+				ORDER BY nom, prenom ASC");
+
+		    $req->execute(array(
+		    'nom' => $field . "%",
+		    'prenom' => $field . "%",
+		    'adresse' => $field . "%",
+		    'cp' => $field . "%",
+		    'ville' => $field . "%"));
+		    
+		    $medecin_referent = "null";
+
+		     // Affichage des entrées du résultat une à une
+		    echo "<table class=\"tableau_table\">";
+		    echo "<tr class=\"tableau_cell_title\">";
+
+		        echo "<th>Nom</th>";
+		        echo "<th>Prenom</th>";
+
+		        echo "<th>Médecin référent</th>";
+
+		        echo "<th>Selectionner</th>";
+		    echo "</tr>";
+
+		    while ($row = $req->fetch()) {
+		    	$id_u = $row['id_u'];
+		    	if(!empty($row['id_m'])) {
+			    	$req_medecin = $linkpdo->prepare("SELECT medecin.nom, medecin.prenom FROM medecin, usager WHERE medecin.id_m=:id_m");
+
+			    	$req_medecin->execute(array(
+			    		'id_m' => $row['id_m'] ));
+
+			    	while($medecin_row = $req_medecin->fetch()) {
+			    		$medecin_referent = $medecin_row['nom'] . " " . $medecin_row['prenom']; 
+			    	}
+		    	}
+		        echo "<tr class=\"tableau_cell_title\">";
+		            echo "<td class=\"tableau_cell\">" . $row['nom'] . "</td>";
+		            echo "<td class=\"tableau_cell\">" . $row['prenom'] . "</td>";
+
+		            echo "<td class=\"tableau_cell\">" . $medecin_referent . "</td>";
+
+            		echo "<td class=\"tableau_cell\"><a href=\"../consultations/ajouter.php?id_u=$id_u\">Selectionner</a></td>";
+		        echo "</tr>";
+		    }
+		    echo "</table>";
+		    $req->closeCursor(); 
+		}
+		?>
+
+		<hr>
+			<br>
+
+			<?php
+			$nom = "";
+			$prenom = "";
+			$medecin_ref = "";
+			$id_u = "";
+			$id_medecin_ref = "";
+
+			if(isset($_GET['id_u']))
+			{
+				$id_u = $_GET['id_u'];
+
+				$req = $linkpdo->prepare("
+				SELECT *
+				FROM usager
+				WHERE id_u=:id_u");
+				$req->execute(array("id_u"=>$id_u));
+
+				while($row = $req->fetch())
+				{
+					$nom = $row['nom'];
+					$prenom = $row['prenom'];
+					$id_medecin_ref = $row['id_m'];
+				}
+
+				$req = $linkpdo->prepare("
+				SELECT *
+				FROM medecin
+				WHERE medecin.id_m=:id_m");
+				$req->execute(array("id_m"=> $id_medecin_ref));
+				while($row = $req->fetch())
+				{
+					$medecin_ref = $row['nom'] . " " . $row['prenom'];
+				}
+			}
+			?>
+
+			<p> <label>Nom</label><input type="text" name="nom" placeholder="ex: nom" value="<?php echo $nom;?>"
+			<?php if(empty($nom)) echo "disabled"; else echo "readonly"?> 
+			><br></p>
+
+			<p> <label>Prenom</label><input type="text" name="prenom" placeholder="ex : prenom"
+			value="<?php echo $prenom;?>"
+			<?php if(empty($prenom)) echo "disabled"; else echo "readonly"?> 
+			><br></p>
+
+			<p> <label>Médecin référent</label><input type="text" name="medecin_referent" placeholder="ex : medecin"
+			value="<?php echo $medecin_ref;?>"
+			<?php if(empty($medecin_ref)) echo "disabled"; else echo "readonly"?> 
+			><br></p><br>
 
 			<hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 			<h2>Médecin</h2>
 			<p>	
@@ -139,10 +324,7 @@ include('../../scripts/footer.php');			// bas de page
 				</select>
 			</p>
 
-			<p> <label>Nom</label><input type="text" name="nom" placeholder="ex : nom" disabled><br></p>
-			<p> <label>Prenom</label><input type="text" name="prenom" placeholder="ex : prenom" disabled><br></p> <br>
-
-			<hr>
+			<br>
 
 			<h2>Consultation</h2>
 
@@ -166,5 +348,10 @@ include('../../scripts/footer.php');			// bas de page
 				<button type="submit" name ="send" value="send">Valider la consultation</button> 
 			</p>
 		</form>
+		</main>
 	</body>
+
+	<?php
+		include('../../scripts/footer.php');  // bas de page
+	?>
 </html>
