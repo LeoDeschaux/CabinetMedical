@@ -10,7 +10,7 @@ $stylePage5 = "menu";
 $currentPageName = basename($_SERVER['PHP_SELF']);
 
 // les pages d'usagers, de medecins et de consultations renseignent leur type (usager, medecin, consultation) 
-// afin de pouvoir afficher leur menu en conséquence
+// afin de pouvoir afficher leur menu en conséquence, permet de distinguer la page où on se trouve des autres pages du menu
 if($page == "medecin")
 	$stylePage1 = "menu-current";
 
@@ -49,9 +49,9 @@ if($currentPageName == "statistiques.php")
 	</div>
 
 	<!-- bouton qui déconnecte l'utilisateur et le redirige vers index.php -->
-	<form method="post" action="../../scripts/connexion.php">
-		<div class="deconnexion"><a><input type="submit" name="deconnexion" value="Déconnexion" style="all:unset" ></a></div> 
-		<!-- style="all:unset" pour supprimer le style par défaul du bouton submit-->
-	</form>
+	<div class="deconnexion">
+		<a href="../../scripts/connexion.php?deconnexion"> Déconnexion</a>	
+	</div>
+	
 </nav>
 

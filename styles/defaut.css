@@ -3,7 +3,7 @@
 }
 
 html {
-	background-color: black;
+	background-color: #238CE5;
 }
 
 body{
@@ -23,15 +23,6 @@ main{
 	background-color: #238CE5;
 	padding: 10px;
 	min-height: 80%;
-}
-
-img{
-	position: absolute;
-	border-radius: 200px;
-	height: 105px;
-	width: 90px;
-	top: 1em;
-	left: 2em;
 }
 
 nav ul{
