@@ -1,7 +1,7 @@
 <?php
 include('scripts/session_start.php'); 
 $_SESSION['connexion'] = 'non';
-//include($_SERVER['DOCUMENT_ROOT'] . '/scripts/footer.php');
+//
 ?>
 <!DOCTYPE HTML>
 <html lang="fr">
@@ -37,5 +37,4 @@ $_SESSION['connexion'] = 'non';
 			</div>
 		</main>
 		<?php include "scripts/footer.php"; // bas de page ?>
-	</body>
 </html>

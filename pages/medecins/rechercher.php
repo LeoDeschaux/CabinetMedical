@@ -64,29 +64,29 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 			        
 		        	echo "<th>Ajouter consultation</th>";
 
-			        echo "<th>Modifier</th>";
-			        echo "<th>Supprimer</th>";
-			    echo "</tr>";
+		        echo "<th>Modifier</th>";
+		        echo "<th>Supprimer</th>";
+		    echo "</tr>";
 
-			    while ($row = $req->fetch()) {
-			    	$id = $row['id_m'];
+		    while ($row = $req->fetch()) {
+		    	$id = $row['id_m'];
 
-			        echo "<tr class=\"tableau_cell_title\">";
-			            echo "<td class=\"tableau_cell\">" . $row['nom'] . "</td>";
-			            echo "<td class=\"tableau_cell\">" . $row['prenom'] . "</td>";
+		        echo "<tr class=\"tableau_cell_title\">";
+		            echo "<td class=\"tableau_cell\">" . $row['nom'] . "</td>";
+		            echo "<td class=\"tableau_cell\">" . $row['prenom'] . "</td>";
 
-			            echo "<td class=\"tableau_cell\">" . $row['civilite'] . "</td>";
+		            echo "<td class=\"tableau_cell\">" . $row['civilite'] . "</td>";
 
-	            		echo "<td class=\"tableau_cell\"><a href=\"#\">Ajouter une consultation</a></td>";
+            		echo "<td class=\"tableau_cell\"><a href=\"#\">Ajouter une consultation</a></td>";
 
-			            echo "<td class=\"tableau_cell\"><a href=\"modifier.php?id=$id\">Modifier</a></td>";
-		                echo "<td class=\"tableau_cell\"><a href=\"supprimer.php?id=$id\">Supprimer</a></td>";
-			        echo "</tr>";
-			    }
-			    echo "</table>";
-			    $req->closeCursor(); 
-			}
-			?>
+		            echo "<td class=\"tableau_cell\"><a href=\"modifier.php?id=$id\">Modifier</a></td>";
+	                echo "<td class=\"tableau_cell\"><a href=\"supprimer.php?id=$id\">Supprimer</a></td>";
+		        echo "</tr>";
+		    }
+		    echo "</table>";
+		    $req->closeCursor(); 
+		}
+		?>
 		</main>
 	</body>
 	<?php include('../../scripts/footer.php'); // bas de page ?>
