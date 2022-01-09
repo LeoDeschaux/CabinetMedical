@@ -2,7 +2,7 @@
 .menu_secondaire_bar{
 	font-style: none;
 	width: 100%;
-	background-color: #238CE5;
+	background-color: red;/*#238CE5;*/
 }
 
 .usager_menu {
@@ -10,23 +10,23 @@
 }
 
 .usager_button a {
-	color: black;
+	color: #888;
 }
 
 .usager_button {
-	background-color: white;
-	padding: 10px;
-	margin: 30px;
-}
-
-.usager_button_surbrillance {
 	background-color: #404558;
 	padding: 10px;
 	margin: 30px;
 }
 
+.usager_button_surbrillance {
+	background-color: white;/*#404558;*/
+	padding: 10px;
+	margin: 30px;
+}
+
 .usager_button_surbrillance a {
-	color: white;
+	color: black;
 }
 
 
