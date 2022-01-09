@@ -1,5 +1,5 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'] . '/scripts/session_start.php'); 
+include('scripts/session_start.php'); 
 $_SESSION['connexion'] = 'non';
 //include($_SERVER['DOCUMENT_ROOT'] . '/scripts/footer.php');
 ?>
@@ -30,7 +30,7 @@ $_SESSION['connexion'] = 'non';
                     }
                  }
                  ?>
-                 <button class="btn-annuler"><a href="/index.php" style="text-decoration:none; color: #FFF;">Annuler</a></button> 
+                 <button class="btn-annuler"><a href="index.php" style="text-decoration:none; color: #FFF;">Annuler</a></button> 
 				<input class="btn-valider" type="submit" value="Valider">
 			</form>
 		</div>

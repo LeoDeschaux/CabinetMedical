@@ -1,17 +1,17 @@
 <?php
 $page = 'medecin';																	// type de la page	
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			// NAVIGUATION BAR
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/menu_secondaire.php'); // MEDECINS MENU
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');			// bas de page
+include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
+include('../../scripts/header.php'); 			// NAVIGUATION BAR
+include('../../scripts/menu_secondaire.php'); // USAGERS MENU
+include('../../scripts/footer.php');			// bas de page
 ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<title>Accueil Secrétariat</title>
     	<meta charset="utf-8" />
-    	<link rel="stylesheet" href="/CabinetMedical/styles/defaut.css">
-    	<link rel="stylesheet" href="/CabinetMedical/styles/ajouter.css">
+    	<link rel="stylesheet" href="../../styles/defaut.css">
+    	<link rel="stylesheet" href="../../styles/ajouter.css">
 	</head>
 
 	<body>
@@ -71,7 +71,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');			// 
 			<br>
 			<br>
 			<p> 
-				<button><a href="/CabinetMedical/pages/medecins/rechercher.php">Annuler</a></button> 
+				<button><a href="rechercher.php">Annuler</a></button> 
 				<button type="submit" name ="send" value="send">Ajouter</button> 
 			</p>
 		</form>

@@ -1,17 +1,18 @@
 <?php
 $page = 'statistique';																// type de la page
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/header.php'); 			// NAVIGUATION BAR
-include($_SERVER['DOCUMENT_ROOT'] . '/CabinetMedical/scripts/footer.php');			// bas de page
+include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
+include('../../scripts/header.php'); 			// NAVIGUATION BAR
+include('../../scripts/menu_secondaire.php'); // USAGERS MENU
+include('../../scripts/footer.php');			// bas de page
 ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<title>Statistiques</title>
     	<meta charset="utf-8" />
-    	<link rel="stylesheet" href="/CabinetMedical/styles/defaut.css">
-    	<link rel="stylesheet" href="/CabinetMedical/styles/statistiques.css">
-    	<link rel="stylesheet" href="/CabinetMedical/styles/footer.css">
+    	<link rel="stylesheet" href="../styles/defaut.css">
+    	<link rel="stylesheet" href="../styles/statistiques.css">
+    	<link rel="stylesheet" href="../styles/footer.css">
 	</head>
 	<body>
 		<?php
