@@ -103,7 +103,6 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 					}
 				}
 			}
-		}
 		?>
 		<br>
 		<br>

@@ -9,7 +9,6 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
     	<meta charset="utf-8" />
     	<link rel="stylesheet" href="../../styles/defaut.css">
     	<link rel="stylesheet" href="../../styles/statistiques.css">
-    	<link rel="stylesheet" href="../../styles/footer.css">
 	</head>
 	<body>
 
@@ -18,8 +17,6 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 		</header>
 		<main>
 			<?php
-
-			include('../../scripts/menu_secondaire.php'); // USAGERS MENU
 
 			$moins25_h = '';
 			$entre25et50_h = '';

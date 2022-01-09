@@ -32,38 +32,23 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 			$lieu_naissance = '';
 			$date_naissance = '';
 
-			//IF USAGER NOT FOUND THEN ADD NEW USAGER
-			if($req->rowCount() == 0) {
-			    $req = $linkpdo->prepare("
-			        INSERT INTO usager(nom, prenom, civilite, num_secu, adresse, 
-			        cp, ville, lieu_naissance, date_naissance, id_m) 
-			        VALUES(:nom, :prenom, :civilite, :num_secu, :adresse, :cp, :ville, :lieu_naissance, :date_naissance, :id_m)");
-			    
-			    $date_naissance = strtotime($date_naissance);
-			    
-			    ///Exécution de la requête
-			    $req->execute(array(
-			    'nom' => $nom,
-			    'prenom' => $prenom,
-			    'civilite' => $civilite,
-			    'num_secu' => $num_secu,
-			    'adresse' => $adresse,
-			    'cp' => $cp,
-			    'ville' => $ville,
-			    'lieu_naissance' => $lieu_naissance,
-				'date_naissance' => $date_naissance,
-				'id_m' => $_POST['id_m']));
-
-				//CHECK IF USAGER EXIST 
-				$req = $linkpdo->prepare("SELECT * FROM usager WHERE nom=:nom AND prenom=:prenom");
-				$req->execute(array('nom' => $nom, 'prenom' => $prenom));
+			if(isset($_POST['send'])) {
+				$nom = $_POST['nom'];
+				$prenom = $_POST['prenom'];
+				$civilite = $_POST['civilite'];
+				$num_secu = $_POST['num_secu'];
+				$adresse = $_POST['adresse'];
+				$cp = $_POST['cp'];
+				$ville = $_POST['ville'];
+				$lieu_naissance = $_POST['lieu_naissance'];
+				$date_naissance = $_POST['date_naissance'];
 
 				//IF USAGER NOT FOUND THEN ADD NEW USAGER
 				if($req->rowCount() == 0) {
 				    $req = $linkpdo->prepare("
 				        INSERT INTO usager(nom, prenom, civilite, num_secu, adresse, 
-				        cp, ville, lieu_naissance, date_naissance) 
-				        VALUES(:nom, :prenom, :civilite, :num_secu, :adresse, :cp, :ville, :lieu_naissance, :date_naissance)");
+				        cp, ville, lieu_naissance, date_naissance, id_m) 
+				        VALUES(:nom, :prenom, :civilite, :num_secu, :adresse, :cp, :ville, :lieu_naissance, :date_naissance, :id_m)");
 				    
 				    $date_naissance = strtotime($date_naissance);
 				    
@@ -77,19 +62,45 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 				    'cp' => $cp,
 				    'ville' => $ville,
 				    'lieu_naissance' => $lieu_naissance,
-					'date_naissance' => $date_naissance));
+					'date_naissance' => $date_naissance,
+					'id_m' => $_POST['id_m']));
 
-				    //CHECK IF USAGER ADDED 
+					//CHECK IF USAGER EXIST 
 					$req = $linkpdo->prepare("SELECT * FROM usager WHERE nom=:nom AND prenom=:prenom");
 					$req->execute(array('nom' => $nom, 'prenom' => $prenom));
-					if($req->rowCount() == 1) {
-						echo "Usager Ajouté";
+
+					//IF USAGER NOT FOUND THEN ADD NEW USAGER
+					if($req->rowCount() == 0) {
+					    $req = $linkpdo->prepare("
+					        INSERT INTO usager(nom, prenom, civilite, num_secu, adresse, 
+					        cp, ville, lieu_naissance, date_naissance) 
+					        VALUES(:nom, :prenom, :civilite, :num_secu, :adresse, :cp, :ville, :lieu_naissance, :date_naissance)");
+					    
+					    $date_naissance = strtotime($date_naissance);
+					    
+					    ///Exécution de la requête
+					    $req->execute(array(
+					    'nom' => $nom,
+					    'prenom' => $prenom,
+					    'civilite' => $civilite,
+					    'num_secu' => $num_secu,
+					    'adresse' => $adresse,
+					    'cp' => $cp,
+					    'ville' => $ville,
+					    'lieu_naissance' => $lieu_naissance,
+						'date_naissance' => $date_naissance));
+
+					    //CHECK IF USAGER ADDED 
+						$req = $linkpdo->prepare("SELECT * FROM usager WHERE nom=:nom AND prenom=:prenom");
+						$req->execute(array('nom' => $nom, 'prenom' => $prenom));
+						if($req->rowCount() == 1) {
+							echo "Usager Ajouté";
+						} else {
+							echo "Erreur, certains champs sont faux";
+						}
 					} else {
-						echo "Erreur, certains champs sont faux";
+						echo "L'usager existe déjà";
 					}
-				} else {
-					echo "L'usager existe déjà";
-				}
 			}
 		}
 		?>

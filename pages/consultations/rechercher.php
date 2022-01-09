@@ -14,6 +14,7 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 	<body>
 
 		<?php include('../../scripts/header.php'); 	// NAVIGUATION BAR ?>
+		<?php include('../../scripts/menu_secondaire.php'); 	// NAVIGUATION BAR ?>
 
 		<br>
 		<form method="post">
@@ -96,47 +97,32 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 			$filtre_consultation . " " . 
 			"ORDER BY consultation.date_heure DESC";
 
-					if(!empty($_POST['search'])) {
-						$search_filter = "AND (usager.nom LIKE :field
-						OR usager.prenom LIKE :field
-						OR medecin.nom LIKE :field
-						OR medecin.prenom LIKE :field)";
-					}
-				}
+			$req = $linkpdo->prepare($query);
 
-				$query = "SELECT consultation.id_c, consultation.date_heure, consultation.duree, usager.nom as nom_usager, usager.prenom as prenom_usager,medecin.nom as nom_medecin, medecin.prenom as prenom_medecin  
-				FROM consultation, usager, medecin 
-				WHERE consultation.id_m = medecin.id_m
-				AND consultation.id_u = usager.id_u" . " " .
-				$select_filter . " " . 
-				$search_filter .
-				"ORDER BY consultation.date_heure DESC";
+			$req->execute(array(
+		    'field' => $field . "%"));
 
-				$req = $linkpdo->prepare($query);
+		    // Affichage des entrées du résultat une à une
+		    echo "<h2>Liste de toutes les consultations :</h2>";
 
-				$req->execute(array(
-			    'field' => $field . "%"));
+		    echo "<table class=\"tableau_table\">";
+		    echo "<tr class=\"tableau_cell_title\">";
 
-			    // Affichage des entrées du résultat une à une
-			    echo "<h2>Liste de toutes les consultations :</h2>";
+		    	echo "<th>Date</th>";
+		    	echo "<th>Heure</th>";
+		    	echo "<th>Durée</th>";
 
-			    echo "<table class=\"tableau_table\">";
-			    echo "<tr class=\"tableau_cell_title\">";
+		        echo "<th>Nom</th>";
+		        echo "<th>Prenom</th>";
 
-			    	echo "<th>Date</th>";
-			    	echo "<th>Heure</th>";
-			    	echo "<th>Durée</th>";
+		        echo "<th>Médecin</th>";
 
-			        echo "<th>Nom</th>";
-			        echo "<th>Prenom</th>";
+		        echo "<th>Modifier</th>";
+		        echo "<th>Supprimer</th>";
+		    echo "</tr>";
 
-			        echo "<th>Médecin</th>";
+		    while ($row = $req->fetch()) {
 
-			        echo "<th>Modifier</th>";
-			        echo "<th>Supprimer</th>";
-			    echo "</tr>";
-
-			    while ($row = $req->fetch()) {
 		    	$jourConsultation = date('d/m/Y', $row['date_heure']);
 		    	
 		    	$heureConsultation = date('H', $row['date_heure']) . "h" . date('i', $row['date_heure']);
@@ -146,30 +132,29 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 		    	
 		    	$dureeConsultation = sprintf('%02dh%02dm', $tmp_heures, $tmp_minutes);
 
+		    	$medecin = $row['nom_medecin'] . " " . $row['prenom_medecin'];
 
-			    	$medecin = $row['nom_medecin'] . " " . $row['prenom_medecin'];
+		    	$id_c = $row['id_c'];
 
-			    	$id_c = $row['id_c'];
+		        echo "<tr class=\"tableau_cell_title\">";
 
-			        echo "<tr class=\"tableau_cell_title\">";
+		        	echo "<td class=\"tableau_cell\">" . $jourConsultation . "</td>";
+		        	echo "<td class=\"tableau_cell\">" . $heureConsultation . "</td>";
+		        	echo "<td class=\"tableau_cell\">" . $dureeConsultation  . "</td>";
 
-			        	echo "<td class=\"tableau_cell\">" . $jourConsultation . "</td>";
-			        	echo "<td class=\"tableau_cell\">" . $heureConsultation . "</td>";
-			        	echo "<td class=\"tableau_cell\">" . $dureeConsultation  . "</td>";
+		            echo "<td class=\"tableau_cell\">" . $row['nom_usager'] . "</td>";
+		            echo "<td class=\"tableau_cell\">" . $row['prenom_usager'] . "</td>";
 
-			            echo "<td class=\"tableau_cell\">" . $row['nom_usager'] . "</td>";
-			            echo "<td class=\"tableau_cell\">" . $row['prenom_usager'] . "</td>";
+		            echo "<td class=\"tableau_cell\">" . $medecin . "</td>";
 
-			            echo "<td class=\"tableau_cell\">" . $medecin . "</td>";
-
-			            echo "<td class=\"tableau_cell\"><a href=\"modifier.php?id_c=$id_c\">Modifier</a></td>";
-		                echo "<td class=\"tableau_cell\"><a href=\"supprimer.php?id_c=$id_c\">Supprimer</a></td>";
-			        echo "</tr>";
-			    }
-			    echo "</table>";
-			    $req->closeCursor(); 
-			}
-			?>
+		            echo "<td class=\"tableau_cell\"><a href=\"modifier.php?id_c=$id_c\">Modifier</a></td>";
+	                echo "<td class=\"tableau_cell\"><a href=\"supprimer.php?id_c=$id_c\">Supprimer</a></td>";
+		        echo "</tr>";
+		    }
+		    echo "</table>";
+		    $req->closeCursor(); 
+		}
+		?>
 		</main>
 	</body>
 

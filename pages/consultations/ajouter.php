@@ -122,7 +122,6 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 			    	$id_m = $row['id_m'];	
 			    }
 			}
-		}
 		?>
 
 
