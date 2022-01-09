@@ -9,7 +9,7 @@ $_SESSION['connexion'] = 'non';
     	<meta charset="utf-8" />
     	<link href="styles/defaut.css" rel="stylesheet" type="text/css">
     	<link href="styles/index.css" rel="stylesheet" type="text/css">
-    	<title>Accueil</title>
+    	<title>Cabinet ORDOMEDIC</title>
 	</head>
 	<body>
 		<main>

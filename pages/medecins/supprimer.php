@@ -2,11 +2,11 @@
 $page = 'medecin';								// type de la page	
 $sous_menu = '';
 include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
-s?>
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Accueil Secrétariat</title>
+		<title>Cabinet ORDOMEDIC</title>
     	<meta charset="utf-8" />
     	<link rel="stylesheet" href="../../styles/defaut.css">
    	    <link rel="stylesheet" href="../../styles/supprimer.css">

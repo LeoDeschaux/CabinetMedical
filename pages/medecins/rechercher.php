@@ -2,13 +2,11 @@
 $page = 'medecin';								// type de la page	
 $sous_menu = "rechercher";						// permet de mettre le sous menue Rechercher un medecin en surbriallance
 include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
-
-
 ?>
 <!DOCTYPE HTML>
 <html>	
 	<head>
-		<title>Accueil Secrétariat</title>
+		<title>Cabinet ORDOMEDIC</title>
     	<meta charset="utf-8" />
     	<link rel="stylesheet" href="../../styles/defaut.css">
       	<link rel="stylesheet" href="../../styles/rechercher.css">

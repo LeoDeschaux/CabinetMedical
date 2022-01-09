@@ -6,7 +6,7 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Accueil Secrétariat</title>
+		<title>Cabinet ORDOMEDIC</title>
     	<meta charset="utf-8" />
     	<link rel="stylesheet" href="../../styles/defaut.css">
    	    <link rel="stylesheet" href="/CabinetMedical/styles/supprimer.css">
