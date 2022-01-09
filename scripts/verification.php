@@ -13,9 +13,9 @@ if(isset($_POST['id']) && isset($_POST['mdp'])) {
 
   } else {
     
-      if ($_POST['id'] == "salu") {                            // verification de l'identifiant
+      if ($_POST['id'] == "root") {                            // verification de l'identifiant
 
-        if ($_POST['mdp'] == "sava") {                         // verification du mot de passe
+        if ($_POST['mdp'] == "$iutinfo") {                         // verification du mot de passe
 
           $_SESSION['connexion'] = 'oui';                      // connexion réussite
           header('Location: ../pages/usagers/rechercher.php'); // redirection vers l'accueil 

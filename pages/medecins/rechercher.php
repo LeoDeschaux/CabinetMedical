@@ -62,8 +62,6 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 
 			        echo "<th>Civilité</th>";
 			        
-		        	echo "<th>Ajouter consultation</th>";
-
 		        echo "<th>Modifier</th>";
 		        echo "<th>Supprimer</th>";
 		    echo "</tr>";
@@ -76,8 +74,6 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 		            echo "<td class=\"tableau_cell\">" . $row['prenom'] . "</td>";
 
 		            echo "<td class=\"tableau_cell\">" . $row['civilite'] . "</td>";
-
-            		echo "<td class=\"tableau_cell\"><a href=\"#\">Ajouter une consultation</a></td>";
 
 		            echo "<td class=\"tableau_cell\"><a href=\"modifier.php?id=$id\">Modifier</a></td>";
 	                echo "<td class=\"tableau_cell\"><a href=\"supprimer.php?id=$id\">Supprimer</a></td>";
