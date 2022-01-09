@@ -47,10 +47,11 @@ if($currentPageName == "statistiques.php")
 		</li>
 	</ul>
 	</div>
+
+	<!-- bouton qui déconnecte l'utilisateur et le redirige vers index.php -->
+	<form method="post" action="../../scripts/connexion.php">
+		<div class="deconnexion"><a><input type="submit" name="deconnexion" value="Déconnexion" style="all:unset" ></a></div> 
+		<!-- style="all:unset" pour supprimer le style par défaul du bouton submit-->
+	</form>
 </nav>
 
-<!-- bouton qui déconnecte l'utilisateur et le redirige vers index.php -->
-<form method="post" action="../../scripts/connexion.php">
-	<div class="deconnexion"><a><input type="submit" name="deconnexion" value="Déconnexion" style="all:unset" ></a></div> 
-	<!-- style="all:unset" pour supprimer le style par défaul du bouton submit-->
-</form>

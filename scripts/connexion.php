@@ -2,18 +2,17 @@
 	include('session_start.php'); 
 
 	// Connexion au serveur MySQL
+	/*
   	$server = 'localhost';//'127.0.0.1';
 	$login = 'id18235165_root';
     $mdp = '@(bCM&?(MJvS875A';
 	$db = 'id18235165_cabinetmedical';
+	*/
 
-	/*
-	// Connexion au serveur MySQL
 	$login = 'root';
     $mdp = '';
   	$server = '127.0.0.1';
 	$db = 'cabinet';
-	*/
 	
 	try {
 

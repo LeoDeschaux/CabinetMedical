@@ -2,8 +2,6 @@
 $page = 'usager';																	// type de la page
 include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 include('../../scripts/header.php'); 			// NAVIGUATION BAR
-include('../../scripts/menu_secondaire.php'); // USAGERS MENU
-include('../../scripts/footer.php');			// bas de page
 ?>
 <!DOCTYPE HTML>
 <html>	
@@ -16,6 +14,12 @@ include('../../scripts/footer.php');			// bas de page
 
 	<body>
 
+		<main>
+
+		<?php
+			include('../../scripts/menu_secondaire.php'); // USAGERS MENU
+		?>	
+		
 		<br>
 		<form method="post">
 			<input type="text" name="search" placeholder="nom, prenom, etc.">
@@ -43,7 +47,6 @@ include('../../scripts/footer.php');			// bas de page
 			} else {
 				$req = $linkpdo->prepare("SELECT * FROM usager WHERE nom LIKE :nom OR prenom LIKE :prenom OR adresse LIKE :adresse OR cp LIKE :cp OR ville LIKE :ville ORDER BY nom, prenom ASC");
 			}
-
 
 		    $req->execute(array(
 		    'nom' => $field . "%",
@@ -117,5 +120,10 @@ include('../../scripts/footer.php');			// bas de page
 		    $req->closeCursor(); 
 		}
 		?>
+			</main>
 	</body>
+
+	<?php
+		include('../../scripts/footer.php'); // bas de page
+	?>
 </html>
