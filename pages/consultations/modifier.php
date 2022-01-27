@@ -94,7 +94,10 @@ include('../../scripts/connexion.php');  		// AUTHENTIFICATION & CONNEXION BDD
 					if($req->rowCount() == 1) {
 					} else {
 					}
+
 				}
+
+				header('Location: rechercher.php');
 			}
 		?>
 		<form method="post">
