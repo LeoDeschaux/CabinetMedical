@@ -7,11 +7,6 @@ Pour se connecter :
 Le fichier de notre base de donnée :
 cabinet.sql
 
-----------------------
-
-L'identifiant et le mot de passe se trouve dans le fichier scripts/verification.php.
-La connexion à la base de données se fait dans le fichier scripts/connexion.php
-
-Si l'utilisateur n'est pas connecté mais essaye de s'introduire sur les autres pages qu'index.php, alors il sera redirigé vers index.php.
-
 DESCHAUX-BEAUME Léo & BAUDRAND Paul-Alexandre | M3104 Cabinet Médical  Groupe D 
+
+![Dispenser](https://cdn.discordapp.com/attachments/904282363574517780/936189465070809138/05.png)
