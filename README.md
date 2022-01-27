@@ -13,8 +13,6 @@ cabinet.sql
 
 DESCHAUX-BEAUME Léo & BAUDRAND Paul-Alexandre | M3104 Cabinet Médical  Groupe D 
 
-***
-
 # Preview
 
 <p align="center">
