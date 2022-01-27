@@ -2,14 +2,14 @@
 
 > :warning: **L'hébergement du site a expiré pour des raisons qui nous sont inconnus**
 
-L'url du site : https://cabinetmedical-baudrand-deschaux.000webhostapp.com/index.php
+L'url du site: https://cabinetmedical-baudrand-deschaux.000webhostapp.com/index.php
 
-**Pour se connecter**
-	Identifiant : root
-	Mot de passe : iutinfo
+**Pour se connecter**  
+Identifiant: root  
+Mot de passe: iutinfo  
 
-**Le fichier de notre base de donnée**
-cabinet.sql
+**Le fichier de notre base de donnée**  
+cabinet.sql  
 
 DESCHAUX-BEAUME Léo & BAUDRAND Paul-Alexandre | M3104 Cabinet Médical  Groupe D 
 
