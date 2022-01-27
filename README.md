@@ -10,5 +10,5 @@ cabinet.sql
 DESCHAUX-BEAUME Léo & BAUDRAND Paul-Alexandre | M3104 Cabinet Médical  Groupe D 
 
 <p align="center">
-  <img width="460" height="300" src="https://cdn.discordapp.com/attachments/904282363574517780/936189465070809138/05.png">
+  <img width="60%" src="https://cdn.discordapp.com/attachments/904282363574517780/936189465070809138/05.png">
 </p>
